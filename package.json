@@ -1,0 +1,19 @@
+{
+  "name": "next-terminal-document",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "dushixiang",
+  "license": "MIT",
+  "devDependencies": {
+    "@vuepress/plugin-container": "^2.0.0-beta.36",
+    "@vuepress/plugin-search": "^2.0.0-beta.36"
+  },
+  "scripts": {
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:serve": "vitepress serve docs"
+  },
+  "dependencies": {
+    "vitepress": "^1.0.0-alpha.27"
+  }
+}
