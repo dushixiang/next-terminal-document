@@ -3,7 +3,7 @@ layout: home
 
 hero:
   name: Next Terminal
-  text: 下一代堡垒机
+  text: 开源交互审计系统
   tagline: 一个简单好用安全的开源交互审计系统
   actions:
     - theme: brand

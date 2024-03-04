@@ -4,8 +4,7 @@ module.exports = {
     themeConfig: {
         search: true,
         footer: {
-            message: 'Released under the AGPL V3 License.',
-            copyright: 'Copyright © 2019-2022 dushixiang'
+            copyright: 'Copyright © 2019-2024 成都市高新区指针漂移科技工作室'
         },
         head: [['link', { rel: 'icon', href: '/favicon.ico' }]],
         nav: [
@@ -23,11 +22,11 @@ module.exports = {
                         link: '/install/pro-install.md'
                     },
                     {
-                        text: 'Docker 安装',
+                        text: '开源版 Docker 安装',
                         link: '/install/docker-install.md'
                     },
                     {
-                        text: '原生 安装',
+                        text: '开源版 原生安装',
                         link: '/install/native-install.md'
                     },
                     {

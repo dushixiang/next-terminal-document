@@ -5,7 +5,7 @@
   "author": "dushixiang",
   "license": "MIT",
   "devDependencies": {
-    "@vuepress/plugin-container": "^2.0.0-beta.36",
+    "@vuepress/plugin-container": "^2.0.0-rc.0",
     "@vuepress/plugin-search": "^2.0.0-beta.36"
   },
   "scripts": {
@@ -14,6 +14,6 @@
     "docs:serve": "vitepress serve docs"
   },
   "dependencies": {
-    "vitepress": "^1.0.0-alpha.27"
+    "vitepress": "^1.0.0-rc.44"
   }
 }
