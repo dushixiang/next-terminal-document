@@ -4,7 +4,7 @@ module.exports = {
     themeConfig: {
         search: true,
         footer: {
-            copyright: 'Copyright © 2019-2024 成都市高新区指针漂移科技工作室'
+            copyright: 'Copyright © 2019-2024 指针漂移科技工作室'
         },
         head: [['link', { rel: 'icon', href: '/favicon.ico' }]],
         nav: [
@@ -18,7 +18,7 @@ module.exports = {
                 collapsible: true,
                 items: [
                     {
-                        text: '企业版安装',
+                        text: '企业版/专业版安装',
                         link: '/install/pro-install.md'
                     },
                     {
@@ -71,5 +71,5 @@ module.exports = {
             }
         ],
     },
-    base: '/docs/',
+    base: '.',
 }

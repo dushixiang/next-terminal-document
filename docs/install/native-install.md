@@ -96,7 +96,7 @@ fc-cache
 > 国内用户如果访问不到GitHub，可从 Gitee 进行下载，地址为: https://gitee.com/dushixiang/next-terminal
 
 ```shell
-wget https://github.com/dushixiang/next-terminal/releases/latest/download/next-terminal.tgz
+wget https://github.com/dushixiang/next-terminal/releases/latest/download/next-terminal.tar.gz
 ```
 
 解压
@@ -161,7 +161,7 @@ After=network.target
 User=root
 WorkingDirectory=/usr/local/next-terminal
 ExecStart=/usr/local/next-terminal/next-terminal
-Restart=on-failure
+Restart=always
 LimitNOFILE=1048576
 
 [Install]

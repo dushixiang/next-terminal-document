@@ -5,16 +5,6 @@
 1. 把密码类型修改为VNC
 2. 把加密类型修改为 Prefer On
 
-## docker安装如何更新？
-
-推荐使用`watchtower`自动更新
-
-手动更新需要先拉取最新的镜像，再按照 docker 安装步骤进行安装
-
-```shell
-docker pull dushixiang/next-terminal:latest
-```
-
 ## 连接rdp协议的windows7或者windows server 2008直接断开？
 
 因为freerdp的一个问题导致的，把 设置>RDP 下面的禁用字形缓存打开即可。
