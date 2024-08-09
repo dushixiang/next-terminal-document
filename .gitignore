@@ -1,6 +1,6 @@
-/.DS_Store
-/node_modules
-/package-lock.json
-/yarn.lock
-/docs/.vitepress/dist/
-/docs/.vitepress/cache/
+*.DS_Store
+node_modules
+package-lock.json
+yarn.lock
+docs/.vitepress/dist/
+docs/.vitepress/cache/
