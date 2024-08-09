@@ -9,7 +9,7 @@ module.exports = {
         head: [['link', { rel: 'icon', href: '/favicon.ico' }]],
         nav: [
             { text: 'GitHub', link: 'https://github.com/dushixiang/next-terminal' },
-            { text: 'Gitee', link: 'https://gitee.com/dushixiang/next-terminal' },
+            // { text: 'Gitee', link: 'https://gitee.com/dushixiang/next-terminal' },
             { text: '官网地址', link: 'https://next-terminal.typesafe.cn' },
         ],
         sidebar: [
@@ -71,5 +71,5 @@ module.exports = {
             }
         ],
     },
-    base: '.',
+    base: '/',
 }

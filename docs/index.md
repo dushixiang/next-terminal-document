@@ -2,13 +2,12 @@
 layout: home
 
 hero:
-  name: Next Terminal
-  text: 开源交互审计系统
-  tagline: 一个简单好用安全的开源交互审计系统
+  name: NEXT TERMINAL
+  tagline: 一个简单、好用、安全的开源交互审计系统。
   actions:
     - theme: brand
       text: 快速安装
-      link: /install/pro-install
+      link: ./install/pro-install
     - theme: alt
       text: View on GitHub
       link: https://github.com/dushixiang/next-terminal
