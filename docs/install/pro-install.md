@@ -30,11 +30,11 @@ curl -sSL https://f.typesafe.cn/next-terminal-premium/config-sqlite.yaml > confi
 docker compose up -d
 ```
 
-该版本初始用户信息为随机创建，您可以通过过滤日志来查看默认账户密码。
+安装成功后
 
-```
-docker compose logs | grep "default account"
-```
+访问 http://{ip}:8088/setup 进行用户初始化设置
+
+访问 http://{ip}:8088/login 进行登陆
 
 ## 配置文件详解
 
