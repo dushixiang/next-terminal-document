@@ -11,9 +11,9 @@
 
 支持微信和支付宝付款，二维码如下：
 
-<img src="images/wxpay.jpeg" width="300"/>
-<img src="images/alipay.jpeg" width="300"/>
+<img src="./images/wxpay.jpeg" width="300"/>
+<img src="./images/alipay.jpeg" width="300"/>
 
 付款成功后请添加我微信并备注 付款方式 - 安装方式。
 
-<img src="images/wx.jpeg" width="300"/>
+<img src="./images/wx.jpeg" width="300"/>
