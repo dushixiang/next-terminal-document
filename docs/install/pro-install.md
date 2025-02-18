@@ -64,17 +64,6 @@ log:
 
 server:
   addr: "0.0.0.0:8088"
-  # 获取IP地址的方式
-  #    x-forwarded-for: 读取header `X-Forwarded-For`
-  #    x-real-ip: 读取 header `x-real-ip`
-  #    direct: 读取对方的网络请求地址，适用于前面没有类似 nginx 之类的反向代理服务器
-  IPExtractor: "x-forwarded-for" 
-  # 信任的IP地址
-  #  客户端（1.1.1.1） -> 反向代理服务器（公网地址：2.2.2.2）-> NT 服务器（3.3.3.3）
-  #  在这种场景下，NT服务器获取到的客户端IP地址永远都是反向代理服务器的公网地址，是为了避免其他人恶意解析域名到您的服务器上。
-  #  如果该反向代理服务器是您自己部署的，则可以在下面这个字段中增加反向代理服务器的IP地址，默认是一个CIDR地址，单独的IP需要在后面加上 /32 。
-  IPTrustList:
-    - "127.0.0.1/32"
   tls:
     enabled: false 
     auto: false # 自动申请https证书，开启时服务器端口必须为 443
@@ -84,6 +73,10 @@ server:
 app:
   rpc:
     addr: 0.0.0.0:8099 # 安全网关注册到服务端使用的地址
+    tls:
+      enabled: false 
+      cert: ""
+      key: ""
   recording:
     type: "local"
     path: "/usr/local/next-terminal/data/recordings"
