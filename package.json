@@ -5,11 +5,12 @@
   "author": "dushixiang",
   "license": "MIT",
   "scripts": {
-    "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
-    "docs:serve": "vitepress serve docs"
+    "docs:dev": "vitepress dev",
+    "docs:build": "vitepress build",
+    "docs:serve": "vitepress serve docs",
+    "docs:preview": "vitepress preview"
   },
   "dependencies": {
-    "vitepress": "^1.3.2"
+    "vitepress": "^1.6.3"
   }
 }
