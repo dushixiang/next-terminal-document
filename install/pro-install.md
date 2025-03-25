@@ -1,30 +1,26 @@
-# 企业版/专业版 安装
-
-::: tip 提示
-专业版/企业版安装后试用时长为1天。
-:::
+# 安装
 
 ### 使用 PostgreSQL 数据库（推荐）
 
 ```shell
-curl -sSL https://f.typesafe.cn/next-terminal-premium/docker-compose-postgres.yml > docker-compose.yml
-curl -sSL https://f.typesafe.cn/next-terminal-premium/config-postgres.yaml > config.yaml
+curl -sSL https://f.typesafe.cn/next-terminal/docker-compose-postgres.yml > docker-compose.yml
+curl -sSL https://f.typesafe.cn/next-terminal/config-postgres.yaml > config.yaml
 docker compose up -d
 ```
 
 ### 使用 Mysql 数据库
 
 ```shell
-curl -sSL https://f.typesafe.cn/next-terminal-premium/docker-compose-mysql.yml > docker-compose.yml
-curl -sSL https://f.typesafe.cn/next-terminal-premium/config-mysql.yaml > config.yaml
+curl -sSL https://f.typesafe.cn/next-terminal/docker-compose-mysql.yml > docker-compose.yml
+curl -sSL https://f.typesafe.cn/next-terminal/config-mysql.yaml > config.yaml
 docker compose up -d
 ```
 
 ### 使用 Sqlite 数据库
 
 ```shell
-curl -sSL https://f.typesafe.cn/next-terminal-premium/docker-compose-sqlite.yml > docker-compose.yml
-curl -sSL https://f.typesafe.cn/next-terminal-premium/config-sqlite.yaml > config.yaml
+curl -sSL https://f.typesafe.cn/next-terminal/docker-compose-sqlite.yml > docker-compose.yml
+curl -sSL https://f.typesafe.cn/next-terminal/config-sqlite.yaml > config.yaml
 docker compose up -d
 ```
 
@@ -79,7 +75,7 @@ app:
   rpc:
     addr: 0.0.0.0:8099 # 安全网关注册到服务端使用的地址
     tls:
-      enabled: false 
+      enabled: true 
       cert: ""
       key: ""
   recording:

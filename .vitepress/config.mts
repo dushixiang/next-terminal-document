@@ -17,25 +17,25 @@ export default defineConfig({
                 collapsible: true,
                 items: [
                     {
-                        text: '企业版/专业版安装',
+                        text: '安装',
                         link: '/install/pro-install.md'
                     },
-                    {
-                        text: '开源版 Docker 安装',
-                        link: '/install/docker-install.md'
-                    },
-                    {
-                        text: '开源版 原生安装',
-                        link: '/install/native-install.md'
-                    },
-                    {
-                        text: '反向代理',
-                        link: '/install/reverse-proxy.md'
-                    },
+                    // {
+                    //     text: '开源版 Docker 安装',
+                    //     link: '/install/docker-install.md'
+                    // },
+                    // {
+                    //     text: '开源版 原生安装',
+                    //     link: '/install/native-install.md'
+                    // },
+                    // {
+                    //     text: '反向代理',
+                    //     link: '/install/reverse-proxy.md'
+                    // },
                 ],
             },
             {
-                text: '使用文档（企业版/专业版）',
+                text: '使用文档',
                 items: [
                     {
                         text: '快速开始',
