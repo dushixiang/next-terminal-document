@@ -83,8 +83,12 @@ export default defineConfig({
                 collapsible: true,
                 items: [
                     {
-                        text: '常见问题',
+                        text: 'FAQ',
                         link: '/faq/readme.md'
+                    },
+                    {
+                        text: '命令行',
+                        link: '/faq/cli.md'
                     }
                 ]
             },
@@ -101,7 +105,7 @@ export default defineConfig({
         ],
 
         socialLinks: [
-            {icon: 'github', link: 'https://github.com/vuejs/vitepress'}
+            {icon: 'github', link: 'https://github.com/dushixiang/next-terminal'}
         ]
     }
 })

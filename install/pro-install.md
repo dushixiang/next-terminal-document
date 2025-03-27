@@ -1,5 +1,9 @@
 # 安装
 
+::: tip 提示
+开源版本1.x 升级至 2.x 时需要重新安装 2.x。在 1.x 版本导出备份，在2.x版本导入备份。
+:::
+
 ### 使用 PostgreSQL 数据库（推荐）
 
 ```shell
@@ -30,7 +34,7 @@ docker compose up -d
 访问 http://{ip}:8088/login 进行登陆
 :::
 
-### 升级版本
+### 2.x 版本升级命令
 
 ```shell
 docker compose pull
