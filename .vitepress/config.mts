@@ -17,21 +17,21 @@ export default defineConfig({
                 collapsible: true,
                 items: [
                     {
-                        text: '安装',
-                        link: '/install/pro-install.md'
+                        text: '容器安装',
+                        link: '/install/docker-install.md'
                     },
-                    // {
-                    //     text: '开源版 Docker 安装',
-                    //     link: '/install/docker-install.md'
-                    // },
-                    // {
-                    //     text: '开源版 原生安装',
-                    //     link: '/install/native-install.md'
-                    // },
-                    // {
-                    //     text: '反向代理',
-                    //     link: '/install/reverse-proxy.md'
-                    // },
+                    {
+                        text: '原生安装',
+                        link: '/install/native-install.md'
+                    },
+                    {
+                        text: '配置文件',
+                        link: '/install/config-desc.md'
+                    },
+                    {
+                        text: '反向代理',
+                        link: '/install/reverse-proxy.md'
+                    },
                 ],
             },
             {
@@ -39,18 +39,18 @@ export default defineConfig({
                 items: [
                     {
                         text: '快速开始',
-                        link: '/usage-premium/readme.md'
+                        link: '/usage/readme.md'
                     },
                     {
                         text: '资源管理',
                         items: [
                             {
                                 text: '资产管理',
-                                link: '/usage-premium/asset.md'
+                                link: '/usage/asset.md'
                             },
                             {
-                                text: '网站保护',
-                                link: '/usage-premium/website.md'
+                                text: 'Web资产',
+                                link: '/usage/website.md'
                             },
                         ]
                     },
@@ -59,11 +59,11 @@ export default defineConfig({
                         items: [
                             {
                                 text: 'SSH网关',
-                                link: '/usage-premium/ssh-gateway.md'
+                                link: '/usage/ssh-gateway.md'
                             },
                             {
                                 text: '安全网关',
-                                link: '/usage-premium/agent-gateway.md'
+                                link: '/usage/agent-gateway.md'
                             },
                         ]
                     },
@@ -72,7 +72,7 @@ export default defineConfig({
                         items: [
                             {
                                 text: '通行令牌（Passkey）',
-                                link: '/usage-premium/passkey.md'
+                                link: '/usage/passkey.md'
                             },
                         ]
                     },
@@ -89,6 +89,10 @@ export default defineConfig({
                     {
                         text: '命令行',
                         link: '/faq/cli.md'
+                    },
+                    {
+                        text: 'v1 升级 v2',
+                        link: '/faq/v1tov2.md'
                     }
                 ]
             },

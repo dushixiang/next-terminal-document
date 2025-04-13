@@ -7,7 +7,7 @@ hero:
   actions:
     - theme: brand
       text: 快速安装
-      link: ./install/pro-install
+      link: ./install/docker-install
     - theme: alt
       text: View on GitHub
       link: https://github.com/dushixiang/next-terminal
