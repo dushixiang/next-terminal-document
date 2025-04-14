@@ -78,6 +78,8 @@ After=network.target
 [Service]
 User=root
 ExecStart=/usr/local/sbin/guacd -f /etc/guacamole/guacd.conf
+TimeoutSec=0
+RestartSec=10
 Restart=always
 LimitNOFILE=1048576
 
@@ -125,6 +127,8 @@ After=network.target
 User=root
 WorkingDirectory=/usr/local/next-terminal
 ExecStart=/usr/local/next-terminal/next-terminal -c /usr/local/next-terminal/config.yaml
+TimeoutSec=0
+RestartSec=10
 Restart=always
 LimitNOFILE=1048576
 
