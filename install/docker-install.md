@@ -1,4 +1,5 @@
 # 安装
+安装之前请先检查硬件符合[系统需求](/install/system-requirements.html)
 
 ### 使用 PostgreSQL 数据库（推荐）
 
