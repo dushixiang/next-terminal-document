@@ -6,6 +6,12 @@
 | 原生安装    | - CPU: 1 cores <br/> - RAM: >= 1GB <br/>- Storage: >= 40 GB SSD | - Apache Guacamole-Server 1.5.5+  <br/>- Sqlite or Mysql(include:MariaDB,Percona) or PostgreSQL<br/>- wget,tar |
 | 安全网关安装    | - CPU: 1 cores  <br/>- RAM: >= 256MB                                                                   | - curl                                                                                                |
 
+## 网络需求
+- next-terminal的安装需求连接互联网网络，访问安装好的next-terminal也需要保证端口可访问.
+- 启用web资产功能，如需打开自动申请https证书，需next-terminal的反向代理监听端口必须为443对公网可访问。
+- 如果使用安全网关功能，需要保证安全网关注册服务的端口(8099)可访问到next-terminal。
+- 如使用ssh网关功能，需保证next-terminal ssh登录到网关的网络通畅，必要时可手动验证。
+
 ## 推荐操作系统
 - 类Linux
 
