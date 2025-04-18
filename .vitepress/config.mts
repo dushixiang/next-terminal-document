@@ -17,6 +17,9 @@ export default defineConfig({
                 collapsible: true,
                 items: [
                     {
+                        text: '系统需求',
+                        link: '/install/system-requirements.md'
+                    },{
                         text: '容器安装',
                         link: '/install/docker-install.md'
                     },
