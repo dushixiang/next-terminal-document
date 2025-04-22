@@ -20,7 +20,7 @@
 
 ## 推荐操作系统
 - next-terminal: 类Linux
-- 安全网关: 类Linux系统， Windows及Macos能使用， 但存在一定兼容性问题
+- 安全网关: 推荐类Linux系统， Windows及Macos能使用， 但存在一定兼容性问题
 
 ## 浏览器兼容
 - Microsoft Edge: The latest version + previous major versions
