@@ -1,19 +1,49 @@
 # 资产管理
 
-资源管理主要分为资产、授权凭证、指令、接入网关四个部分。
+### 支持协议
+- RDP (Windows远程桌面)
+- SSH (Linux/Unix安全连接)
+- VNC (图形界面远程控制)
+- Telnet (传统终端协议)
 
+### 添加资产
+1. 点击"新增资产"按钮
+2. 选择协议类型
+3. 填写连接信息：
+    - 直接输入账户密码
+    - 或选择预先创建的授权凭证
+4. 保存配置
 
-### 资产
+![资产列表界面](images/asset-list.png)
+![资产添加表单](images/asset-post.png)
 
-资产支持RDP、SSH、VNC、Telnet协议，可以自定义账户密码，也可以先创建授权凭证，添加资产时再选择该授权凭证。
+### 高级功能
 
-![img.png](images/asset-list.png)
+#### RemoteApp配置
 
-根据提示填写信息。
+1. 使用 [RemoteApp Tool](https://github.com/kimmknight/remoteapptool) 配置服务端
+2. 在资产配置中填写：
+    - **远程应用**：格式为`||应用程序名`（如`||notepad`）
+    - **工作目录**（可选）
+    - **启动参数**（可选）
 
-![img.png](images/asset-post.png)
+Windows配置示例：
+![assets-rdp](images/asset-rdp-remote-app-win.png)
 
-存储管理用于作为访问RDP资产时的网络映射盘。
+系统参数示例：
+![assets-rdp](images/asset-rdp-remote-app-setting.png)
+
+连接成功后：
+![assets-rdp](images/asset-rdp-remote-app-view.png)
+
+#### 网络驱动
+
+> **解决**：RDP文件传输限制问题
+
+启用方法：
+1. 编辑资产配置
+2. 启用"设备映射"选项
+3. 配置存储管理作为网络映射盘
 
 ![img.png](images/asset-rdp-drive.png)
 
