@@ -94,6 +94,10 @@ export default defineConfig({
                         link: '/faq/cli.md'
                     },
                     {
+                        text: '备份恢复',
+                        link: '/faq/backup.md'
+                    },
+                    {
                         text: 'v1 升级 v2',
                         link: '/faq/v1tov2.md'
                     }
