@@ -31,10 +31,10 @@ export default defineConfig({
                         text: '配置文件',
                         link: '/install/config-desc.md'
                     },
-                    {
-                        text: '反向代理',
-                        link: '/install/reverse-proxy.md'
-                    },
+                    // {
+                    //     text: '反向代理',
+                    //     link: '/install/reverse-proxy.md'
+                    // },
                 ],
             },
             {

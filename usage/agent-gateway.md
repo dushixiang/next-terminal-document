@@ -1,27 +1,13 @@
 # 安全网关
 
-安全网关作为一个代理，在安装之后会自动向服务端进行注册。借助安全网关，能够提升直接访问速度较慢的资产的访问效率，同时也可用于访问处于内网环境的资产。
 
-### 安装步骤
+安全网关作为代理服务，采用WebSocket协议与服务端通信。安装完成后会自动向服务端注册，需确保能访问服务端的Web端口，加密通信依赖于服务端的HTTPS配置。
 
-**配置证书**
+主要优势：
+- 提升访问速度较慢资产的连接效率
+- 访问内网环境中的资产
+- 提供安全的远程访问通道
 
-在安装安全网关之前，需要对证书进行配置。具体操作是修改 `config.yaml` 文件，添加以下配置内容：
-```shell
-app:
-  rpc:
-    addr: 0.0.0.0:8099 # 安全网关注册到服务端使用的地址
-    tls:
-      enabled: true 
-      cert: "your_cert.pem"
-      key: "your_key.pem"
-```
-
-推荐使用 https://github.com/FiloSottile/mkcert 工具来生成证书。
-
-**重启服务**
-
-完成证书配置后，需要重启服务以使配置生效。
 
 ### 注册流程
 
@@ -35,4 +21,60 @@ app:
 
 **查看帮助信息**
 
-安装完成后，你可以使用 `nt-tunnel -h` 命令查看帮助信息，以了解更多使用方法。
+安装完成后，可通过以下命令查看帮助信息：
+```shell
+nt-tunnel -h
+```
+
+## 服务管理
+### Linux 服务管理
+
+**查看服务状态**
+
+```shell
+systemctl status nt-tunnel
+```
+
+**常用操作**
+
+- 启动服务：systemctl start nt-tunnel
+- 停止服务：systemctl stop nt-tunnel
+- 查看日志：tail -f /var/log/nt-tunnel.log
+
+
+### macOS 服务管理
+
+**查看服务状态**
+
+```shell
+sudo launchctl list nt-tunnel
+```
+
+正常运行的服务会显示类似以下信息：
+
+```shell
+{
+	"StandardOutPath" = "/var/log/nt-tunnel.out.log";
+	"LimitLoadToSessionType" = "System";
+	"StandardErrorPath" = "/var/log/nt-tunnel.err.log";
+	"Label" = "nt-tunnel";
+	"OnDemand" = false;
+	"LastExitStatus" = 0;
+	"PID" = 63720;
+	"Program" = "/Users/nobody/app/nt-tunnel";
+	"ProgramArguments" = (
+		"/Users/nobody/app/nt-tunnel";
+		"run";
+		"--endpoint";
+		"https://next.typesafe.cn";
+		"--token";
+		"TUN_8qWs6xU6Vnhf8CewzFLtgVR3qSP8YKcoNPhPe5VThqbe";
+	);
+};
+```
+
+**常用操作**
+
+- 启动服务：sudo launchctl start nt-tunnel
+- 停止服务：sudo launchctl stop nt-tunnel
+- 查看日志：tail -f /var/log/nt-tunnel.{out,err}.log

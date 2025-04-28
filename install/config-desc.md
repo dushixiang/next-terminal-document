@@ -36,12 +36,6 @@ server:
     key: "./data/cert/localhost-key.pem"
 
 app:
-  rpc:
-    addr: 0.0.0.0:8099 # 安全网关注册到服务端使用的地址
-    tls:
-      enabled: true
-      cert: ""
-      key: ""
   website:
     accessLog: "./logs/access.log" # web 资产的访问日志路径
   recording:
