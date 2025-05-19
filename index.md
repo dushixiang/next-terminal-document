@@ -3,7 +3,7 @@ layout: home
 
 hero:
   name: NEXT TERMINAL
-  tagline: 一个简单、好用、安全的开源交互审计系统。
+  tagline: 一个简单、好用、安全的开源运维审计系统。
   actions:
     - theme: brand
       text: 快速安装
