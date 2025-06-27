@@ -22,6 +22,12 @@ PuTTY 生成的密钥无法直接使用，需要导出后再使用。
 
 下载打包后的压缩文件，替换其中的 next-terminal 文件即可。
 
+## web资产接入grafana不可用
+
+web资产接入grafana后，wss报错且ui显示错误: *origin not allowed*
+解决办法:
+编辑grafana web资产： Custom Header --> 选中Retain hostname  --> 保存
+
 ## 资产状态检测原理是什么？
 
 tcp连接到目标IP和端口进行测试的，默认超时时间是3秒，在计划任务中每隔一个小时检测一次。如果资产状态检测为不在线，可以自行登录next-terminal所在服务器使用telnet进行测试。
