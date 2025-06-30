@@ -50,3 +50,17 @@ Subsystem sftp /usr/lib/openssh/sftp-server
 Subsystem sftp internal-sftp
 ```
 如果该行被注释（以 # 开头）或缺失，说明可能未启用 SFTP 功能。
+
+## 连接 MacOS 中文乱码？
+
+点击编辑资产，打开 `高级设置 > 连接设置`， 在环境变量中添加以下内容：
+
+```shell
+LANG=zh_CN.UTF-8
+```
+
+## SSH 连接后大概5秒钟就自动断开？
+
+可能是由于SSH连接的存活检测导致，点击编辑资产，打开 `高级设置 > 连接设置`，选中 `连接时禁用存活检查` 即可。
+
+已知必现该问题的系统有：RouterOS 。
