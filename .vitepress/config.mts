@@ -77,6 +77,10 @@ export default defineConfig({
                                 text: '通行令牌（Passkey）',
                                 link: '/usage/passkey.md'
                             },
+                            {
+                                text: '2fa(TOTP)',
+                                link: '/usage/otp.md'
+                            },
                         ]
                     },
                 ]
