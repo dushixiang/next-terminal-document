@@ -64,3 +64,10 @@ LANG=zh_CN.UTF-8
 可能是由于SSH连接的存活检测导致，点击编辑资产，打开 `高级设置 > 连接设置`，选中 `连接时禁用存活检查` 即可。
 
 已知必现该问题的系统有：RouterOS 。
+
+## 如何从 Sqlite 迁移到 PostgreSQL？
+
+执行以下命令：
+```shell
+docker run --rm -it -v ./data/nt.db:/db/nt.db ghcr.io/dimitri/pgloader:latest pgloader "sqlite:///db/nt.db" "pgsql://PG用户名:PG密码@PG主机/PG数据库名"
+```

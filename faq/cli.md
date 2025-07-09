@@ -16,7 +16,6 @@ Usage:
 Available Commands:
   completion  Generate the autocompletion script for the specified shell
   help        Help about any command
-  mkcert      生成证书
   sec         安全相关
   user        用户管理
   version     查看版本
