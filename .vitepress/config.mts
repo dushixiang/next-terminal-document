@@ -19,7 +19,7 @@ export default defineConfig({
                     {
                         text: '系统需求',
                         link: '/install/system-requirements.md'
-                    },{
+                    }, {
                         text: '容器安装',
                         link: '/install/docker-install.md'
                     },
@@ -71,6 +71,15 @@ export default defineConfig({
                         ]
                     },
                     {
+                        text: '访问资产',
+                        items: [
+                            {
+                                text: '资产访问',
+                                link: '/usage/access.md'
+                            },
+                        ]
+                    },
+                    {
                         text: '系统设置',
                         items: [
                             {
@@ -81,6 +90,10 @@ export default defineConfig({
                                 text: '2fa(TOTP)',
                                 link: '/usage/otp.md'
                             },
+                            {
+                                text: '绑定授权',
+                                link: '/usage/license.md'
+                            }
                         ]
                     },
                 ]
