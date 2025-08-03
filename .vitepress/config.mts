@@ -21,7 +21,7 @@ export default defineConfig({
                         link: '/install/system-requirements.md'
                     }, {
                         text: '容器安装',
-                        link: '/install/docker-install.md'
+                        link: '/install/container-install.md'
                     },
                     {
                         text: '原生安装',
