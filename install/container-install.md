@@ -153,38 +153,38 @@ SERVICE_NAME="next-terminal"
 
 PROJECT_DIR="$(pwd)"
 
-description="Service of ${SERVICE_NAME}"
+description="Service of \${SERVICE_NAME}"
 
 depend() {
   need net
 }
 
 start() {
-  ebegin "Starting ${SERVICE_NAME}"
-  cd "${PROJECT_DIR}" || return 1
+  ebegin "Starting \${SERVICE_NAME}"
+  cd "\${PROJECT_DIR}" || return 1
   /usr/bin/podman-compose up -d && eend 0 || eend 1
 }
 
 stop() {
-  ebegin "Stopping ${SERVICE_NAME}"
-  cd "${PROJECT_DIR}" || return 1
+  ebegin "Stopping \${SERVICE_NAME}"
+  cd "\${PROJECT_DIR}" || return 1
   /usr/bin/podman-compose down && eend 0 || eend 1
 }
 
 restart() {
-  ebegin "Restarting ${SERVICE_NAME}"
-  cd "${PROJECT_DIR}" || return 1
+  ebegin "Restarting \${SERVICE_NAME}"
+  cd "\${PROJECT_DIR}" || return 1
   /usr/bin/podman-compose down && /usr/bin/podman-compose up -d && eend 0 || eend 1
 }
 
 status() {
-  cd "${PROJECT_DIR}" || return 1
-  RUNNING=$(/usr/bin/podman-compose ps --quiet)
-  if [ -n "$RUNNING" ]; then
-    echo "${SERVICE_NAME} is running"
+  cd "\${PROJECT_DIR}" || return 1
+  RUNNING=\$(/usr/bin/podman-compose ps --quiet)
+  if [ -n "\$RUNNING" ]; then
+    echo "\${SERVICE_NAME} is running"
     return 0
   else
-    echo "${SERVICE_NAME} is not running"
+    echo "\${SERVICE_NAME} is not running"
     return 1
   fi
 }
