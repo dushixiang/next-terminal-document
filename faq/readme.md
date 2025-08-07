@@ -8,6 +8,12 @@
 
 1. 把密码类型修改为VNC
 2. 把加密类型修改为 Prefer On
+3. 勾选 「Allow connegtions from legacy VNC Viewerusers」
+
+参考 
+1. https://help.realvnc.com/hc/en-us/community/posts/7565341003805-Can-t-connect-to-VNC-server-using-Guacamole-client
+2. https://help.realvnc.com/hc/en-us/articles/6661259023389-VNC-Password-storage-in-RealVNC-Server
+
 
 ## 连接rdp协议的windows7或者windows server 2008直接断开？
 
