@@ -35,17 +35,17 @@ yum install -y make gcc g++ \
 下载源码
 
 ```shell
-wget https://downloads.apache.org/guacamole/1.5.5/source/guacamole-server-1.5.5.tar.gz
+wget https://downloads.apache.org/guacamole/1.6.0/source/guacamole-server-1.6.0.tar.gz
 ```
 
 解压
 ```shell
-tar -xvf guacamole-server-1.5.5.tar.gz
+tar -xvf guacamole-server-1.6.0.tar.gz
 ```
 
 编译安装
 ```shell
-cd guacamole-server-1.5.5
+cd guacamole-server-1.6.0
 ./configure --with-init-dir=/etc/init.d
 make
 make install
