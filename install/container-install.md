@@ -1,3 +1,9 @@
+**推广**
+
+<a href="https://www.lcayun.com/actcloud.html?from=next-terminal" target="_blank">![img.png](images/lcayun.png)</a>
+
+----
+
 # 安装
 
 安装之前请先检查硬件及依赖符合[系统需求](/install/system-requirements.html)
