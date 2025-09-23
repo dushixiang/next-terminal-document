@@ -55,17 +55,17 @@ app:
         weight: 1
 
   # 下面的配置在 v2.6.0 及之后的版本生效
-  reverseProxy:
-    enabled: true # 是否启用反向代理
-    httpEnabled: true # 是否启用 http 反向代理
-    httpAddr: ":80" # http 监听地址
-    httpRedirectToHttps: false  # 是否强制 http 访问转为 https
-    httpsEnabled: true # 是否启用 https 反向代理
-    httpsAddr: ":443" # https 监听地址
-    selfProxyEnabled: true # 是否启用自代理
-    selfDomain: "nt.yourdomain.com" # 自代理域名
-    ipExtractor: "direct" # ip 提取方式，可选 direct, x-forwarded-for, x-real-ip
-    ipTrustList: # 信任的IP地址列表
+  ReverseProxy:
+    Enabled: true # 是否启用反向代理
+    HttpEnabled: true # 是否启用 http 反向代理
+    HttpAddr: ":80" # http 监听地址
+    HttpRedirectToHttps: false  # 是否强制 http 访问转为 https
+    HttpsEnabled: true # 是否启用 https 反向代理
+    HttpsAddr: ":443" # https 监听地址
+    SelfProxyEnabled: true # 是否启用自代理
+    SelfDomain: "nt.yourdomain.com" # 自代理域名
+    IpExtractor: "direct" # ip 提取方式，可选 direct, x-forwarded-for, x-real-ip
+    IpTrustList: # 信任的IP地址列表
       - "0.0.0.0/0"
 ```
 :::
@@ -80,7 +80,7 @@ app:
 * **做法**：直接用网络层 IP。
 
 ```yaml
-ipExtractor: "direct"
+IpExtractor: "direct"
 ```
 
 ### 2. 有代理，使用 `X-Forwarded-For (XFF)`
@@ -90,14 +90,14 @@ ipExtractor: "direct"
 * **正确做法**：从右往左找第一个不可信 IP（即非代理的 IP）。
 
 ```yaml
-ipExtractor: "x-forwarded-for"
+IpExtractor: "x-forwarded-for"
 ```
 
 默认信任全部IP，使用 `X-Forwarded-For` 左侧的第一个IP。
 
 当然你也可以自定义信任的IP范围
 ```yaml
-ipTrustList: # 信任的IP地址列表
+IpTrustList: # 信任的IP地址列表
   - "0.0.0.0/0"
 ```
 
@@ -108,7 +108,7 @@ ipTrustList: # 信任的IP地址列表
 * **做法**：信任代理设置的头，并配置信任策略。
 
 ```yaml
-ipExtractor: "x-real-ip"
+IpExtractor: "x-real-ip"
 ```
 
 ### 4. 必须配置边缘代理
@@ -134,7 +134,7 @@ ipExtractor: "x-real-ip"
 ## 总结：
 
 * **直连**：用 `direct`。
-* **有代理**：用 `x-forwarded-for` 或 `x-real-ip`，并配置 `ipTrustList`。
+* **有代理**：用 `x-forwarded-for` 或 `x-real-ip`，并配置 `IpTrustList`。
 * **边缘代理必须清洗头部**，否则不安全。
 
 ---
