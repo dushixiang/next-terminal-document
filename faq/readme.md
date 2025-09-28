@@ -77,3 +77,11 @@ LANG=zh_CN.UTF-8
 ```shell
 docker run --rm -it -v ./data/nt.db:/db/nt.db ghcr.io/dimitri/pgloader:latest pgloader "sqlite:///db/nt.db" "pgsql://PG用户名:PG密码@PG主机/PG数据库名"
 ```
+
+## SSH 连接失败？
+
+如果提示信息如下，就代表你的密码或者密钥有问题，请仔细检查。
+
+```shell
+ssh:hindshake failed: ssh: unable to authenticate, attempted methds [none],no supported methods remain
+```
