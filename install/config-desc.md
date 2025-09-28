@@ -2,6 +2,12 @@
 
 配置文件解释
 
+::: tip 相关文档
+如需了解反向代理和 Web 资产的详细配置和使用方法，请参考：
+- [反向代理配置](./reverse-proxy.md)
+- [Web 资产管理](../usage/website.md)
+:::
+
 ::: code-group 
 
 ```yaml [config.yaml]

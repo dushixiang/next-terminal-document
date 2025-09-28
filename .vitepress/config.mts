@@ -3,9 +3,33 @@ import {defineConfig} from 'vitepress'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
     title: "Next Terminal",
-    description: "Next Terminal 官方文档",
+    description: "Next Terminal 官方文档 - 一个简单、好用、安全的开源运维审计系统",
+    head: [
+        ['link', { rel: 'icon', href: '/logo.svg' }],
+        ['meta', { name: 'keywords', content: 'Next Terminal, 运维审计, 堡垒机, SSH, RDP, VNC, Telnet, 开源' }],
+        ['meta', { property: 'og:title', content: 'Next Terminal - 开源运维审计系统' }],
+        ['meta', { property: 'og:description', content: 'Next Terminal 是一个简单、好用、安全的开源运维审计系统，支持 SSH、RDP、VNC、Telnet 等多种协议' }],
+        ['meta', { property: 'og:type', content: 'website' }],
+        ['meta', { property: 'og:url', content: 'https://next-terminal.typesafe.cn' }],
+        ['meta', { property: 'og:image', content: 'https://next-terminal.typesafe.cn/logo.svg' }]
+    ],
     themeConfig: {
         // https://vitepress.dev/reference/default-theme-config
+        lastUpdated: {
+            text: '最后更新',
+            formatOptions: {
+                dateStyle: 'short',
+                timeStyle: 'medium'
+            }
+        },
+        editLink: {
+            pattern: 'https://github.com/dushixiang/next-terminal-document/edit/main/:path',
+            text: '在 GitHub 上编辑此页'
+        },
+        outline: {
+            level: [2, 3],
+            label: '页面导航'
+        },
         nav: [
             {text: 'GitHub', link: 'https://github.com/dushixiang/next-terminal'},
             {text: '官网地址', link: 'https://next-terminal.typesafe.cn'}
@@ -14,7 +38,7 @@ export default defineConfig({
         sidebar: [
             {
                 text: '安装文档',
-                collapsible: true,
+                collapsed: false,
                 items: [
                     {
                         text: '系统需求',
@@ -31,14 +55,15 @@ export default defineConfig({
                         text: '配置文件',
                         link: '/install/config-desc.md'
                     },
-                    // {
-                    //     text: '反向代理',
-                    //     link: '/install/reverse-proxy.md'
-                    // },
+                    {
+                        text: '反向代理',
+                        link: '/install/reverse-proxy.md'
+                    },
                 ],
             },
             {
                 text: '使用文档',
+                collapsed: false,
                 items: [
                     {
                         text: '快速开始',
@@ -100,7 +125,7 @@ export default defineConfig({
             },
             {
                 text: '常见问题',
-                collapsible: true,
+                collapsed: false,
                 items: [
                     {
                         text: 'FAQ',
@@ -122,7 +147,7 @@ export default defineConfig({
             },
             {
                 text: '付费服务',
-                collapsible: true,
+                collapsed: false,
                 items: [
                     {
                         text: '安装服务',
