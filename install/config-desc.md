@@ -55,18 +55,19 @@ app:
         weight: 1
 
   # 下面的配置在 v2.6.0 及之后的版本生效
-  ReverseProxy:
-    Enabled: true # 是否启用反向代理
-    HttpEnabled: true # 是否启用 http 反向代理
-    HttpAddr: ":80" # http 监听地址
-    HttpRedirectToHttps: false  # 是否强制 http 访问转为 https
-    HttpsEnabled: true # 是否启用 https 反向代理
-    HttpsAddr: ":443" # https 监听地址
-    SelfProxyEnabled: true # 是否启用自代理
-    SelfDomain: "nt.yourdomain.com" # 自代理域名
-    IpExtractor: "direct" # ip 提取方式，可选 direct, x-forwarded-for, x-real-ip
-    IpTrustList: # 信任的IP地址列表
-      - "0.0.0.0/0"
+  ReverseProxy: # [!code ++]
+    Enabled: true # 是否启用反向代理 # [!code ++]
+    HttpEnabled: true # 是否启用 http 反向代理 # [!code ++]
+    HttpAddr: ":80" # http 监听地址 # [!code ++]
+    HttpRedirectToHttps: false  # 是否强制 http 访问转为 https # [!code ++]
+    HttpsEnabled: true # 是否启用 https 反向代理 # [!code ++]
+    HttpsAddr: ":443" # https 监听地址 # [!code ++]
+    SelfProxyEnabled: true # 是否启用自代理 # [!code ++]
+    SelfDomain: "nt.yourdomain.com" # 自代理域名 # [!code ++]
+    Root: "" # 系统根路径 # [!code ++]
+    IpExtractor: "direct" # ip 提取方式，可选 direct, x-forwarded-for, x-real-ip # [!code ++]
+    IpTrustList: # 信任的IP地址列表 # [!code ++]
+      - "0.0.0.0/0" # [!code ++]
 ```
 :::
 
