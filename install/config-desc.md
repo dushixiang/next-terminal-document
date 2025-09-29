@@ -13,15 +13,13 @@
 ```yaml [config.yaml]
 database:
   enabled: true
-  type: sqlite # 可选 mysql,sqlite,postgres 选择对应的数据库类型之后，请填写对应的数据库配置
-  sqlite:
-    path: ./data/nt.db
-  #  postgres:
-  #    hostname: localhost
-  #    port: 5432
-  #    username: next-terminal
-  #    password: next-terminal
-  #    database: next-terminal
+  type: postgres # 可选 postgres,mysql 选择对应的数据库类型之后，请填写对应的数据库配置
+  postgres:
+    hostname: localhost
+    port: 5432
+    username: next-terminal
+    password: next-terminal
+    database: next-terminal
   #  mysql:
   #    hostname: localhost
   #    port: 3306
