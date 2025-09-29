@@ -62,17 +62,17 @@ app:
 
   # 下面的配置在 v2.6.0 及之后的版本生效
   ReverseProxy: # [!code ++]
-    Enabled: true # 是否启用反向代理 # [!code ++]
-    HttpEnabled: true # 是否启用 http 反向代理 # [!code ++]
-    HttpAddr: ":80" # http 监听地址 # [!code ++]
-    HttpRedirectToHttps: false  # 是否强制 http 访问转为 https # [!code ++]
-    HttpsEnabled: true # 是否启用 https 反向代理 # [!code ++]
-    HttpsAddr: ":443" # https 监听地址 # [!code ++]
-    SelfProxyEnabled: true # 是否启用自代理 # [!code ++]
-    SelfDomain: "nt.yourdomain.com" # 自代理域名，SelfProxyEnabled 为 true 时生效 # [!code ++]
+    Enabled: true # 是否启用反向代理 [!code ++]
+    HttpEnabled: true # 是否启用 http 反向代理 [!code ++]
+    HttpAddr: ":80" # http 监听地址 [!code ++]
+    HttpRedirectToHttps: false  # 是否强制 http 访问转为 https [!code ++]
+    HttpsEnabled: true # 是否启用 https 反向代理 [!code ++]
+    HttpsAddr: ":443" # https 监听地址 [!code ++]
+    SelfProxyEnabled: true # 是否启用自代理 [!code ++]
+    SelfDomain: "nt.yourdomain.com" # 自代理域名，SelfProxyEnabled 为 true 时生效 [!code ++]
     Root: "" # 系统根路径，SelfProxyEnabled 为 flase 时生效。示例：https://nt.yourdomain.com [!code ++]
-    IpExtractor: "direct" # ip 提取方式，可选 direct, x-forwarded-for, x-real-ip # [!code ++]
-    IpTrustList: # 信任的IP地址列表 # [!code ++]
+    IpExtractor: "direct" # ip 提取方式，可选 direct, x-forwarded-for, x-real-ip [!code ++]
+    IpTrustList: # 信任的IP地址列表 [!code ++]
       - "0.0.0.0/0" # [!code ++]
 ```
 :::
