@@ -11,7 +11,15 @@ export default defineConfig({
         ['meta', { property: 'og:description', content: 'Next Terminal 是一个简单、好用、安全的开源运维审计系统，支持 SSH、RDP、VNC、Telnet 等多种协议' }],
         ['meta', { property: 'og:type', content: 'website' }],
         ['meta', { property: 'og:url', content: 'https://next-terminal.typesafe.cn' }],
-        ['meta', { property: 'og:image', content: 'https://next-terminal.typesafe.cn/logo.svg' }]
+        ['meta', { property: 'og:image', content: 'https://next-terminal.typesafe.cn/logo.svg' }],
+        [
+            'script',
+            {
+                async: '',
+                src: 'https://umami.typesafe.cn/script.js',
+                'data-website-id': '4693b455-683d-4012-a715-cb5fd297ccdc'
+            }
+        ]
     ],
     themeConfig: {
         // https://vitepress.dev/reference/default-theme-config
