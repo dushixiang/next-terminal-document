@@ -110,6 +110,10 @@ export default defineConfig({
                                 text: '资产访问',
                                 link: '/usage/access.md'
                             },
+                            {
+                                text: 'RDP/VNC 错误码',
+                                link: '/usage/error-codes.md'
+                            },
                         ]
                     },
                     {
