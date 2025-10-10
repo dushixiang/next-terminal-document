@@ -10,8 +10,6 @@
 
 ## 使用 Docker 安装
 
-### 使用 PostgreSQL 数据库（推荐）
-
 ::: code-group
 
 ```shell [中国大陆]
@@ -28,23 +26,6 @@ docker compose up -d
 
 :::
 
-### 使用 Mysql 数据库
-
-::: code-group
-
-```shell [中国大陆]
-curl -sSL https://f.typesafe.cn/next-terminal/docker-compose-mysql-aliyun.yml > docker-compose.yml
-curl -sSL https://f.typesafe.cn/next-terminal/config-mysql.yaml > config.yaml
-docker compose up -d
-```
-
-```shell [其他]
-curl -sSL https://f.typesafe.cn/next-terminal/docker-compose-mysql.yml > docker-compose.yml
-curl -sSL https://f.typesafe.cn/next-terminal/config-mysql.yaml > config.yaml
-docker compose up -d
-```
-
-:::
 
 ::: tip 安装成功后
 访问 http://{ip}:8088/setup 进行用户初始化设置
@@ -67,8 +48,6 @@ docker compose up -d
 
 Podman 安装方式与 Docker 类似，使用相同的 docker-compose.yml 和 config.yaml 文件。
 
-### 使用 PostgreSQL 数据库（推荐）
-
 ::: code-group
 
 ```shell [中国大陆]
@@ -80,24 +59,6 @@ podman-compose up -d
 ```shell [其他]
 curl -sSL https://f.typesafe.cn/next-terminal/docker-compose-postgres.yml > docker-compose.yml
 curl -sSL https://f.typesafe.cn/next-terminal/config-postgres.yaml > config.yaml
-podman-compose up -d
-```
-
-:::
-
-### 使用 Mysql 数据库
-
-::: code-group
-
-```shell [中国大陆]
-curl -sSL https://f.typesafe.cn/next-terminal/docker-compose-mysql-aliyun.yml > docker-compose.yml
-curl -sSL https://f.typesafe.cn/next-terminal/config-mysql.yaml > config.yaml
-podman-compose up -d
-```
-
-```shell [其他]
-curl -sSL https://f.typesafe.cn/next-terminal/docker-compose-mysql.yml > docker-compose.yml
-curl -sSL https://f.typesafe.cn/next-terminal/config-mysql.yaml > config.yaml
 podman-compose up -d
 ```
 

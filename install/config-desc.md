@@ -11,52 +11,41 @@
 ::: code-group 
 
 ```yaml [config.yaml]
-database:
-  enabled: true
-  type: postgres # 可选 postgres,mysql 选择对应的数据库类型之后，请填写对应的数据库配置
-  postgres:
-    hostname: localhost
-    port: 5432
-    username: next-terminal
-    password: next-terminal
-    database: next-terminal
-  #  mysql:
-  #    hostname: localhost
-  #    port: 3306
-  #    username: next-terminal
-  #    password: next-terminal
-  #    database: next-terminal
+Database:
+  Enabled: true
+  Type: postgres 
+  Postgres:
+    Hostname: localhost
+    Port: 5432
+    Username: next-terminal
+    Password: next-terminal
+    Database: next-terminal
   ShowSql: false
-log:
-  level: debug # 日志等级  debug,info,waring,error
-  filename: ./logs/nt.log
+Log:
+  Level: debug # 日志等级  debug,info,waring,error
+  Filename: ./logs/nt.log
 
-server:
-  addr: "0.0.0.0:8888"
-  tls:
-    enabled: false
-    auto: false # 自动申请https证书，开启时服务器端口必须为 443
-    cert: "./data/cert/localhost.pem"
-    key: "./data/cert/localhost-key.pem"
+Server:
+  Addr: "0.0.0.0:8888"
 
-app:
-  website:
-    accessLog: "./logs/access.log" # web 资产的访问日志路径
-  recording:
-    type: "local" # 录屏文件存储位置，可选 local, s3
-    path: "/usr/local/next-terminal/data/recordings"
-  #    s3:
-  #      endpoint: "127.0.0.1:9000"
-  #      accessKeyId: minioadmin
-  #      secretAccessKey: miniopassword
-  #      bucket: recording
-  #      useSSL: false
-  guacd:
-    drive: "/usr/local/next-terminal/data/drive"
-    hosts:
-      - hostname: guacd
-        port: 4822
-        weight: 1
+App:
+  Website:
+    AccessLog: "./logs/access.log" # web 资产的访问日志路径
+  Recording:
+    Type: "local" # 录屏文件存储位置，可选 local, s3
+    Path: "/usr/local/next-terminal/data/recordings"
+  #    S3:
+  #      Endpoint: "127.0.0.1:9000"
+  #      AccessKeyId: minioadmin
+  #      SecretAccessKey: miniopassword
+  #      Bucket: recording
+  #      UseSSL: false
+  Guacd:
+    Drive: "/usr/local/next-terminal/data/drive"
+    Hosts:
+      - Hostname: guacd
+        Port: 4822
+        Weight: 1
 
   # 下面的配置在 v2.6.0 及之后的版本生效
   ReverseProxy: # [!code ++]

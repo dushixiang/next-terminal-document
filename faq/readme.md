@@ -75,7 +75,21 @@ LANG=zh_CN.UTF-8
 
 执行以下命令：
 ```shell
-docker run --rm -it -v ./data/nt.db:/db/nt.db ghcr.io/dimitri/pgloader:latest pgloader "sqlite:///db/nt.db" "pgsql://PG用户名:PG密码@PG主机/PG数据库名"
+docker run --rm -it \
+  -v ./data/nt.db:/db/nt.db \
+  ghcr.io/dimitri/pgloader:latest \
+  pgloader "sqlite:///db/nt.db" \
+           "pgsql://PG用户名:PG密码@PG主机/PG数据库名"
+```
+
+## 如何从 Sqlite 迁移到 MySQL？
+执行以下命令：
+```shell
+docker run --rm -it \
+  ghcr.io/dimitri/pgloader:latest \
+  pgloader "mysql://MYSQL用户名:MYSQL密码@MYSQL主机/MYSQL数据库名" \
+           "pgsql://PG用户名:PG密码@PG主机/PG数据库名"
+
 ```
 
 ## SSH 连接失败？

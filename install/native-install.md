@@ -111,9 +111,9 @@ tar -zxvf next-terminal.tar.gz -C /usr/local/next-terminal
 ```
 
 ::: tip 提示
-默认使用的是 sqlite 数据库，仅供测试使用，生产使用请自行安装 `mysql` 或 `postgres` 数据库。
+请自行安装 `postgres` 数据库，支持 16.x 及以上版本。
 
-更换数据库请修改 `config.yaml` 文件中的 `database` 配置。
+安装完成后，请修改 `config.yaml` 文件中的 `database` 配置。
 :::
 
 使用系统服务方式启动
