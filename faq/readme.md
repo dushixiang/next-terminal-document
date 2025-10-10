@@ -82,7 +82,7 @@ docker run --rm -it \
            "pgsql://PG用户名:PG密码@PG主机/PG数据库名"
 ```
 
-## 如何从 Sqlite 迁移到 MySQL？
+## 如何从 MySQL 迁移到 PostgreSQL？
 执行以下命令：
 ```shell
 docker run --rm -it \
