@@ -15,13 +15,13 @@
 ```shell [中国大陆]
 curl -sSL https://f.typesafe.cn/next-terminal/docker-compose-aliyun.yml > docker-compose.yml
 curl -sSL https://f.typesafe.cn/next-terminal/config.yaml > config.yaml
-podman-compose up -d
+docker compose up -d
 ```
 
 ```shell [其他]
 curl -sSL https://f.typesafe.cn/next-terminal/docker-compose.yml > docker-compose.yml
 curl -sSL https://f.typesafe.cn/next-terminal/config.yaml > config.yaml
-podman-compose up -d
+docker compose up -d
 ```
 
 :::
