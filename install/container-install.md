@@ -13,15 +13,15 @@
 ::: code-group
 
 ```shell [中国大陆]
-curl -sSL https://f.typesafe.cn/next-terminal/docker-compose-postgres-aliyun.yml > docker-compose.yml
-curl -sSL https://f.typesafe.cn/next-terminal/config-postgres.yaml > config.yaml
-docker compose up -d
+curl -sSL https://f.typesafe.cn/next-terminal/docker-compose-aliyun.yml > docker-compose.yml
+curl -sSL https://f.typesafe.cn/next-terminal/config.yaml > config.yaml
+podman-compose up -d
 ```
 
 ```shell [其他]
-curl -sSL https://f.typesafe.cn/next-terminal/docker-compose-postgres.yml > docker-compose.yml
-curl -sSL https://f.typesafe.cn/next-terminal/config-postgres.yaml > config.yaml
-docker compose up -d
+curl -sSL https://f.typesafe.cn/next-terminal/docker-compose.yml > docker-compose.yml
+curl -sSL https://f.typesafe.cn/next-terminal/config.yaml > config.yaml
+podman-compose up -d
 ```
 
 :::
@@ -51,14 +51,14 @@ Podman 安装方式与 Docker 类似，使用相同的 docker-compose.yml 和 co
 ::: code-group
 
 ```shell [中国大陆]
-curl -sSL https://f.typesafe.cn/next-terminal/docker-compose-postgres-aliyun.yml > docker-compose.yml
-curl -sSL https://f.typesafe.cn/next-terminal/config-postgres.yaml > config.yaml
+curl -sSL https://f.typesafe.cn/next-terminal/docker-compose-aliyun.yml > docker-compose.yml
+curl -sSL https://f.typesafe.cn/next-terminal/config.yaml > config.yaml
 podman-compose up -d
 ```
 
 ```shell [其他]
-curl -sSL https://f.typesafe.cn/next-terminal/docker-compose-postgres.yml > docker-compose.yml
-curl -sSL https://f.typesafe.cn/next-terminal/config-postgres.yaml > config.yaml
+curl -sSL https://f.typesafe.cn/next-terminal/docker-compose.yml > docker-compose.yml
+curl -sSL https://f.typesafe.cn/next-terminal/config.yaml > config.yaml
 podman-compose up -d
 ```
 
