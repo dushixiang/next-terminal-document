@@ -13,13 +13,13 @@
 ::: code-group
 
 ```shell [中国大陆]
-curl -sSL https://f.typesafe.cn/next-terminal/docker-compose-aliyun.yml > docker-compose.yml
+curl -sSL https://f.typesafe.cn/next-terminal/docker-compose-aliyun.yaml > docker-compose.yaml
 curl -sSL https://f.typesafe.cn/next-terminal/config.yaml > config.yaml
 docker compose up -d
 ```
 
 ```shell [其他]
-curl -sSL https://f.typesafe.cn/next-terminal/docker-compose.yml > docker-compose.yml
+curl -sSL https://f.typesafe.cn/next-terminal/docker-compose.yaml > docker-compose.yaml
 curl -sSL https://f.typesafe.cn/next-terminal/config.yaml > config.yaml
 docker compose up -d
 ```
@@ -46,18 +46,18 @@ docker compose up -d
 运行 `podman --version` 检查版本信息，并安装 `podman-compose` 工具。
 :::
 
-Podman 安装方式与 Docker 类似，使用相同的 docker-compose.yml 和 config.yaml 文件。
+Podman 安装方式与 Docker 类似，使用相同的 docker-compose.yaml 和 config.yaml 文件。
 
 ::: code-group
 
 ```shell [中国大陆]
-curl -sSL https://f.typesafe.cn/next-terminal/docker-compose-aliyun.yml > docker-compose.yml
+curl -sSL https://f.typesafe.cn/next-terminal/docker-compose-aliyun.yaml > docker-compose.yaml
 curl -sSL https://f.typesafe.cn/next-terminal/config.yaml > config.yaml
 podman-compose up -d
 ```
 
 ```shell [其他]
-curl -sSL https://f.typesafe.cn/next-terminal/docker-compose.yml > docker-compose.yml
+curl -sSL https://f.typesafe.cn/next-terminal/docker-compose.yaml > docker-compose.yaml
 curl -sSL https://f.typesafe.cn/next-terminal/config.yaml > config.yaml
 podman-compose up -d
 ```
