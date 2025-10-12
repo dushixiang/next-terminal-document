@@ -30,6 +30,12 @@ Web 资产功能旨在为您提供一种安全的方式来保护内部网站。�
 
 ## 配置指南
 
+### 视频教程
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto; margin-bottom: 1.5rem;">
+    <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=115360288214738&bvid=BV1vb4uzBEea&cid=33014547884&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+</div>
+
 整个配置过程分为两大步：
 
 1.  **启用并配置 NextTerminal 的反向代理服务。**
