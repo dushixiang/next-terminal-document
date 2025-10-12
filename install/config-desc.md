@@ -66,27 +66,7 @@ App:
 
 ---
 
-## 反向代理配置 (ReverseProxy)
 
-`ReverseProxy` 模块提供了强大的 Web 资产代理功能。以下是各参数的详细说明：
-
--   `Enabled`: 是否启用反向代理功能。
--   `HttpEnabled`: 是否启用 HTTP 反向代理。
--   `HttpAddr`: HTTP 监听地址，默认为 `:80`。
--   `HttpRedirectToHttps`: 是否将所有 HTTP 请求强制重定向到 HTTPS。
--   `HttpsEnabled`: 是否启用 HTTPS 反向代理。
--   `HttpsAddr`: HTTPS 监听地址，默认为 `:443`。
--   `SelfProxyEnabled`: 是否启用“自代理”。启用后，Next Terminal 将通过您指定的域名（`SelfDomain`）来代理自身。
--   `SelfDomain`: 用于访问 Next Terminal 自身的域名，仅在 `SelfProxyEnabled` 为 `true` 时生效。
--   `Root`: 当 `SelfProxyEnabled` 为 `false` 时，此项用于指定系统的根 URL，主要用于权限验证失败时的正确跳转。例如 `https://nt.yourdomain.com`。
--   `IpExtractor`: 获取客户端真实 IP 的策略。
--   `IpTrustList`: 信任的 IP 地址列表（CIDR 格式），用于配合 `IpExtractor` 策略。
-
-### 授权流程
-
-当用户访问一个受 Next Terminal 保护的 Web 资产时，系统会首先验证用户是否已登录且拥有访问权限。如果验证失败，用户将被重定向到 Next Terminal 的登录或授权页面。`SelfDomain` 或 `Root` 参数确保了系统能生成正确的重定向地址。
-
-![反向代理授权流程图](images/rp.png)
 
 ---
 

@@ -22,48 +22,132 @@ Web 资产功能旨在为您提供一种安全的方式来保护内部网站。�
 -   **问题**：在政务云等特殊网络环境中，内网服务器沒有互联网访问权限，通常需要通过跳板机进行管理和运维，操作不便且难以审计。
 -   **方案**：在可访问内网的跳板机上部署安全网关，通过 NextTerminal 统一访问内网的 SSH、Web 等服务，实现便捷、安全且可审计的管理。
 
-## 使用指南
+## 前提条件
 
-### 步骤一：配置反向代理服务器
+- 您已成功部署 NextTerminal。
+- 您拥有一个域名，并可以配置 DNS 解析。
+- 您准备要代理的内部网站已正常运行。
 
-启用反向代理服务器后，它会在本地监听指定端口。如果您使用 Docker 部署，请确保已正确映射该端口。
+## 配置指南
 
-::: warning Docker 用户请注意
-如果您通过 Docker Compose 部署，修改反向代理服务器的监听端口后，必须同步更新 `docker-compose.yml` 文件中的端口映射设置，然后重启容器，否则将导致服务无法访问。
-:::
+整个配置过程分为两大步：
 
--   **HTTPS 证书**：若要使用自动申请 HTTPS 证书功能，服务器需要监听 `443` 端口，并且必须拥有公网 IP。(如果使用DNS验证则不需要)
--   **代理自身系统**：此选项用于通过反向代理来访问 NextTerminal 自身。填写域名后，系统会自动识别根路径。
--   **系统根路径**：当用户访问一个通过反向代理的网站时，NextTerminal 需要验证其访问权限。正确的根路径能确保用户被重定向到正确的授权页面。
+1.  **启用并配置 NextTerminal 的反向代理服务。**
+2.  **添加您想要通过 NextTerminal 访问的网站资产。**
 
-::: tip 配置文件说明
-自 v2.6.0 版本起，反向代理的设置已移至配置文件中。详细配置参数请参考 [配置文件说明](../install/config-desc.md#反向代理配置)。
-:::
+---
 
-![反向代理服务器配置](images/reverse-proxy.png)
+### 步骤一：启用反向代理服务
 
-### 步骤二：添加网站资产
+此步骤在 NextTerminal 的服务器上完成，用于开启反向代理功能。
 
-#### 1. 添加 DNS 解析
+#### 1. 修改配置文件 `config.yaml`
 
-首先，将您准备用于访问的域名解析到 NextTerminal 服务器的 IP 地址。
+打开 `config.yaml` 文件，在 `App` 部分下添加 `ReverseProxy` 配置块。
+
+```yaml
+App:
+  # ... (此处省略其他配置)
+  ReverseProxy: # [!code ++]
+    Enabled: true # 启用反向代理功能 [!code ++]
+    HttpEnabled: true # 监听 HTTP (80端口) [!code ++]
+    HttpAddr: ":80" # [!code ++]
+    HttpRedirectToHttps: false  # [!code ++]
+    HttpsEnabled: true # 监听 HTTPS (443端口) [!code ++]
+    HttpsAddr: ":443" # [!code ++]
+    SelfProxyEnabled: true # [!code ++]
+    SelfDomain: "nt.yourdomain.com" # [!code ++]
+    Root: "" # [!code ++]
+    IpExtractor: "direct" # [!code ++]
+    IpTrustList: # [!code ++]
+      - "0.0.0.0/0" # [!code ++]
+```
+
+**关键配置说明**
+
+`SelfProxyEnabled`、`SelfDomain` 和 `Root` 是本功能的核心配置，它决定了当用户访问一个需要授权的网站时，浏览器如何正确地跳转到 NextTerminal 的登录页面。
+
+-   **推荐方式 (`SelfProxyEnabled: true`)**
+    -   **设置**：将 `SelfProxyEnabled` 设为 `true`，并配置 `SelfDomain` 为您计划访问 NextTerminal 的域名（例如 `nt.yourdomain.com`）。
+    -   **效果**：您将通过这个域名来访问 NextTerminal 的 Web 界面。
+    -   **优势**：配置简单，认证流程统一。当用户访问受保护的网站但未登录时，系统会自动跳转到 `https://nt.yourdomain.com` 进行登录，体验顺畅。
+
+-   **备用方式 (`SelfProxyEnabled: false`)**
+    -   **设置**：将 `SelfProxyEnabled` 设为 `false`，并配置 `Root` 为您 NextTerminal 的访问地址（例如 `https://1.2.3.4:8088`）。
+    -   **效果**：您继续通过 IP 和端口访问 NextTerminal。
+    -   **用途**：当您不想为 NextTerminal 本身配置域名时使用。`Root` 参数确保了在需要认证时，系统能生成正确的跳转链接。
+
+**授权流程**
+
+无论您选择哪种方式，最终目的都是为了实现下图所示的授权流程。当用户访问受保护的 Web 资产时，反向代理会先检查用户的登录和授权状态。如果验证失败，系统将根据您的配置，将用户重定向到正确的登录页面（第 4 步）。
+
+![反向代理授权流程图](images/rp.png)
+
+#### 2. 开放端口（Docker Compose）
+
+如果您使用 Docker Compose 部署，请修改 `docker-compose.yml` 文件，将反向代理需要监听的 80 和 443 端口映射出来。
+
+```yaml
+# ... (在 docker-compose.yml 文件中)
+services:
+  # ...
+  next-terminal:
+    # ... (其他配置)
+    ports:
+      - "8088:8088" # Web管理界面
+      - "2022:2022" # SSH Server 端口 (可选)
+      - "80:80"     # [!code ++]
+      - "443:443"   # [!code ++]
+    # ... (其他配置)
+```
+
+#### 3. 重启服务
+
+保存以上修改后，请重启 NextTerminal 以使配置生效。
+
+使用 Docker Compose 的用户，请执行以下命令：
+
+```shell
+docker compose down
+docker compose up -d
+```
+
+---
+
+### 步骤二：添加并访问 Web 资产
+
+反向代理服务启动后，现在您可以添加希望保护的内部网站了。
+
+#### 1. 配置 DNS 解析
+
+将您计划用于访问内部网站的域名，解析到 NextTerminal 服务器的公网 IP。
+
+例如，您要代理内部的 GitLab (`192.168.1.10`)，可以将域名 `gitlab.yourdomain.com` 解析到您的 NextTerminal 服务器。
 
 ::: tip 技巧
-如果您的网站资产较多，可以配置泛域名解析（例如 `*.your-domain.com`），以简化未来增删网站时的 DNS 配置。
+如果您的网站资产较多，可以配置泛域名解析（例如 `*.yourdomain.com`），这样未来新增网站时就无需再调整 DNS 设置了。
 :::
 
-#### 2. 配置网站信息
+#### 2. 在 NextTerminal 中添加资产
 
-::: warning 重要提示
-每个 Web 资产都必须使用唯一的域名，该域名不能与 NextTerminal 系统自身或其他 Web 资产的域名重复，因为系统依赖域名来区分不同的访问请求。
-:::
-
--   **名称**：为您的网站资产设置一个易于识别的名称。
--   **域名**：用户通过反向代理访问此网站时所使用的域名。在内网环境，您也可以使用自定义的 DNS 服务。
--   **入口路径**：网站打开后默认跳转的路径，通常为 `/`，也可留空。
--   **资产协议**：目标网站使用的协议，即 `HTTP` 或 `HTTPS`。
--   **资产 IP**：目标网站的内网 IP 地址或域名。请确保 NextTerminal 服务器或所选的安全网关能够访问此地址。
--   **资产端口**：目标网站的端口，通常为 `80` 或 `443`。
--   **安全网关**：如果目标网站位于无法直接访问的内网，请选择一个已配置的安全网关。
+进入 NextTerminal 界面，添加一个新的 Web 资产。
 
 ![添加网站资产](images/reverse-proxy-post.png)
+
+**字段填写说明：**
+
+-   **名称**：资产的别名，方便识别（例如 `内部GitLab`）。
+-   **域名**：**用户在浏览器中访问的域名**（例如 `gitlab.yourdomain.com`）。
+    ::: warning 重要提示
+    此域名必须是唯一的，不能和 NextTerminal 自身（`SelfDomain`）或其他 Web 资产的域名重复。反向代理依赖此域名来区分请求。
+    :::
+-   **入口路径**：网站的默认路径，通常为 `/` 或留空。
+-   **资产协议**：您内部网站所使用的协议，即 `HTTP` 或 `HTTPS`。
+-   **资产 IP**：您内部网站的 IP 地址或内部域名（例如 `192.168.1.10`）。
+-   **资产端口**：您内部网站的端口（例如 `80`）。
+-   **安全网关**：如果您的内部网站无法被 NextTerminal 服务器直接访问（例如位于不同的内网），请在此处选择对应的安全网关。
+
+#### 3. 授权与访问
+
+1.  为用户或用户组**授权**访问您刚刚创建的 Web 资产。
+2.  授权后，用户就可以在浏览器中直接输入您配置的域名（例如 `gitlab.yourdomain.com`）来访问内部网站了。NextTerminal 会自动处理登录和权限验证。
