@@ -166,6 +166,16 @@ export default defineConfig({
                         link: '/services/readme.md'
                     }
                 ]
+            },
+            {
+                text: 'API 文档',
+                collapsed: false,
+                items: [
+                    {
+                        text: '证书管理',
+                        link: '/api/certificate.md'
+                    }
+                ]
             }
         ],
 
