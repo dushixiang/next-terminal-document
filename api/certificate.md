@@ -7,7 +7,7 @@
 ### 请求信息
 
 - **请求方法**: `PUT`
-- **请求路径**: `/api/certificates/upsert`
+- **请求路径**: `/api/admin/certificates/upsert`
 - **Content-Type**: `application/json`
 
 ### 请求参数
