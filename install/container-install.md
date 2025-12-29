@@ -166,3 +166,7 @@ rc-update add next-terminal default
 # 启动服务
 rc-service next-terminal start
 ```
+
+## 开启 IPv6 (非必需)
+
+请参考 docker 官方文档 https://docs.docker.com/engine/daemon/ipv6/

@@ -99,3 +99,15 @@ docker run --rm -it \
 ```shell
 ssh:hindshake failed: ssh: unable to authenticate, attempted methds [none],no supported methods remain
 ```
+
+## Docker 配置 IPv6 太复杂了不会搞怎么办？**
+
+使用双栈 IP 的 Linux 设备作为 SSH 网关或者在该设备上部署安全网关，资产中使用网关作为跳板进行访问。
+
+## WOL 无法唤醒局域网设备？
+
+这是因为容器部署的 NT 和你的资产不在同一个广播域，有下面几种解决方案
+
+1. 更改 NT 的部署方式为原生安装。
+2. 更改 docker-compose 的网络模式为 host 模式。
+3. 在外部安装一个「安全网关」，资产中使用网关作为跳板进行访问。
