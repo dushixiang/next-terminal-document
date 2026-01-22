@@ -107,6 +107,10 @@ export default defineConfig({
                                 link: '/usage/access.md'
                             },
                             {
+                                text: 'SSH代理服务器',
+                                link: '/usage/ssh-server.md'
+                            },
+                            {
                                 text: 'RDP/VNC 错误码',
                                 link: '/usage/error-codes.md'
                             },
