@@ -25,10 +25,6 @@ export default defineConfig({
         // https://vitepress.dev/reference/default-theme-config
         lastUpdated: {
             text: '最后更新',
-            formatOptions: {
-                dateStyle: 'short',
-                timeStyle: 'medium'
-            }
         },
         editLink: {
             pattern: 'https://github.com/dushixiang/next-terminal-document/edit/main/:path',
@@ -154,6 +150,16 @@ export default defineConfig({
                     {
                         text: 'v1 升级 v2',
                         link: '/faq/v1tov2.md'
+                    }
+                ]
+            },
+            {
+                text: '博客文章',
+                collapsed: false,
+                items: [
+                    {
+                        text: '如何安全的暴露内网服务？',
+                        link: '/blog/secure-access.md'
                     }
                 ]
             },
