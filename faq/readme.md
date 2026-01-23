@@ -65,11 +65,11 @@ Subsystem sftp internal-sftp
 LANG=zh_CN.UTF-8
 ```
 
-## SSH 连接后大概5秒钟就自动断开？
+## SSH 连接后大概5秒钟就自动断开？网络设备连接后无法输入？
 
 可能是由于SSH连接的存活检测导致，点击编辑资产，打开 `高级设置 > 连接设置`，选中 `连接时禁用存活检查` 即可。
 
-已知必现该问题的系统有：RouterOS 。
+已知必现该问题的系统有：RouterOS，XX 交换机。
 
 ## 如何从 Sqlite 迁移到 PostgreSQL？
 
