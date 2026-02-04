@@ -5,3 +5,4 @@
 ## 文章列表
 
 - [如何安全的暴露内网服务？](./secure-access.md)
+- [mTLS 在 Next-Terminal 中的使用方式](./mtls-in-next-terminal.md)
