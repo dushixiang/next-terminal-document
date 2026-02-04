@@ -138,7 +138,7 @@ docker compose up -d
 
 进入 NextTerminal 界面，添加一个新的 Web 资产。
 
-![添加网站资产](images/reverse-proxy-post.png)
+![add.png](images/website/add.png)
 
 **字段填写说明：**
 
@@ -157,3 +157,20 @@ docker compose up -d
 
 1.  为用户或用户组**授权**访问您刚刚创建的 Web 资产。
 2.  授权后，用户就可以在浏览器中直接输入您配置的域名（例如 `gitlab.yourdomain.com`）来访问内部网站了。NextTerminal 会自动处理登录和权限验证。
+
+
+## 高级功能
+
+某些网站返回了固定的链接地址，可以使用「修改响应」功能来修改内容。
+
+![modify.png](images/website/modify.png)
+
+对于某些需要公网访问的网站，我们提供了多种方式来减少暴露范围，如 IP 地址、地理位置、口令。
+
+![public.png](images/website/public.png)
+
+针对没有固定 IP 的客户端，我们提供了临时白名单功能，配置后只需要点击一次就可以临时添加 IP 地址，过期自动失效，持续访问会自动延长有效期。
+
+![temp-white.png](images/website/temp-white.png)
+
+![temp-white2.png](images/website/temp-white2.png)

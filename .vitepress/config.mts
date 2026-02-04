@@ -84,6 +84,14 @@ export default defineConfig({
                                 text: 'Web资产',
                                 link: '/usage/website.md'
                             },
+                            {
+                                text: 'HTTPS 证书双向认证',
+                                link: '/usage/mtls.md'
+                            },
+                            {
+                                text: '数据库审计',
+                                link: '/usage/database.md'
+                            }
                         ]
                     },
                     {
@@ -165,10 +173,7 @@ export default defineConfig({
                         text: '如何安全的暴露内网服务？',
                         link: '/blog/secure-access.md'
                     },
-                    {
-                        text: 'mTLS 在 Next-Terminal 中的使用方式',
-                        link: '/blog/mtls-in-next-terminal.md'
-                    }
+
                 ]
             },
             {
