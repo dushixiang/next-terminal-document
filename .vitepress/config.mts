@@ -173,7 +173,10 @@ export default defineConfig({
                         text: '如何安全的暴露内网服务？',
                         link: '/blog/secure-access.md'
                     },
-
+                    {
+                        text: 'V3.0.0 更新日志',
+                        link: '/blog/v3.0.0.md'
+                    },
                 ]
             },
             {
