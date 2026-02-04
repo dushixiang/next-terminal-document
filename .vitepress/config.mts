@@ -164,6 +164,10 @@ export default defineConfig({
                     {
                         text: '如何安全的暴露内网服务？',
                         link: '/blog/secure-access.md'
+                    },
+                    {
+                        text: 'mTLS 在 Next-Terminal 中的使用方式',
+                        link: '/blog/mtls-in-next-terminal.md'
                     }
                 ]
             },

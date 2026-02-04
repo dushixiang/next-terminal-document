@@ -1,8 +1,0 @@
-# 博客文章
-
-欢迎来到 Next Terminal 博客，这里分享运维实践、安全最佳实践和使用技巧。
-
-## 文章列表
-
-- [如何安全的暴露内网服务？](./secure-access.md)
-- [mTLS 在 Next-Terminal 中的使用方式](./mtls-in-next-terminal.md)
