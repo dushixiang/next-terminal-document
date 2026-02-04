@@ -10,11 +10,15 @@
 
 ![add-cert.png](images/add-cert.png)
 
-下载证书
+在个人中心下载证书，每个用户的证书名称是 `{用户名}-client.p12`, 在证书中包含了个人用户信息。
 
 ![download-cert.png](images/download-cert.png)
 
 ![p12-file.png](images/p12-file.png)
+
+管理员可在用户详情页面查看和吊销证书，吊销的证书将无法访问。
+
+![revoked-cert.png](images/revoked-cert.png)
 
 打开钥匙串访问，把 p12 文件拖动到 系统 -> 证书中
 
