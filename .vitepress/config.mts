@@ -136,6 +136,10 @@ export default defineConfig({
                                 link: '/usage/otp.md'
                             },
                             {
+                                text: 'OIDC 身份服务器',
+                                link: '/usage/oidc_server.md'
+                            },
+                            {
                                 text: '绑定授权',
                                 link: '/usage/license.md'
                             }
