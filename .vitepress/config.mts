@@ -181,6 +181,10 @@ export default defineConfig({
                         text: 'V3.0.0 更新日志',
                         link: '/blog/v3.0.0.md'
                     },
+                    {
+                        text: '使用 Next Terminal OIDC 登录 Proxmox VE',
+                        link: '/blog/pve-oidc/readme.md'
+                    },
                 ]
             },
             {
