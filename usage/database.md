@@ -25,9 +25,18 @@
 
 - 填写数据库连接信息（主机、端口、数据库名等）
 - 支持通过网关连接数据库
-- 配置访问权限和用户授权
 
 ![asset.png](images/database/asset.png)
+
+### 3. 配置用户权限
+
+在资源授权处配置用户权限：
+
+- 支持配个单个用户权限
+- 支持按部门配置用户权限
+
+![authorised.png](images/database/authorised.png)
+
 
 ## 日常使用
 
