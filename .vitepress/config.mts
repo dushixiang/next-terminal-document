@@ -98,12 +98,12 @@ export default defineConfig({
                         text: '接入网关',
                         items: [
                             {
-                                text: 'SSH网关',
-                                link: '/usage/ssh-gateway.md'
-                            },
-                            {
                                 text: '安全网关',
                                 link: '/usage/agent-gateway.md'
+                            },
+                            {
+                                text: 'SSH网关',
+                                link: '/usage/ssh-gateway.md'
                             },
                         ]
                     },
