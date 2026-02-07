@@ -14,11 +14,15 @@ Usage:
   next-terminal [command]
 
 Available Commands:
+  cert        User client certificate management commands
   completion  Generate the autocompletion script for the specified shell
+  config      System configuration management commands
+  geodata     Geolocation data management commands
   help        Help about any command
-  sec         安全相关
-  user        用户管理
-  version     查看版本
+  sec         Security management commands
+  status      Show system status
+  user        User management commands
+  version     Show version
 
 Flags:
   -c, --config string   -c /path/config.yaml (default "/etc/next-terminal/config.yaml")
@@ -124,10 +128,184 @@ docker compose exec next-terminal nt sec list
 docker compose exec next-terminal nt sec delete 026559fc-5c90-4aa2-b77d-43495df769ca
 ```
 
-### 自签名证书 （Version >= v2.4.9）
-
-**签名证书**
+### 用户客户端证书管理
 
 ```shell
-docker compose exec next-terminal nt mkcert www.typesafe.cn
+docker compose exec next-terminal nt cert -h
+```
+
+输出
+```shell
+Commands for managing user client certificates, including generation and revocation
+
+Usage:
+  next-terminal cert [command]
+
+Available Commands:
+  generate    Generate user client certificate
+  revoke      Revoke user client certificate
+
+Flags:
+  -h, --help   help for cert
+
+Global Flags:
+  -c, --config string   -c /path/config.yaml (default "/etc/next-terminal/config.yaml")
+
+Use "next-terminal cert [command] --help" for more information about a command.
+```
+
+**生成用户客户端证书**
+
+为指定用户生成客户端证书（PKCS#12 格式，扩展名 .p12），用于 mTLS 双向认证。
+
+```shell
+# 生成证书，使用默认文件名 <username>-client.p12
+docker compose exec next-terminal nt cert generate <user-id>
+
+# 指定输出文件路径
+docker compose exec next-terminal nt cert generate <user-id> -o /path/to/cert.p12
+```
+
+示例输出：
+```shell
+🔐 Generating user client certificate...
+🔐 Generating client certificate for user: admin (管理员)
+✅ Client certificate generated successfully for user: admin
+   Serial Number: 123456789
+   Fingerprint: a1b2c3d4e5f6...
+   Valid From: 2024-01-01 00:00:00
+   Valid Until: 2025-01-01 00:00:00
+   Saved to: admin-client.p12
+
+💡 Note: This certificate file (.p12) can be imported into browsers or clients for authentication.
+```
+
+**吊销用户客户端证书**
+
+吊销指定用户的活跃客户端证书，被吊销的证书将无法再用于身份验证。
+
+```shell
+docker compose exec next-terminal nt cert revoke <user-id>
+```
+
+示例输出：
+```shell
+📜 Revoking user client certificate...
+📜 Revoking client certificate for user: admin (管理员)
+✅ Client certificate revoked successfully for user: admin
+   Serial Number: 123456789
+   Fingerprint: a1b2c3d4e5f6...
+```
+
+### 系统配置管理
+
+```shell
+docker compose exec next-terminal nt config -h
+```
+
+输出
+```shell
+Commands for managing system configuration settings
+
+Usage:
+  next-terminal config [command]
+
+Available Commands:
+  get         Get system configuration property
+  list        List all system configuration properties
+  set         Set system configuration property
+
+Flags:
+  -h, --help   help for config
+
+Global Flags:
+  -c, --config string   -c /path/config.yaml (default "/etc/next-terminal/config.yaml")
+
+Use "next-terminal config [command] --help" for more information about a command.
+```
+
+**查看所有配置项**
+
+```shell
+docker compose exec next-terminal nt config list
+```
+
+**获取指定配置项**
+
+```shell
+docker compose exec next-terminal nt config get <key>
+```
+
+**设置配置项**
+
+```shell
+docker compose exec next-terminal nt config set <key> <value>
+```
+
+### GeoIP 数据管理
+
+用于下载和更新 GeoLite2 地理位置数据库，实现 IP 地址地理位置查询功能。
+
+> 注意：GeoIP 下载功能仅在商业版中可用，免费版不支持该命令。
+
+```shell
+docker compose exec next-terminal nt geodata -h
+```
+
+输出
+```shell
+Geolocation data management commands
+
+Usage:
+  next-terminal geodata [command]
+
+Available Commands:
+  download    Download geolocation database
+
+Flags:
+  -h, --help   help for geodata
+
+Global Flags:
+  -c, --config string   -c /path/config.yaml (default "/etc/next-terminal/config.yaml")
+
+Use "next-terminal geodata [command] --help" for more information about a command.
+```
+
+**下载 GeoIP 数据库**
+
+```shell
+# 下载或更新 GeoLite2 数据库（如果文件已存在则跳过）
+docker compose exec next-terminal nt geodata download
+
+# 强制重新下载（即使文件已存在）
+docker compose exec next-terminal nt geodata download -f
+```
+
+示例输出：
+```shell
+📦 Downloading geolocation database...
+🌍 GeoLite2 -> /usr/local/next-terminal/data/GeoLite2-City.mmdb
+✅ Geolocation database ready
+```
+
+### 系统状态查看
+
+```shell
+docker compose exec next-terminal nt status
+```
+
+输出系统状态信息，包括版本、配置路径、录屏状态、SSH 服务器状态等：
+
+```shell
+🎯 Next Terminal System Status
+=============================
+📦 Version: v2.5.0
+📂 Config Path: /etc/next-terminal/config.yaml
+🏢 System Name: Next Terminal
+©️  Copyright: Copyright © 2024
+📹 Recording Enabled: true
+🔗 SSH Server Enabled: true
+🔗 SSH Server Address: 0.0.0.0:8022
+
+✅ System status check completed
 ```
