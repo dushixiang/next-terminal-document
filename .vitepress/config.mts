@@ -164,6 +164,10 @@ export default defineConfig({
                         link: '/faq/cli.md'
                     },
                     {
+                        text: '系统配置表',
+                        link: '/faq/property.md'
+                    },
+                    {
                         text: '备份恢复',
                         link: '/faq/backup.md'
                     },

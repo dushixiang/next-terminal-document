@@ -242,6 +242,8 @@ docker compose exec next-terminal nt config get <key>
 docker compose exec next-terminal nt config set <key> <value>
 ```
 
+> 📋 完整的系统配置项列表请参考：[系统属性配置表](./property.md)
+
 ### GeoIP 数据管理
 
 用于下载和更新 GeoLite2 地理位置数据库，实现 IP 地址地理位置查询功能。
