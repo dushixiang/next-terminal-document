@@ -39,12 +39,31 @@ tar -zcvf next-terminal-backup-$(date +%Y%m%d).tar.gz data
 
 ## 数据恢复
 
-1. 将备份文件上传到新服务器
-2. 解压备份文件：
+1. 在新服务器上准备部署环境：
+    - 下载或复制 docker-compose.yaml 配置文件
+    - 确保 Docker 和 Docker Compose 已安装
+
+2. 将备份文件上传到新服务器的部署目录（docker-compose.yaml 同级目录）
+
+3. 解压备份文件：
     ```shell
+    # 在 docker-compose.yaml 同级目录下执行
     tar -zxvf next-terminal-backup-*.tar.gz
     ```
-3. 重新部署容器：
+
+4. 验证目录结构：
+    ```shell
+    # 确认 data 目录已正确解压
+    ls -la data/
+    ```
+
+5. 启动容器：
     ```shell
     docker-compose up -d
+    ```
+
+6. 检查服务状态：
+    ```shell
+    docker-compose ps
+    docker-compose logs -f
     ```
