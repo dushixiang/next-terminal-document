@@ -19,7 +19,13 @@
 
 ![config.png](images/database/config.png)
 
-### 2. 添加数据库资产
+### 2. 创建数据库密码
+
+进入个人中心，创建令牌选择数据库密码。
+
+![token.png](images/database/token.png)
+
+### 3. 添加数据库资产
 
 在资产管理中添加数据库配置：
 
@@ -28,7 +34,7 @@
 
 ![asset.png](images/database/asset.png)
 
-### 3. 配置用户权限
+### 4. 配置用户权限
 
 在资源授权处配置用户权限：
 
@@ -43,6 +49,13 @@
 ### 连接数据库
 
 使用任意 MySQL 客户端工具（如 Navicat、DataGrip、MySQL Workbench 等）连接数据库。
+
+> mysql -h host -P port -u username@asset_name -p
+
+- host: NextTerminal 所在机器的 IP
+- port：网页上配置的数据库代理端口
+- u：NextTerminal用户账号@资产名称 （用户账号不是用户名称，切记！）
+- p：个人中心配置的数据库密码（每个人的密码都不一样，不要使用 A 的密码去用 B 的账号连接）
 
 ### 执行查询
 
