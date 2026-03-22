@@ -1,12 +1,12 @@
-# 命令行工具
+# CLI Tool
 
-### 查看帮助
+## Show Help
 
 ```shell
 docker compose exec next-terminal nt -h
 ```
 
-输出
+Output:
 
 ```shell
 Usage:
@@ -15,7 +15,7 @@ Usage:
 
 Available Commands:
   cert        User client certificate management commands
-  completion  Generate the autocompletion script for the specified shell
+  completion  Generate autocompletion script for the specified shell
   config      System configuration management commands
   geodata     Geolocation data management commands
   help        Help about any command
@@ -31,20 +31,22 @@ Flags:
 Use "next-terminal [command] --help" for more information about a command.
 ```
 
-### 用户管理
+## User Management
 
 ```shell
 docker compose exec next-terminal nt user -h
 ```
-输出
+
+Output:
+
 ```shell
 Usage:
   next-terminal user [command]
 
 Available Commands:
-  list        查看用户列表
-  otpclr      清除用户OTP
-  passwd      修改用户密码
+  list        List users
+  otpclr      Clear user OTP
+  passwd      Change user password
 
 Flags:
   -h, --help   help for user
@@ -55,13 +57,14 @@ Global Flags:
 Use "next-terminal user [command] --help" for more information about a command.
 ```
 
-**查看用户列表**
+### List users
 
 ```shell
 docker compose exec next-terminal nt user list
 ```
 
-输出
+Example output:
+
 ```shell
 +--------------------------------------+----------+----------------+------+-------------+----------+
 |                  ID                  | USERNAME |    NICKNAME    | MAIL |    TYPE     |   OPT    |
@@ -70,24 +73,26 @@ docker compose exec next-terminal nt user list
 +--------------------------------------+----------+----------------+------+-------------+----------+
 ```
 
-**清除用户OTP**
+### Clear user OTP
 
 ```shell
 docker compose exec next-terminal nt user otpclr 35093131-204a-4db7-b61c-c6f7a7aa5ae4
 ```
 
-**修改用户密码**
+### Change user password
 
 ```shell
 docker compose exec next-terminal nt user passwd 35093131-204a-4db7-b61c-c6f7a7aa5ae4 newpassword
 ```
 
-### 安全相关
+## Security Management
 
 ```shell
 docker compose exec next-terminal nt sec -h
 ```
-输出
+
+Output:
+
 ```shell
 management login locked
 
@@ -95,8 +100,8 @@ Usage:
   next-terminal sec [command]
 
 Available Commands:
-  delete      删除登陆锁定
-  list        登陆锁定列表
+  delete      Delete a login lock record
+  list        List login lock records
 
 Flags:
   -h, --help   help for sec
@@ -107,13 +112,14 @@ Global Flags:
 Use "next-terminal sec [command] --help" for more information about a command.
 ```
 
-**登陆锁定列表**
+### List login locks
 
 ```shell
 docker compose exec next-terminal nt sec list
 ```
 
-输出
+Example output:
+
 ```shell
 +--------------------------------------+-----------------+----------------------------+---------------------+---------------------+
 |                  ID                  |       IP        |          USERNAME          |      LOCKEDAT       |    EXPIRATIONAT     |
@@ -122,19 +128,20 @@ docker compose exec next-terminal nt sec list
 +--------------------------------------+-----------------+----------------------------+---------------------+---------------------+
 ```
 
-**删除登陆锁定**
+### Delete login lock
 
 ```shell
 docker compose exec next-terminal nt sec delete 026559fc-5c90-4aa2-b77d-43495df769ca
 ```
 
-### 用户客户端证书管理
+## User Client Certificate Management
 
 ```shell
 docker compose exec next-terminal nt cert -h
 ```
 
-输出
+Output:
+
 ```shell
 Commands for managing user client certificates, including generation and revocation
 
@@ -154,22 +161,23 @@ Global Flags:
 Use "next-terminal cert [command] --help" for more information about a command.
 ```
 
-**生成用户客户端证书**
+### Generate user client certificate
 
-为指定用户生成客户端证书（PKCS#12 格式，扩展名 .p12），用于 mTLS 双向认证。
+Generate PKCS#12 certificate (`.p12`) for a specific user (for mTLS).
 
 ```shell
-# 生成证书，使用默认文件名 <username>-client.p12
+# Generate certificate with default filename <username>-client.p12
 docker compose exec next-terminal nt cert generate <user-id>
 
-# 指定输出文件路径
+# Specify output file
 docker compose exec next-terminal nt cert generate <user-id> -o /path/to/cert.p12
 ```
 
-示例输出：
+Example output:
+
 ```shell
 🔐 Generating user client certificate...
-🔐 Generating client certificate for user: admin (管理员)
+🔐 Generating client certificate for user: admin (Administrator)
 ✅ Client certificate generated successfully for user: admin
    Serial Number: 123456789
    Fingerprint: a1b2c3d4e5f6...
@@ -180,30 +188,30 @@ docker compose exec next-terminal nt cert generate <user-id> -o /path/to/cert.p1
 💡 Note: This certificate file (.p12) can be imported into browsers or clients for authentication.
 ```
 
-**吊销用户客户端证书**
-
-吊销指定用户的活跃客户端证书，被吊销的证书将无法再用于身份验证。
+### Revoke user client certificate
 
 ```shell
 docker compose exec next-terminal nt cert revoke <user-id>
 ```
 
-示例输出：
+Example output:
+
 ```shell
 📜 Revoking user client certificate...
-📜 Revoking client certificate for user: admin (管理员)
+📜 Revoking client certificate for user: admin (Administrator)
 ✅ Client certificate revoked successfully for user: admin
    Serial Number: 123456789
    Fingerprint: a1b2c3d4e5f6...
 ```
 
-### 系统配置管理
+## System Configuration Management
 
 ```shell
 docker compose exec next-terminal nt config -h
 ```
 
-输出
+Output:
+
 ```shell
 Commands for managing system configuration settings
 
@@ -224,37 +232,38 @@ Global Flags:
 Use "next-terminal config [command] --help" for more information about a command.
 ```
 
-**查看所有配置项**
+### List all properties
 
 ```shell
 docker compose exec next-terminal nt config list
 ```
 
-**获取指定配置项**
+### Get one property
 
 ```shell
 docker compose exec next-terminal nt config get <key>
 ```
 
-**设置配置项**
+### Set one property
 
 ```shell
 docker compose exec next-terminal nt config set <key> <value>
 ```
 
-> 📋 完整的系统配置项列表请参考：[系统属性配置表](./property.md)
+> Full property list: [System Property Table](./property)
 
-### GeoIP 数据管理
+## GeoIP Data Management
 
-用于下载和更新 GeoLite2 地理位置数据库，实现 IP 地址地理位置查询功能。
+Used to download/update GeoLite2 database for IP geolocation.
 
-> 注意：GeoIP 下载功能仅在商业版中可用，免费版不支持该命令。
+> Note: `geodata download` is available in Commercial Edition only.
 
 ```shell
 docker compose exec next-terminal nt geodata -h
 ```
 
-输出
+Output:
+
 ```shell
 Geolocation data management commands
 
@@ -273,30 +282,31 @@ Global Flags:
 Use "next-terminal geodata [command] --help" for more information about a command.
 ```
 
-**下载 GeoIP 数据库**
+### Download GeoIP database
 
 ```shell
-# 下载或更新 GeoLite2 数据库（如果文件已存在则跳过）
+# Download/update GeoLite2 database (skip if exists)
 docker compose exec next-terminal nt geodata download
 
-# 强制重新下载（即使文件已存在）
+# Force re-download even if file exists
 docker compose exec next-terminal nt geodata download -f
 ```
 
-示例输出：
+Example output:
+
 ```shell
 📦 Downloading geolocation database...
 🌍 GeoLite2 -> /usr/local/next-terminal/data/GeoLite2-City.mmdb
 ✅ Geolocation database ready
 ```
 
-### 系统状态查看
+## System Status
 
 ```shell
 docker compose exec next-terminal nt status
 ```
 
-输出系统状态信息，包括版本、配置路径、录屏状态、SSH 服务器状态等：
+Example output includes version/config path/recording/ssh status:
 
 ```shell
 🎯 Next Terminal System Status

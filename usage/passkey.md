@@ -1,21 +1,21 @@
-# 通行密钥
+# Passkey
 
-> Passkey 通过公私钥加密提供了比传统密码更安全、更便捷的身份认证方式，有效防止密码泄露、钓鱼和中间人攻击，同时提升用户体验，是未来身份认证的发展趋势。
+> Passkey provides stronger and more convenient authentication than traditional passwords through public/private-key cryptography. It helps prevent credential leaks, phishing, and man-in-the-middle attacks.
 
-::: tip 注意
-**必须开启 HTTPS 才能使用此功能。**
+::: tip Note
+**HTTPS is required for this feature.**
 
-域名不包含协议和端口，例如：`next.typesafe.cn`
+Domain should not include protocol or port, for example: `next.typesafe.cn`
 
-来源不包含地址后面的 `/`，例如：`https://next.typesafe.cn`
+Origins should not include trailing path slash, for example: `https://next.typesafe.cn`
 :::
 
-首先在设置页面开启通行密钥功能
+First, enable passkey in Settings:
 
 ![img.png](images/passkey-setting.png)
 
-在个人中心添加一个密钥
+Then add a passkey in Personal Center:
 
 ![img.png](images/passkey-add.png)
 
-之后在登陆时就会自动选择通行密钥登陆。
+After that, login can use passkey automatically.

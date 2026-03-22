@@ -1,69 +1,75 @@
-# 系统备份指南
+# Backup Guide
 
-## 备份前准备
-1. 确认需要保留的文件类型：
-    - 录屏文件（recordings 目录）
-    - Windows挂载盘文件（drive 目录）
-    - 数据库文件（mysql, postgresql 目录）
-    - 机器码文件（protected 目录）
-    - CA证书文件（root_ca_*.pem）
+## Before Backup
 
-2. 停止相关服务：
-    ```shell
-    docker-compose down
-    ```
+1. Confirm which data should be retained:
+   - Session recordings (`recordings` directory)
+   - Windows mapped drive files (`drive` directory)
+   - Database files (`mysql`, `postgresql` directories)
+   - Machine-code files (`protected` directory)
+   - CA certificates (`root_ca_*.pem`)
 
-## 备份文件说明
+2. Stop related services:
 
-data目录结构：
 ```shell
-drwxr-xr-x 5 root  root   4096 Mar 26 09:56 drive            # Windows挂载盘文件
-drwxr-xr-x 8 root  root   4096 Apr 18 02:16 mysql            # MySQL数据库文件
-drwxr-xr-x 8 root  root   4096 Apr 18 02:16 postgresql       # Postgresql数据库文件
-drwxr-xr-x 2 root  root   4096 Mar  4 10:25 protected        # 机器码文件
-drwxr-xr-x 2 root  root 720896 Apr 28 13:50 recordings       # 录屏文件
--rw-r--r-- 1 root  root    830 Apr 28 09:15 root_ca_cert.pem # CA证书
--r-------- 1 root  root    241 Apr 28 09:15 root_ca_key.pem  # CA私钥
+docker-compose down
 ```
 
-不需要的文件可以自行删除。
+## Backup File Notes
 
-## 备份操作
-
-在 docker-compose.yaml 同级目录下执行：
+Example structure under `data`:
 
 ```shell
-# 打包整个data目录
+drwxr-xr-x 5 root  root   4096 Mar 26 09:56 drive            # Windows mapped drive files
+drwxr-xr-x 8 root  root   4096 Apr 18 02:16 mysql            # MySQL data
+drwxr-xr-x 8 root  root   4096 Apr 18 02:16 postgresql       # PostgreSQL data
+drwxr-xr-x 2 root  root   4096 Mar  4 10:25 protected        # Machine-code files
+drwxr-xr-x 2 root  root 720896 Apr 28 13:50 recordings       # Session recordings
+-rw-r--r-- 1 root  root    830 Apr 28 09:15 root_ca_cert.pem # CA certificate
+-r-------- 1 root  root    241 Apr 28 09:15 root_ca_key.pem  # CA private key
+```
+
+You can remove files that are not needed.
+
+## Backup Operation
+
+Run in the same directory as `docker-compose.yaml`:
+
+```shell
+# Archive the whole data directory
 tar -zcvf next-terminal-backup-$(date +%Y%m%d).tar.gz data
 ```
 
-## 数据恢复
+## Restore
 
-1. 在新服务器上准备部署环境：
-    - 下载或复制 docker-compose.yaml 配置文件
-    - 确保 Docker 和 Docker Compose 已安装
+1. Prepare environment on new server:
+   - Download/copy `docker-compose.yaml`
+   - Ensure Docker and Docker Compose are installed
 
-2. 将备份文件上传到新服务器的部署目录（docker-compose.yaml 同级目录）
+2. Upload backup file to deployment directory (same level as `docker-compose.yaml`)
 
-3. 解压备份文件：
-    ```shell
-    # 在 docker-compose.yaml 同级目录下执行
-    tar -zxvf next-terminal-backup-*.tar.gz
-    ```
+3. Extract backup:
 
-4. 验证目录结构：
-    ```shell
-    # 确认 data 目录已正确解压
-    ls -la data/
-    ```
+```shell
+# Run in the same directory as docker-compose.yaml
+tar -zxvf next-terminal-backup-*.tar.gz
+```
 
-5. 启动容器：
-    ```shell
-    docker-compose up -d
-    ```
+4. Verify directory structure:
 
-6. 检查服务状态：
-    ```shell
-    docker-compose ps
-    docker-compose logs -f
-    ```
+```shell
+ls -la data/
+```
+
+5. Start containers:
+
+```shell
+docker-compose up -d
+```
+
+6. Check service status:
+
+```shell
+docker-compose ps
+docker-compose logs -f
+```

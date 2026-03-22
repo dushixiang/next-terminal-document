@@ -1,224 +1,258 @@
-import {defineConfig} from 'vitepress'
+import { defineConfig, type DefaultTheme } from 'vitepress'
 
-// https://vitepress.dev/reference/site-config
-export default defineConfig({
-    title: "Next Terminal",
-    description: "Next Terminal 官方文档 - 一个简单、好用、安全的开源运维审计系统",
-    head: [
-        ['link', { rel: 'icon', href: '/logo.svg' }],
-        ['meta', { name: 'keywords', content: 'Next Terminal, 运维审计, 堡垒机, SSH, RDP, VNC, Telnet, 开源' }],
-        ['meta', { property: 'og:title', content: 'Next Terminal - 开源运维审计系统' }],
-        ['meta', { property: 'og:description', content: 'Next Terminal 是一个简单、好用、安全的开源运维审计系统，支持 SSH、RDP、VNC、Telnet 等多种协议' }],
-        ['meta', { property: 'og:type', content: 'website' }],
-        ['meta', { property: 'og:url', content: 'https://next-terminal.typesafe.cn' }],
-        ['meta', { property: 'og:image', content: 'https://next-terminal.typesafe.cn/logo.svg' }],
-        [
-            'script',
-            {
-                async: '',
-                src: 'https://umami.typesafe.cn/script.js',
-                'data-website-id': '4693b455-683d-4012-a715-cb5fd297ccdc'
-            }
+const head: DefaultTheme.Config['head'] = [
+  ['link', { rel: 'icon', href: '/logo.svg' }],
+  ['meta', { name: 'keywords', content: 'Next Terminal, remote access, bastion host, operations audit, SSH, RDP, VNC, Telnet, open source' }],
+  ['meta', { property: 'og:title', content: 'Next Terminal - Secure Remote Access and Operations Audit' }],
+  ['meta', { property: 'og:description', content: 'Next Terminal is an open-source platform for secure remote access, asset management, and operations auditing.' }],
+  ['meta', { property: 'og:type', content: 'website' }],
+  ['meta', { property: 'og:url', content: 'https://next-terminal.typesafe.cn' }],
+  ['meta', { property: 'og:image', content: 'https://next-terminal.typesafe.cn/logo.svg' }],
+  [
+    'script',
+    {
+      async: '',
+      src: 'https://umami.typesafe.cn/script.js',
+      'data-website-id': '4693b455-683d-4012-a715-cb5fd297ccdc'
+    }
+  ]
+]
+
+const enSidebar: DefaultTheme.Sidebar = [
+  {
+    text: 'Installation',
+    collapsed: false,
+    items: [
+      { text: 'System Requirements', link: '/install/system-requirements' },
+      { text: 'Container Installation', link: '/install/container-install' },
+      { text: 'Native Installation', link: '/install/native-install' },
+      { text: 'Configuration File', link: '/install/config-desc' },
+      { text: 'Reverse Proxy', link: '/install/reverse-proxy' },
+      { text: 'Real Client IP', link: '/install/real-ip' }
+    ]
+  },
+  {
+    text: 'User Guide',
+    collapsed: false,
+    items: [
+      { text: 'Quick Start', link: '/usage/readme' },
+      {
+        text: 'Resource Management',
+        items: [
+          { text: 'Assets', link: '/usage/asset' },
+          { text: 'Web Assets', link: '/usage/website' },
+          { text: 'HTTPS mTLS', link: '/usage/mtls' },
+          { text: 'Database Audit', link: '/usage/database' }
         ]
-    ],
-    themeConfig: {
-        // https://vitepress.dev/reference/default-theme-config
+      },
+      {
+        text: 'Access Gateways',
+        items: [
+          { text: 'Security Gateway', link: '/usage/agent-gateway' },
+          { text: 'SSH Gateway', link: '/usage/ssh-gateway' }
+        ]
+      },
+      {
+        text: 'Access Assets',
+        items: [
+          { text: 'Asset Access', link: '/usage/access' },
+          { text: 'SSH Proxy Server', link: '/usage/ssh-server' },
+          { text: 'RDP/VNC Error Codes', link: '/usage/error-codes' }
+        ]
+      },
+      {
+        text: 'System Settings',
+        items: [
+          { text: 'Passkey', link: '/usage/passkey' },
+          { text: '2FA (TOTP)', link: '/usage/otp' },
+          { text: 'OIDC Identity Server', link: '/usage/oidc_server' },
+          { text: 'License Binding', link: '/usage/license' }
+        ]
+      }
+    ]
+  },
+  {
+    text: 'FAQ',
+    collapsed: false,
+    items: [
+      { text: 'FAQ', link: '/faq/readme' },
+      { text: 'CLI', link: '/faq/cli' },
+      { text: 'System Properties', link: '/faq/property' },
+      { text: 'Backup & Restore', link: '/faq/backup' },
+      { text: 'Upgrade v1 to v2', link: '/faq/v1tov2' }
+    ]
+  },
+  {
+    text: 'Blog',
+    collapsed: false,
+    items: [
+      { text: 'How to Securely Expose Internal Services?', link: '/blog/secure-access' },
+      { text: 'V3.0.0 Changelog', link: '/blog/v3.0.0' },
+      { text: 'Sign in to Proxmox VE with Next Terminal OIDC', link: '/blog/pve-oidc/readme' }
+    ]
+  },
+  {
+    text: 'Professional Services',
+    collapsed: false,
+    items: [{ text: 'Installation Service', link: '/services/readme' }]
+  },
+  {
+    text: 'API Docs',
+    collapsed: false,
+    items: [{ text: 'Certificate Management', link: '/api/certificate' }]
+  }
+]
+
+const zhSidebar: DefaultTheme.Sidebar = [
+  {
+    text: '安装文档',
+    collapsed: false,
+    items: [
+      { text: '系统需求', link: '/zh/install/system-requirements' },
+      { text: '容器安装', link: '/zh/install/container-install' },
+      { text: '原生安装', link: '/zh/install/native-install' },
+      { text: '配置文件', link: '/zh/install/config-desc' },
+      { text: '反向代理', link: '/zh/install/reverse-proxy' },
+      { text: '获取真实IP', link: '/zh/install/real-ip' }
+    ]
+  },
+  {
+    text: '使用文档',
+    collapsed: false,
+    items: [
+      { text: '快速开始', link: '/zh/usage/readme' },
+      {
+        text: '资源管理',
+        items: [
+          { text: '资产管理', link: '/zh/usage/asset' },
+          { text: 'Web资产', link: '/zh/usage/website' },
+          { text: 'HTTPS 证书双向认证', link: '/zh/usage/mtls' },
+          { text: '数据库审计', link: '/zh/usage/database' }
+        ]
+      },
+      {
+        text: '接入网关',
+        items: [
+          { text: '安全网关', link: '/zh/usage/agent-gateway' },
+          { text: 'SSH网关', link: '/zh/usage/ssh-gateway' }
+        ]
+      },
+      {
+        text: '访问资产',
+        items: [
+          { text: '资产访问', link: '/zh/usage/access' },
+          { text: 'SSH代理服务器', link: '/zh/usage/ssh-server' },
+          { text: 'RDP/VNC 错误码', link: '/zh/usage/error-codes' }
+        ]
+      },
+      {
+        text: '系统设置',
+        items: [
+          { text: '通行令牌（Passkey）', link: '/zh/usage/passkey' },
+          { text: '2fa(TOTP)', link: '/zh/usage/otp' },
+          { text: 'OIDC 身份服务器', link: '/zh/usage/oidc_server' },
+          { text: '绑定授权', link: '/zh/usage/license' }
+        ]
+      }
+    ]
+  },
+  {
+    text: '常见问题',
+    collapsed: false,
+    items: [
+      { text: 'FAQ', link: '/zh/faq/readme' },
+      { text: '命令行', link: '/zh/faq/cli' },
+      { text: '系统配置表', link: '/zh/faq/property' },
+      { text: '备份恢复', link: '/zh/faq/backup' },
+      { text: 'v1 升级 v2', link: '/zh/faq/v1tov2' }
+    ]
+  },
+  {
+    text: '博客文章',
+    collapsed: false,
+    items: [
+      { text: '如何安全的暴露内网服务？', link: '/zh/blog/secure-access' },
+      { text: 'V3.0.0 更新日志', link: '/zh/blog/v3.0.0' },
+      { text: '使用 Next Terminal OIDC 登录 Proxmox VE', link: '/zh/blog/pve-oidc/readme' }
+    ]
+  },
+  {
+    text: '付费服务',
+    collapsed: false,
+    items: [{ text: '安装服务', link: '/zh/services/readme' }]
+  },
+  {
+    text: 'API 文档',
+    collapsed: false,
+    items: [{ text: '证书管理', link: '/zh/api/certificate' }]
+  }
+]
+
+export default defineConfig({
+  title: 'Next Terminal',
+  description: 'Open-source platform for secure remote access and operations audit.',
+  head,
+  locales: {
+    root: {
+      label: 'English',
+      lang: 'en-US',
+      title: 'Next Terminal',
+      description: 'Open-source platform for secure remote access and operations audit.',
+      themeConfig: {
         lastUpdated: {
-            text: '最后更新',
+          text: 'Last Updated'
         },
         editLink: {
-            pattern: 'https://github.com/dushixiang/next-terminal-document/edit/main/:path',
-            text: '在 GitHub 上编辑此页'
+          pattern: 'https://github.com/dushixiang/next-terminal-document/edit/main/:path',
+          text: 'Edit this page on GitHub'
         },
         outline: {
-            level: [2, 3],
-            label: '页面导航'
+          level: [2, 3],
+          label: 'On this page'
         },
         nav: [
-            {text: 'GitHub', link: 'https://github.com/dushixiang/next-terminal'},
-            {text: '官网地址', link: 'https://next-terminal.typesafe.cn'}
+          { text: 'GitHub', link: 'https://github.com/dushixiang/next-terminal' },
+          { text: 'Official Website', link: 'https://next-terminal.typesafe.cn' }
         ],
-
-        sidebar: [
-            {
-                text: '安装文档',
-                collapsed: false,
-                items: [
-                    {
-                        text: '系统需求',
-                        link: '/install/system-requirements.md'
-                    }, {
-                        text: '容器安装',
-                        link: '/install/container-install.md'
-                    },
-                    {
-                        text: '原生安装',
-                        link: '/install/native-install.md'
-                    },
-                    {
-                        text: '配置文件',
-                        link: '/install/config-desc.md'
-                    },
-                    {
-                        text: '反向代理',
-                        link: '/install/reverse-proxy.md'
-                    },
-                    {
-                        text: '获取真实IP',
-                        link: '/install/real-ip.md'
-                    },
-                ],
-            },
-            {
-                text: '使用文档',
-                collapsed: false,
-                items: [
-                    {
-                        text: '快速开始',
-                        link: '/usage/readme.md'
-                    },
-                    {
-                        text: '资源管理',
-                        items: [
-                            {
-                                text: '资产管理',
-                                link: '/usage/asset.md'
-                            },
-                            {
-                                text: 'Web资产',
-                                link: '/usage/website.md'
-                            },
-                            {
-                                text: 'HTTPS 证书双向认证',
-                                link: '/usage/mtls.md'
-                            },
-                            {
-                                text: '数据库审计',
-                                link: '/usage/database.md'
-                            }
-                        ]
-                    },
-                    {
-                        text: '接入网关',
-                        items: [
-                            {
-                                text: '安全网关',
-                                link: '/usage/agent-gateway.md'
-                            },
-                            {
-                                text: 'SSH网关',
-                                link: '/usage/ssh-gateway.md'
-                            },
-                        ]
-                    },
-                    {
-                        text: '访问资产',
-                        items: [
-                            {
-                                text: '资产访问',
-                                link: '/usage/access.md'
-                            },
-                            {
-                                text: 'SSH代理服务器',
-                                link: '/usage/ssh-server.md'
-                            },
-                            {
-                                text: 'RDP/VNC 错误码',
-                                link: '/usage/error-codes.md'
-                            },
-                        ]
-                    },
-                    {
-                        text: '系统设置',
-                        items: [
-                            {
-                                text: '通行令牌（Passkey）',
-                                link: '/usage/passkey.md'
-                            },
-                            {
-                                text: '2fa(TOTP)',
-                                link: '/usage/otp.md'
-                            },
-                            {
-                                text: 'OIDC 身份服务器',
-                                link: '/usage/oidc_server.md'
-                            },
-                            {
-                                text: '绑定授权',
-                                link: '/usage/license.md'
-                            }
-                        ]
-                    },
-                ]
-            },
-            {
-                text: '常见问题',
-                collapsed: false,
-                items: [
-                    {
-                        text: 'FAQ',
-                        link: '/faq/readme.md'
-                    },
-                    {
-                        text: '命令行',
-                        link: '/faq/cli.md'
-                    },
-                    {
-                        text: '系统配置表',
-                        link: '/faq/property.md'
-                    },
-                    {
-                        text: '备份恢复',
-                        link: '/faq/backup.md'
-                    },
-                    {
-                        text: 'v1 升级 v2',
-                        link: '/faq/v1tov2.md'
-                    }
-                ]
-            },
-            {
-                text: '博客文章',
-                collapsed: false,
-                items: [
-                    {
-                        text: '如何安全的暴露内网服务？',
-                        link: '/blog/secure-access.md'
-                    },
-                    {
-                        text: 'V3.0.0 更新日志',
-                        link: '/blog/v3.0.0.md'
-                    },
-                    {
-                        text: '使用 Next Terminal OIDC 登录 Proxmox VE',
-                        link: '/blog/pve-oidc/readme.md'
-                    },
-                ]
-            },
-            {
-                text: '付费服务',
-                collapsed: false,
-                items: [
-                    {
-                        text: '安装服务',
-                        link: '/services/readme.md'
-                    }
-                ]
-            },
-            {
-                text: 'API 文档',
-                collapsed: false,
-                items: [
-                    {
-                        text: '证书管理',
-                        link: '/api/certificate.md'
-                    }
-                ]
-            }
-        ],
-
-        socialLinks: [
-            {icon: 'github', link: 'https://github.com/dushixiang/next-terminal'}
+        sidebar: enSidebar,
+        socialLinks: [{ icon: 'github', link: 'https://github.com/dushixiang/next-terminal' }]
+      }
+    },
+    zh: {
+      label: '简体中文',
+      lang: 'zh-CN',
+      link: '/zh/',
+      title: 'Next Terminal',
+      description: 'Next Terminal 官方文档 - 一个简单、好用、安全的开源运维审计系统',
+      head: [
+        ['meta', { property: 'og:title', content: 'Next Terminal - 开源运维审计系统' }],
+        [
+          'meta',
+          {
+            property: 'og:description',
+            content: 'Next Terminal 是一个简单、好用、安全的开源运维审计系统，支持 SSH、RDP、VNC、Telnet 等多种协议'
+          }
         ]
+      ],
+      themeConfig: {
+        lastUpdated: {
+          text: '最后更新'
+        },
+        editLink: {
+          pattern: 'https://github.com/dushixiang/next-terminal-document/edit/main/:path',
+          text: '在 GitHub 上编辑此页'
+        },
+        outline: {
+          level: [2, 3],
+          label: '页面导航'
+        },
+        nav: [
+          { text: 'GitHub', link: 'https://github.com/dushixiang/next-terminal' },
+          { text: '官网地址', link: 'https://next-terminal.typesafe.cn' }
+        ],
+        sidebar: zhSidebar,
+        socialLinks: [{ icon: 'github', link: 'https://github.com/dushixiang/next-terminal' }]
+      }
     }
+  }
 })

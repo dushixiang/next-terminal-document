@@ -1,51 +1,53 @@
-# 获取真实客户端 IP
+# Get the Real Client IP
 
-在网络请求经过多层代理后，获取用户的真实 IP 地址变得至关重要。`IpExtractor` 提供了三种策略来应对不同的部署场景。
+When requests pass through multiple proxy layers, extracting the real client IP is critical. `IpExtractor` provides three strategies for different deployment scenarios.
 
-## 策略一：直接连接 (`direct`)
+## Strategy 1: Direct Connection (`direct`)
 
--   **适用场景**：客户端直接连接到 Next Terminal，中间没有反向代理（如 Nginx、HAProxy）。
--   **工作方式**：直接使用网络连接中的远端 IP 地址作为客户端 IP。
--   **风险**：如果 Next Terminal 前面实际上存在代理，此策略将获取到代理服务器的 IP，而非真实用户的 IP。
+- **When to use**: Clients connect directly to Next Terminal, with no reverse proxy in front (such as Nginx or HAProxy).
+- **How it works**: Uses the remote IP of the TCP connection as the client IP.
+- **Risk**: If there is actually a proxy in front, this strategy returns the proxy IP instead of the real user IP.
 
-## 策略二：使用 X-Forwarded-For (`x-forwarded-for`)
+## Strategy 2: Use X-Forwarded-For (`x-forwarded-for`)
 
--   **适用场景**：Next Terminal 前端至少有一个反向代理，并且该代理正确设置了 `X-Forwarded-For` 请求头。
--   **工作方式**：`X-Forwarded-for` (XFF) 头记录了请求经过的每一个代理服务器的 IP。此策略会从该头中提取 IP。
--   **安全警告**：`X-Forwarded-For` 头容易被客户端伪造。因此，**必须**配置 `IpTrustList`，仅信任您的边缘代理服务器。系统会从右至左遍历 XFF 头中的 IP，并返回第一个**不被信任**的 IP 作为真实客户端地址。
--   **示例**：
-    ```yaml
-    IpExtractor: "x-forwarded-for"
-    IpTrustList:
-      - "192.168.1.0/24"  # 信任您的代理服务器 IP 段
-      - "10.0.0.1/32"       # 信任单个代理 IP
-    ```
+- **When to use**: There is at least one reverse proxy in front of Next Terminal and it correctly sets the `X-Forwarded-For` header.
+- **How it works**: The `X-Forwarded-For` (XFF) header records each proxy hop. This strategy extracts the client IP from that chain.
+- **Security warning**: `X-Forwarded-For` can be forged by clients. You **must** configure `IpTrustList` to trust only your edge proxies. The system traverses XFF from right to left and returns the first **untrusted** IP as the real client IP.
+- **Example**:
 
-## 策略三：使用 X-Real-IP (`x-real-ip`)
+```yaml
+IpExtractor: "x-forwarded-for"
+IpTrustList:
+  - "192.168.1.0/24"  # Trust your proxy subnet
+  - "10.0.0.1/32"     # Trust a single proxy IP
+```
 
--   **适用场景**：您的代理服务器（如 Nginx）配置为将客户端 IP 放入 `X-Real-IP` 头中。
--   **工作方式**：直接读取 `X-Real-IP` 请求头的值作为客户端 IP。
--   **安全警告**：与 XFF 类似，`X-Real-IP` 也可能被伪造。您**必须**配置 `IpTrustList` 来指定哪些代理是可信的，同时确保您的边缘代理会覆盖（而不是追加）客户端传来的同名请求头。
--   **示例**：
-    ```yaml
-    IpExtractor: "x-real-ip"
-    IpTrustList:
-      - "192.168.1.1/32" # 信任您的代理服务器 IP
-    ```
+## Strategy 3: Use X-Real-IP (`x-real-ip`)
 
-## 安全配置核心要点
+- **When to use**: Your proxy (for example Nginx) is configured to put client IP in the `X-Real-IP` header.
+- **How it works**: Reads `X-Real-IP` directly as the client IP.
+- **Security warning**: Like XFF, `X-Real-IP` can be spoofed. You **must** configure `IpTrustList` to define trusted proxies, and ensure your edge proxy overwrites (not appends) any client-supplied header with the same name.
+- **Example**:
 
-1.  **绝不盲目信任 HTTP 头**：除非请求来自您信任的代理，否则 `X-Forwarded-For` 和 `X-Real-IP` 都不可信。
-2.  **配置边缘代理**：您的最外层代理（如 Nginx）应正确处理客户端 IP，并剥离或覆盖掉由客户端伪造的 IP 相关头部。
-3.  **精确配置 `IpTrustList`**：`IpTrustList` 是确保 IP 提取安全的关键。请仅将您的反向代理服务器的 IP 地址或地址段加入此列表。
+```yaml
+IpExtractor: "x-real-ip"
+IpTrustList:
+  - "192.168.1.1/32" # Trust your proxy IP
+```
 
-## 默认信任的私有地址
+## Security Essentials
 
-为方便常见内网部署，Next Terminal 默认信任以下私有 IP 地址范围。如果您的代理位于这些网段，您可能无需额外配置 `IpTrustList`。
+1. **Never blindly trust HTTP headers**: `X-Forwarded-For` and `X-Real-IP` are untrusted unless the request comes from a trusted proxy.
+2. **Configure edge proxies correctly**: Your outermost proxy should sanitize and overwrite spoofed client-IP headers.
+3. **Set `IpTrustList` precisely**: This is the key to secure IP extraction. Only include your reverse proxy IPs/subnets.
 
--   **IPv4**: `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`
--   **IPv6**: `fc00::/7`
+## Default Trusted Private Ranges
+
+For common internal-network deployments, Next Terminal trusts these private ranges by default. If your proxies are within these ranges, additional `IpTrustList` settings may not be needed.
+
+- **IPv4**: `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`
+- **IPv6**: `fc00::/7`
 
 ----
 
-此配置同样适用于 NextTerminal 自身的网络配置。
+These settings also apply to Next Terminal's own network configuration.

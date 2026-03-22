@@ -1,14 +1,15 @@
-# 原生安装
+# Native Installation
 
-::: warning 注意
-原生安装比较复杂，不建议新手尝试。
+::: warning Important
+Native installation is relatively complex and is not recommended for beginners.
 :::
 
-## 编译 Apache Guacamole-Server
+## Build Apache Guacamole-Server
 
-> 参考 Apache Guacamole-Server 官方编译文档 https://guacamole.apache.org/doc/gug/installing-guacamole.html#building-guacamole-server
+> Reference: Apache Guacamole-Server official build documentation  
+> https://guacamole.apache.org/doc/gug/installing-guacamole.html#building-guacamole-server
 
-安装依赖
+Install dependencies:
 
 ::: code-group
 
@@ -32,18 +33,20 @@ yum install -y make gcc g++ \
 
 :::
 
-下载源码
+Download source code:
 
 ```shell
 wget https://downloads.apache.org/guacamole/1.6.0/source/guacamole-server-1.6.0.tar.gz
 ```
 
-解压
+Extract:
+
 ```shell
 tar -xvf guacamole-server-1.6.0.tar.gz
 ```
 
-编译安装
+Build and install:
+
 ```shell
 cd guacamole-server-1.6.0
 ./configure --with-init-dir=/etc/init.d
@@ -52,9 +55,9 @@ make install
 ldconfig
 ```
 
-生成配置文件
+Create config file:
 
-``` bash
+```bash
 mkdir /etc/guacamole/ && cat <<EOF > /etc/guacamole/guacd.conf
 [daemon]
 pid_file = /var/run/guacd.pid
@@ -66,9 +69,9 @@ bind_port = 4822
 EOF
 ```
 
-安装服务
+Install service:
 
-``` bash
+```bash
 cat <<EOF > /etc/systemd/system/guacd.service
 [Unit]
 Description=Guacamole proxy daemon
@@ -88,36 +91,38 @@ WantedBy=multi-user.target
 EOF
 ```
 
-启动 guacd 服务
+Start `guacd` service:
 
-``` bash
+```bash
 systemctl daemon-reload
 systemctl enable guacd
 systemctl start guacd
 ```
 
-## 安装 Next Terminal
+## Install Next Terminal
 
-下载
+Download:
 
 ```shell
 wget https://github.com/dushixiang/next-terminal/releases/latest/download/next-terminal.tar.gz
 ```
 
-解压
+Extract:
+
 ```shell
 mkdir -p /usr/local/next-terminal/
 tar -zxvf next-terminal.tar.gz -C /usr/local/next-terminal
 ```
 
-::: tip 提示
-请自行安装 `postgres` 数据库，支持 16.x 及以上版本。
+::: tip Notes
+Please install a `postgres` database yourself. Version 16.x or later is supported.
 
-安装完成后，请修改 `config.yaml` 文件中的 `database` 配置。
+After installation, update the `database` section in `config.yaml`.
 :::
 
-使用系统服务方式启动
-``` bash
+Start with a system service:
+
+```bash
 cat <<EOF > /etc/systemd/system/next-terminal.service
 [Unit]
 Description=next-terminal service
@@ -137,7 +142,7 @@ WantedBy=multi-user.target
 EOF
 ```
 
-启动 Next-Terminal 服务
+Start Next Terminal service:
 
 ```shell
 systemctl daemon-reload
@@ -145,14 +150,18 @@ systemctl enable next-terminal
 systemctl start next-terminal
 ```
 
-::: tip 安装成功后
-访问 http://{ip}:8088/setup 进行用户初始化设置
+::: tip After successful installation
+Visit `http://{ip}:8088/setup` to initialize the admin user.
 
-访问 http://{ip}:8088/login 进行登陆
+Visit `http://{ip}:8088/login` to sign in.
 :::
 
-## 升级方式
+## Upgrade
 
-下载最新版本的 next-terminal.tar.gz 文件，解压覆盖原有的文件（配置文件除外）。
+Download the latest `next-terminal.tar.gz`, extract it, and overwrite the old files (except config files).
 
-最后重启服务 `systemctl restart next-terminal`。
+Finally, restart the service:
+
+```shell
+systemctl restart next-terminal
+```

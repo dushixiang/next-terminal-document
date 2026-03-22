@@ -1,25 +1,25 @@
-# 系统资源配置指南
+# System Resource Sizing Guide
 
-## 性能配置参考
+## Performance Reference
 
-| 并发连接数 | CPU(核) | 内存(GB) |
-|------------|---------|----------|
-| 0-25       | 2       | 2        |
-| 26-50      | 3       | 6        |
-| 51-100     | 4       | 8        |
-| 101-200    | 8       | 16       |
-| 201-400    | 16      | 32       |
+| Concurrent Connections | CPU Cores | Memory (GB) |
+|------------------------|-----------|-------------|
+| 0-25                   | 2         | 2           |
+| 26-50                  | 3         | 6           |
+| 51-100                 | 4         | 8           |
+| 101-200                | 8         | 16          |
+| 201-400                | 16        | 32          |
 
-## 基础要求
+## Baseline Requirements
 
-### 最低配置
-- **CPU**: 1 核
-- **内存**: 0.5 GB
-- **存储**: 40 GB
+### Minimum
+- **CPU**: 1 core
+- **Memory**: 0.5 GB
+- **Storage**: 40 GB
 
-### 网络端口
-- **必需端口**: 8088 (Web管理)
-- **可选端口**:
-    - 443 (Web资产HTTPS反向代理)
-    - 80 (Web资产HTTP反向代理)
-    - 2022 (SSH服务)
+### Network Ports
+- **Required**: 8088 (Web admin)
+- **Optional**:
+  - 443 (HTTPS reverse proxy for Web Assets)
+  - 80 (HTTP reverse proxy for Web Assets)
+  - 2022 (SSH server)

@@ -1,123 +1,118 @@
-# SSH 代理服务器
+# SSH Proxy Server
 
-SSH 代理服务器是 Next Terminal 提供的一个便捷功能,允许用户通过标准的 SSH 客户端连接到 Next Terminal,进而访问管理的各类资产。无需安装专用客户端,即可使用熟悉的 SSH 工具完成远程运维工作。
+SSH Proxy Server is a convenient feature in Next Terminal. It allows users to connect to Next Terminal with standard SSH clients and then access managed assets. No dedicated client is required.
 
-## 主要特性
+## Key Features
 
-- **标准 SSH 协议**: 完全兼容标准 SSH 客户端,无需额外工具
-- **两种连接模式**: 支持交互式选择和直连模式
-- **公钥认证**: 支持 SSH 公钥免密登录
-- **统一入口**: 通过一个代理服务器访问所有资产
-- **安全审计**: 所有连接记录均被审计追踪
+- **Standard SSH protocol**: fully compatible with common SSH clients
+- **Two connection modes**: interactive selection and direct connect
+- **Public key authentication**: passwordless login with SSH public keys
+- **Unified entry point**: access all assets through one SSH endpoint
+- **Security auditing**: all connection activities are auditable
 
-## 使用方式
+## Usage
 
-### 步骤 1: 在系统设置开启 SSH 代理服务器
+### Step 1: Enable SSH Proxy Server in system settings
 
 ![ssh-server-config.png](images/ssh-server-config.png)
 
-在系统设置中找到 SSH 代理服务器配置项:
-- **监听地址**: 设置 SSH 代理服务器监听的 IP 地址和端口,默认为 `0.0.0.0:2022`
-- **认证私钥**: SSH Server 和 SSH 客户端认证过程中的必要参数,点击「生成私钥」按钮可自动生成
+In SSH Proxy Server settings:
 
-::: tip 提示
-确保配置的端口没有被其他服务占用,并在防火墙中开放该端口。
+- **Listen Address**: SSH proxy listening address and port, default `0.0.0.0:2022`
+- **Private Key**: required for SSH server authentication. Click **Generate Key** to auto-generate.
+
+::: tip Tip
+Ensure the configured port is not occupied and is open in firewall/security groups.
 :::
 
-### 步骤 2: 使用 SSH 命令连接代理服务器
+### Step 2: Connect with SSH command
 
-Next Terminal 的 SSH 代理服务器支持两种连接模式:
+Two connection modes are available.
 
-#### 方式一: 代理模式 (交互式选择)
-
-使用标准 SSH 命令连接:
+#### Mode 1: Proxy mode (interactive)
 
 ```bash
 ssh username@host -p port
 ```
 
-- `username`: Next Terminal 的用户名
-- `host`: Next Terminal 服务器的地址
-- `port`: SSH 代理服务器配置的端口 (默认 2022)
+- `username`: Next Terminal username
+- `host`: Next Terminal server address
+- `port`: SSH proxy port (default 2022)
 
-连接成功后会进入 Next Terminal 的交互式界面,可以通过菜单选择要访问的目标资产:
+After connecting, you enter an interactive menu to choose target asset:
 
 ![ssh-server-login.png](images/ssh-server-login.png)
 ![ssh-server-ui.png](images/ssh-server-ui.png)
 
-#### 方式二: 直连模式
+#### Mode 2: Direct mode
 
-如果已知要访问的资产名称,可以使用直连模式一步到位:
+If you already know the target asset name:
 
 ```bash
 ssh username:asset-name@host -p port
 ```
 
-- `username`: Next Terminal 的用户名
-- `asset-name`: 目标资产的名称
-- `host`: Next Terminal 服务器的地址
-- `port`: SSH 代理服务器配置的端口
+- `username`: Next Terminal username
+- `asset-name`: target asset name
+- `host`: Next Terminal server address
+- `port`: SSH proxy port
 
-直连模式会跳过交互式菜单,直接连接到指定的资产:
+Direct mode skips interactive menu and connects immediately:
 
 ![ssh-server-direct.png](images/ssh-server-direct.png)
 
-::: tip 使用场景
-- **代理模式**: 适合不确定资产名称,需要浏览和选择的场景
-- **直连模式**: 适合已知资产名称,需要快速连接的场景,也便于在脚本中使用
+::: tip Use cases
+- **Proxy mode**: when you need to browse/select assets
+- **Direct mode**: when asset name is known and fast/scripted access is needed
 :::
 
-### 步骤 3: 配置免密码登录 (可选)
+### Step 3: Configure passwordless login (optional)
 
-为了提升使用体验,避免每次连接都输入密码,可以配置 SSH 公钥认证。
+To avoid entering password every time, configure SSH public key authentication.
 
-#### 3.1 获取本地公钥
-
-在本地终端执行以下命令查看公钥:
+#### 3.1 Get local public key
 
 ```bash
 cat ~/.ssh/id_rsa.pub
 ```
 
-如果提示文件不存在,需要先生成 SSH 密钥对:
+If key file does not exist, generate key pair first:
 
 ```bash
 ssh-keygen -t rsa -b 4096
 ```
 
-复制公钥内容 (以 `.pub` 结尾的文件):
+Copy the public key content (`.pub` file):
 
 ![ssh-server-public-key-get.png](images/ssh-server-public-key-get.png)
 
-#### 3.2 在 Next Terminal 中添加公钥
+#### 3.2 Add public key in Next Terminal
 
-登录 Next Terminal,进入个人中心,将公钥内容粘贴到公钥配置中:
+In Personal Center, paste the public key into key settings:
 
 ![ssh-server-public-key-set.png](images/ssh-server-public-key-set.png)
 
-配置完成后,再次使用 SSH 连接时将无需输入密码。
+After configuration, SSH login can proceed without password.
 
-## 常见问题
+## FAQ
 
-### 连接失败排查
+### Troubleshooting connection failures
 
-如果无法连接到 SSH 代理服务器,请检查:
+If connection fails, check:
 
-1. **端口是否开放**: 确认防火墙已开放配置的端口
-2. **服务是否启动**: 检查 Next Terminal 服务运行状态
-3. **认证信息**: 确认用户名和密码正确
-4. **网络连通性**: 使用 `telnet` 或 `nc` 测试端口连通性
+1. **Port exposure**: ensure port is open in firewall/security group
+2. **Service status**: ensure Next Terminal service is running
+3. **Credentials**: verify username/password or key
+4. **Network connectivity**: test with `telnet` or `nc`
 
 ```bash
-# 测试端口连通性
+# Test port connectivity
 telnet host 2022
-# 或
+# or
 nc -zv host 2022
 ```
 
-### 与 SSH 网关的区别
+### Difference from SSH Gateway
 
-- **SSH 代理服务器**: Next Terminal 本身提供的 SSH 服务,用于通过 SSH 客户端访问 Next Terminal 管理的资产
-- **SSH 网关**: 一个独立的跳板服务器,通过 SSH 隧道转发流量到内网资产
-
-
+- **SSH Proxy Server**: built-in SSH service of Next Terminal, used by SSH clients to access managed assets
+- **SSH Gateway**: independent jump host that forwards traffic to internal assets

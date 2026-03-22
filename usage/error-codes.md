@@ -1,104 +1,104 @@
-# RDP/VNC 错误码说明
+# RDP/VNC Error Codes
 
-在使用 RDP 和 VNC 协议连接远程桌面时，可能会遇到各种错误。本文档列出了常见的错误状态码及其含义，帮助您快速诊断和解决连接问题。
+When connecting to remote desktops using RDP or VNC, you may encounter errors. This document lists common status codes and meanings for faster troubleshooting.
 
-## 状态码说明
+## Status Codes
 
-Next Terminal 使用一套通用的数字状态码来表示操作的成功或失败状态。这些状态码可以帮助用户界面以人性化的方式显示错误信息。
+Next Terminal uses a unified numeric status-code system to represent success/failure states.
 
-### 成功状态
+### Success
 
 #### 0 (SUCCESS)
-操作成功完成，没有错误。
+Operation completed successfully.
 
-### 不支持的操作
+### Unsupported Operation
 
 #### 256 (UNSUPPORTED)
-请求的操作不被支持。
+Requested operation is not supported.
 
-### 服务器错误
+### Server Errors
 
 #### 512 (SERVER_ERROR)
-发生内部错误，操作无法执行。
+Internal server error. Operation cannot be completed.
 
 #### 513 (SERVER_BUSY)
-由于服务器繁忙，操作无法执行。
+Server is busy. Operation cannot be completed.
 
 #### 514 (UPSTREAM_TIMEOUT)
-上游服务器没有响应。在大多数情况下，上游服务器是远程桌面服务器。
+Upstream server did not respond in time (usually the remote desktop server).
 
 #### 515 (UPSTREAM_ERROR)
-上游服务器遇到错误。在大多数情况下，上游服务器是远程桌面服务器。
+Upstream server returned an error (usually the remote desktop server).
 
-### 资源相关错误
+### Resource Errors
 
 #### 516 (RESOURCE_NOT_FOUND)
-找不到相关资源（如文件或数据流），因此操作失败。
+Related resource (file/stream etc.) was not found.
 
 #### 517 (RESOURCE_CONFLICT)
-资源已被使用或锁定，阻止了请求的操作。
+Resource is in use or locked.
 
 #### 518 (RESOURCE_CLOSED)
-由于相关资源已关闭，请求的操作无法继续。
+Related resource has been closed.
 
-### 上游服务器连接错误
+### Upstream Connectivity Errors
 
 #### 519 (UPSTREAM_NOT_FOUND)
-上游服务器似乎不存在，或无法通过网络访问。在大多数情况下，上游服务器是远程桌面服务器。
+Upstream server does not exist or is unreachable.
 
 #### 520 (UPSTREAM_UNAVAILABLE)
-上游服务器拒绝服务连接。在大多数情况下，上游服务器是远程桌面服务器。
+Upstream server refused the connection.
 
-### 会话相关错误
+### Session Errors
 
 #### 521 (SESSION_CONFLICT)
-上游服务器中的会话已结束，因为它与另一个会话冲突。在大多数情况下，上游服务器是远程桌面服务器。
+Session ended due to conflict with another session.
 
 #### 522 (SESSION_TIMEOUT)
-上游服务器中的会话已结束，因为它看起来处于非活动状态。在大多数情况下，上游服务器是远程桌面服务器。
+Session ended due to inactivity timeout.
 
 #### 523 (SESSION_CLOSED)
-上游服务器中的会话已被强制关闭。在大多数情况下，上游服务器是远程桌面服务器。
+Session was forcibly closed.
 
-### 客户端错误
+### Client Errors
 
 #### 768 (CLIENT_BAD_REQUEST)
-请求的参数是非法的或无效的。
+Request parameters are invalid.
 
 #### 769 (CLIENT_UNAUTHORIZED)
-权限被拒绝，因为用户未登录。请注意，用户可能已登录到 Next Terminal，但仍未登录到远程桌面服务器。
+Authorization denied because user is not authenticated.
 
 #### 771 (CLIENT_FORBIDDEN)
-权限被拒绝，登录也无法解决问题。
+Permission denied. Logging in cannot resolve this.
 
 #### 776 (CLIENT_TIMEOUT)
-客户端（通常是 Next Terminal 用户或其浏览器）响应时间过长。
+Client response timeout (usually browser/user side).
 
 #### 781 (CLIENT_OVERRUN)
-客户端发送的数据超过了协议允许的范围。
+Client sent more data than protocol allows.
 
 #### 783 (CLIENT_BAD_TYPE)
-客户端发送了意外或非法类型的数据。
+Client sent unexpected/invalid data type.
 
 #### 797 (CLIENT_TOO_MANY)
-客户端已经使用了太多资源。在允许进一步请求之前，必须释放现有资源。
+Client has consumed too many resources.
 
-## 常见问题排查
+## Troubleshooting
 
-### 连接超时问题
-- **错误码 514, 522**: 检查网络连接，确认远程桌面服务器是否正常运行
-- **错误码 776**: 检查客户端网络状况，尝试刷新页面重新连接
+### Timeout issues
+- **514, 522**: check network and remote desktop server health
+- **776**: check client network, refresh and reconnect
 
-### 认证问题
-- **错误码 769**: 确认用户名和密码是否正确
-- **错误码 771**: 检查用户权限设置，确认是否有远程桌面访问权限
+### Authentication issues
+- **769**: verify username/password
+- **771**: verify permission settings for remote desktop access
 
-### 服务器问题
-- **错误码 519, 520**: 检查远程桌面服务器地址和端口是否正确
-- **错误码 513**: 等待服务器负载降低后重试
+### Server-side issues
+- **519, 520**: verify remote host address/port
+- **513**: retry later when server load is lower
 
-### 会话冲突
-- **错误码 521**: 检查是否有其他用户正在使用同一账户连接
-- **错误码 523**: 联系管理员检查服务器端会话管理设置
+### Session conflicts
+- **521**: check whether same account is in use elsewhere
+- **523**: ask admin to check session management settings
 
-如果遇到其他未列出的错误码，请联系系统管理员或查看服务器日志获取更详细的错误信息。
+If you encounter an unlisted code, contact the administrator and check server logs for details.

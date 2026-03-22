@@ -1,24 +1,39 @@
-**推广**
+---
+title: Container Installation
+description: Install Next Terminal quickly with Docker Compose, including setup, upgrade commands, and optional IPv6 configuration.
+head:
+  - - meta
+    - name: keywords
+      content: Next Terminal, Docker, Docker Compose, installation, quick setup
+  - - meta
+    - property: og:title
+      content: Next Terminal Container Installation
+  - - meta
+    - property: og:description
+      content: Install Next Terminal quickly with Docker Compose, then initialize admin and start secure remote access management.
+---
+
+**Promotion**
 
 <a href="https://www.lcayun.com/actcloud.html?from=next-terminal" target="_blank">![img.png](images/lcayun.png)</a>
 
 ----
 
-# 安装
+# Installation
 
-安装之前请先检查硬件及依赖符合[系统需求](/install/system-requirements.html)
+Before installation, make sure your host meets the [system requirements](/install/system-requirements).
 
-## 使用 Docker 安装
+## Install with Docker
 
 ::: code-group
 
-```shell [中国大陆]
+```shell [China Mainland]
 curl -sSL https://f.typesafe.cn/next-terminal/docker-compose-aliyun.yaml > docker-compose.yaml
 curl -sSL https://f.typesafe.cn/next-terminal/config.yaml > config.yaml
 docker compose up -d
 ```
 
-```shell [其他]
+```shell [Others]
 curl -sSL https://f.typesafe.cn/next-terminal/docker-compose.yaml > docker-compose.yaml
 curl -sSL https://f.typesafe.cn/next-terminal/config.yaml > config.yaml
 docker compose up -d
@@ -26,20 +41,19 @@ docker compose up -d
 
 :::
 
+::: tip After successful installation
+Visit `http://{ip}:8088/setup` to initialize the admin user.
 
-::: tip 安装成功后
-访问 http://{ip}:8088/setup 进行用户初始化设置
-
-访问 http://{ip}:8088/login 进行登陆
+Visit `http://{ip}:8088/login` to sign in.
 :::
 
-### 版本升级命令
+### Upgrade Commands
 
 ```shell
 docker compose pull
 docker compose up -d
 ```
 
-## 开启 IPv6 (非必需)
+## Enable IPv6 (Optional)
 
-请参考 docker 官方文档 https://docs.docker.com/engine/daemon/ipv6/
+See the official Docker documentation: https://docs.docker.com/engine/daemon/ipv6/

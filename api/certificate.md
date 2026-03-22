@@ -1,32 +1,32 @@
-# 证书管理 API
+# Certificate Management API
 
-## 更新证书
+## Update Certificate
 
-更新或创建 SSL/TLS 证书配置。
+Update or create SSL/TLS certificate configuration.
 
-### 请求信息
+### Request
 
-- **请求方法**: `PUT`
-- **请求路径**: `/api/admin/certificates/upsert`
+- **Method**: `PUT`
+- **Path**: `/api/admin/certificates/upsert`
 - **Content-Type**: `application/json`
 
-### 请求参数
+### Parameters
 
-| 参数名 | 类型 | 必填 | 说明                                                        |
-|--------|------|------|-----------------------------------------------------------|
-| commonName | string | 是 | 证书通用名称（CN）                                                |
-| type | string | 是 | 证书类型，可选值：`self-signed`（自签名）、`issued`（自动申请）、`imported`（导入） |
-| certificate | string | 是 | 证书内容（PEM 格式）                                              |
-| privateKey | string | 是 | 私钥内容（PEM 格式）                                              |
-| renewBefore | number | 是 | 续签证书提前时间（天），仅在 `type` 为 `issued` 时生效                      |
+| Name | Type | Required | Description |
+|--------|------|------|-----------|
+| commonName | string | Yes | Certificate common name (CN) |
+| type | string | Yes | Certificate type: `self-signed`, `issued`, `imported` |
+| certificate | string | Yes | Certificate content (PEM) |
+| privateKey | string | Yes | Private key content (PEM) |
+| renewBefore | number | Yes | Renew in advance (days). Effective only when `type` is `issued` |
 
-### 证书类型说明
+### Certificate Types
 
-- **self-signed**: 自签名证书
-- **issued**: 已颁发的证书（由 CA 机构颁发，支持自动续签）
-- **imported**: 导入的证书（支持导入证书内容或本地文件路径）
+- **self-signed**: self-signed certificate
+- **issued**: CA-issued certificate (supports auto renewal)
+- **imported**: imported certificate (certificate content or local file path)
 
-### 请求示例
+### Request Example
 
 ```json
 {
@@ -38,20 +38,20 @@
 }
 ```
 
-### 响应说明
+### Response
 
-#### 成功响应
+#### Success
 
-- **HTTP 状态码**: `200`
-- **响应体**: 无或成功信息
+- **HTTP status**: `200`
+- **Body**: empty or success message
 
-#### 失败响应
+#### Failure
 
-- **HTTP 状态码**: 非 `200`（如 `400`、`500` 等）
-- **响应体**:
+- **HTTP status**: non-`200` (for example `400`, `500`)
+- **Body**:
 
 ```json
 {
-  "message": "错误信息描述"
+  "message": "error message"
 }
 ```

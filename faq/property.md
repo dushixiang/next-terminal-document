@@ -1,205 +1,205 @@
-# 系统属性配置表
+# System Property Table
 
-本文档列出了 Next Terminal 系统中所有可通过命令行工具管理的配置项，表名称为 `property` 。
+This document lists all configurable properties in Next Terminal that can be managed via CLI (`property` table).
 
-> 小提示：如果你把配置改坏了，又不想手动进数据库更改配置，可以把 property 表整个删除，然后重启系统，会重置为安装时的配置。
+> Tip: If settings are broken and you do not want to edit database manually, you can delete the entire `property` table and restart the system. It will reset to install-time defaults.
 
-## 邮件服务配置
+## Mail Service
 
-| 配置项键名 | 说明 | 类型 |
+| Property Key | Description | Type |
 |-----------|------|------|
-| `mail-enabled` | 是否开启邮件服务 | string |
-| `mail-use-ssl` | 是否使用SSL | string |
-| `mail-host` | 邮件服务器地址 | string |
-| `mail-port` | 邮件服务器端口 | string |
-| `mail-username` | 邮件服务账号 | string |
-| `mail-password` | 邮件服务密码 | string |
-| `mail-insecure-skip-verify` | 是否跳过SSL验证 | string |
-| `mail-from` | 邮件发送者 | string |
+| `mail-enabled` | Enable mail service | string |
+| `mail-use-ssl` | Use SSL | string |
+| `mail-host` | Mail server host | string |
+| `mail-port` | Mail server port | string |
+| `mail-username` | Mail service username | string |
+| `mail-password` | Mail service password | string |
+| `mail-insecure-skip-verify` | Skip SSL verification | string |
+| `mail-from` | Sender address | string |
 
-## 登录安全配置
+## Login Security
 
-### 登录锁定
+### Login Lock
 
-| 配置项键名 | 说明 | 类型 |
+| Property Key | Description | Type |
 |-----------|------|------|
-| `login-lock-enabled` | 是否开启登录锁定 | string |
-| `login-lock-failed-duration` | 登录失败统计时长 | string |
-| `login-lock-failed-times` | 登录失败次数阈值 | string |
-| `login-lock-account-duration` | 账户锁定时长 | string |
-| `login-lock-ip-duration` | IP锁定时长 | string |
+| `login-lock-enabled` | Enable login lock | string |
+| `login-lock-failed-duration` | Failed login counting window | string |
+| `login-lock-failed-times` | Failed login threshold | string |
+| `login-lock-account-duration` | Account lock duration | string |
+| `login-lock-ip-duration` | IP lock duration | string |
 
-### 登录认证
+### Login Authentication
 
-| 配置项键名 | 说明 | 类型 |
+| Property Key | Description | Type |
 |-----------|------|------|
-| `login-captcha-enabled` | 是否开启登录验证码 | string |
-| `login-force-totp-enabled` | 是否开启强制双因素认证 | string |
-| `password-strength-type` | 密码强度类型 | string |
-| `password-strength-policy` | 密码强度策略 | string |
-| `login-session-duration` | 登录会话有效时长（单位：分钟） | string |
-| `login-session-count-custom` | 自定义登录会话有效个数 | string |
-| `login-session-count-limit` | 登录会话有效个数 | string |
-| `password-expiration-period` | 密码有效期限 | string |
-| `disable-password-login` | 禁用密码登录 | string |
+| `login-captcha-enabled` | Enable login captcha | string |
+| `login-force-totp-enabled` | Enforce two-factor authentication | string |
+| `password-strength-type` | Password strength type | string |
+| `password-strength-policy` | Password strength policy | string |
+| `login-session-duration` | Login session TTL (minutes) | string |
+| `login-session-count-custom` | Custom session count limit | string |
+| `login-session-count-limit` | Active session count limit | string |
+| `password-expiration-period` | Password expiration period | string |
+| `disable-password-login` | Disable password login | string |
 
-### 访问安全
+### Access Security
 
-| 配置项键名 | 说明 | 类型 |
+| Property Key | Description | Type |
 |-----------|------|------|
-| `access-require-mfa` | 访问资产必须进行多因素认证 | string |
-| `access-mfa-expires-at` | 多因素认证过期时间 | string |
-| `security-level` | 安全等级 | string |
-| `user-client-cert-valid-days` | 用户客户端证书有效期（天） | string |
-| `access-max-idle-second` | 访问最大空闲时间，-1 代表无需限制（单位：秒） | string |
+| `access-require-mfa` | Require MFA before asset access | string |
+| `access-mfa-expires-at` | MFA expiration time | string |
+| `security-level` | Security level | string |
+| `user-client-cert-valid-days` | User client certificate validity (days) | string |
+| `access-max-idle-second` | Max idle time for access (`-1` means unlimited, seconds) | string |
 
-## SSH 服务器配置
+## SSH Server
 
-| 配置项键名 | 说明 | 类型 |
+| Property Key | Description | Type |
 |-----------|------|------|
-| `ssh-server-enabled` | 是否开启SSH服务器 | string |
-| `ssh-server-addr` | SSH服务器监听地址 | string |
-| `ssh-server-private-key` | SSH服务器私钥 | string |
-| `ssh-server-private-key-exists` | SSH服务器私钥是否存在 | string |
-| `ssh-server-port-forwarding-enabled` | 是否允许建立隧道进行端口转发 | string |
-| `ssh-server-port-forwarding-host-port` | 允许转发的IP和端口 | string |
-| `ssh-server-disable-password-auth` | 是否禁用密码认证 | string |
+| `ssh-server-enabled` | Enable SSH server | string |
+| `ssh-server-addr` | SSH server listen address | string |
+| `ssh-server-private-key` | SSH server private key | string |
+| `ssh-server-private-key-exists` | Whether private key exists | string |
+| `ssh-server-port-forwarding-enabled` | Allow tunnel/port forwarding | string |
+| `ssh-server-port-forwarding-host-port` | Allowed forwarding IP:port | string |
+| `ssh-server-disable-password-auth` | Disable password authentication | string |
 
-## 数据库代理配置
+## Database Proxy
 
-| 配置项键名 | 说明 | 类型 |
+| Property Key | Description | Type |
 |-----------|------|------|
-| `db-proxy-enabled` | 是否开启数据库代理 | string |
-| `db-proxy-addr` | 数据库代理地址 | string |
-| `db-proxy-block-dml` | 是否阻止DML操作 | string |
+| `db-proxy-enabled` | Enable Database Proxy | string |
+| `db-proxy-addr` | Database Proxy address | string |
+| `db-proxy-block-dml` | Block DML operations | string |
 
-## 录屏和日志配置
+## Recording and Logs
 
-| 配置项键名 | 说明 | 类型 |
+| Property Key | Description | Type |
 |-----------|------|------|
-| `recording-enabled` | 是否开启录屏 | string |
-| `session-saved-limit-days` | 会话保存限制天数 | string |
-| `login-log-saved-limit-days` | 登录日志保存限制天数 | string |
-| `cron-log-saved-limit-days` | 定时任务日志保存限制天数 | string |
-| `access-log-saved-limit-days` | 访问日志保存限制天数 | string |
-| `db-sql-log-saved-limit-days` | 数据库SQL日志保存限制天数 | string |
+| `recording-enabled` | Enable recording | string |
+| `session-saved-limit-days` | Session log retention days | string |
+| `login-log-saved-limit-days` | Login log retention days | string |
+| `cron-log-saved-limit-days` | Scheduled task log retention days | string |
+| `access-log-saved-limit-days` | Access log retention days | string |
+| `db-sql-log-saved-limit-days` | DB SQL log retention days | string |
 
-## 系统信息配置
+## System Information
 
-| 配置项键名 | 说明 | 类型 |
+| Property Key | Description | Type |
 |-----------|------|------|
-| `system-name` | 系统名称 | string |
-| `system-logo` | 系统Logo | string |
-| `system-copyright` | 系统版权 | string |
-| `system-icp` | 系统备案信息 | string |
-| `version` | 系统版本 | string |
+| `system-name` | System name | string |
+| `system-logo` | System logo | string |
+| `system-copyright` | System copyright | string |
+| `system-icp` | ICP registration info | string |
+| `version` | System version | string |
 
-## 水印配置
+## Watermark
 
-| 配置项键名 | 说明 | 类型 |
+| Property Key | Description | Type |
 |-----------|------|------|
-| `watermark-enabled` | 是否开启水印 | string |
-| `watermark-content` | 水印内容 | string |
-| `watermark-content-asset-username` | 水印使用资产账户 | string |
-| `watermark-content-user-account` | 水印使用当前操作者账户 | string |
-| `watermark-font-color` | 水印颜色 | string |
-| `watermark-font-size` | 水印字体大小 | string |
+| `watermark-enabled` | Enable watermark | string |
+| `watermark-content` | Watermark content | string |
+| `watermark-content-asset-username` | Include asset username in watermark | string |
+| `watermark-content-user-account` | Include operator account in watermark | string |
+| `watermark-font-color` | Watermark color | string |
+| `watermark-font-size` | Watermark font size | string |
 
-## LDAP 配置
+## LDAP
 
-| 配置项键名 | 说明 | 类型 |
+| Property Key | Description | Type |
 |-----------|------|------|
-| `ldap-enabled` | 是否开启LDAP | string |
-| `ldap-url` | LDAP服务器地址 | string |
-| `ldap-user` | LDAP管理员账号 | string |
-| `ldap-password` | LDAP管理员密码 | string |
-| `ldap-base-dn` | LDAP基础DN | string |
-| `ldap-user-search-size-limit` | LDAP用户搜索大小限制 | string |
-| `ldap-user-search-filter` | LDAP用户搜索过滤器 | string |
-| `ldap-user-property-mapping` | LDAP用户属性映射 | string |
+| `ldap-enabled` | Enable LDAP | string |
+| `ldap-url` | LDAP server URL | string |
+| `ldap-user` | LDAP admin user | string |
+| `ldap-password` | LDAP admin password | string |
+| `ldap-base-dn` | LDAP base DN | string |
+| `ldap-user-search-size-limit` | LDAP user search size limit | string |
+| `ldap-user-search-filter` | LDAP user search filter | string |
+| `ldap-user-property-mapping` | LDAP user attribute mapping | string |
 
-## 用户配置
+## User Defaults
 
-| 配置项键名 | 说明 | 类型 |
+| Property Key | Description | Type |
 |-----------|------|------|
-| `user-default-storage-size` | 用户默认存储空间大小（单位：Byte） | string |
+| `user-default-storage-size` | Default user storage size (bytes) | string |
 
-## 代理网关配置
+## Agent Gateway
 
-| 配置项键名 | 说明 | 类型 |
+| Property Key | Description | Type |
 |-----------|------|------|
-| `agent-gateway-endpoint` | 代理网关端点 | string |
+| `agent-gateway-endpoint` | Agent gateway endpoint | string |
 
-## 分组配置
+## Grouping
 
-| 配置项键名 | 说明 | 类型 |
+| Property Key | Description | Type |
 |-----------|------|------|
-| `asset-group-tree` | 资产分组 | string |
-| `website-group-tree` | 网站分组 | string |
+| `asset-group-tree` | Asset group tree | string |
+| `website-group-tree` | Website group tree | string |
 
-## IP 配置
+## IP
 
-| 配置项键名 | 说明 | 类型 |
+| Property Key | Description | Type |
 |-----------|------|------|
-| `ip-extractor` | IP提取器 | string |
-| `ip-trust-list` | IP信任列表 | string |
+| `ip-extractor` | IP extractor strategy | string |
+| `ip-trust-list` | Trusted IP list | string |
 
-## 通行密钥配置
+## Passkey
 
-| 配置项键名 | 说明 | 类型 |
+| Property Key | Description | Type |
 |-----------|------|------|
-| `passkey-enabled` | 是否启用通行密钥 | string |
-| `passkey-domain` | 通行密钥域名 | string |
-| `passkey-origins` | 通行密钥来源地址 | string |
+| `passkey-enabled` | Enable passkey | string |
+| `passkey-domain` | Passkey domain | string |
+| `passkey-origins` | Passkey origin URLs | string |
 
-## 企业微信配置
+## WeCom (Enterprise WeChat)
 
-| 配置项键名 | 说明 | 类型 |
+| Property Key | Description | Type |
 |-----------|------|------|
-| `wechat-work-enabled` | 是否启用企业微信登录 | string |
-| `wechat-work-corp-id` | 企业微信企业ID | string |
-| `wechat-work-agent-id` | 企业微信应用ID | string |
-| `wechat-work-secret` | 企业微信应用Secret | string |
-| `wechat-work-redirect-uri` | 企业微信回调地址 | string |
-| `wechat-work-department` | 企业微信默认部门 | string |
+| `wechat-work-enabled` | Enable WeCom login | string |
+| `wechat-work-corp-id` | WeCom corp ID | string |
+| `wechat-work-agent-id` | WeCom app ID | string |
+| `wechat-work-secret` | WeCom app secret | string |
+| `wechat-work-redirect-uri` | WeCom redirect URI | string |
+| `wechat-work-department` | Default WeCom department | string |
 
-## OIDC 客户端配置
+## OIDC Client
 
-| 配置项键名 | 说明 | 类型 |
+| Property Key | Description | Type |
 |-----------|------|------|
-| `oidc-enabled` | 是否启用OIDC登录 | string |
-| `oidc-issuer` | OIDC发行者URL | string |
-| `oidc-client-id` | OIDC客户端ID | string |
-| `oidc-client-secret` | OIDC客户端密钥 | string |
-| `oidc-redirect-uri` | OIDC回调地址 | string |
-| `oidc-scopes` | OIDC权限范围 | string |
-| `oidc-department` | OIDC用户默认所在部门 | string |
+| `oidc-enabled` | Enable OIDC login | string |
+| `oidc-issuer` | OIDC issuer URL | string |
+| `oidc-client-id` | OIDC client ID | string |
+| `oidc-client-secret` | OIDC client secret | string |
+| `oidc-redirect-uri` | OIDC redirect URI | string |
+| `oidc-scopes` | OIDC scopes | string |
+| `oidc-department` | Default department for OIDC users | string |
 
-## OIDC Server 配置
+## OIDC Server
 
-| 配置项键名 | 说明 | 类型 |
+| Property Key | Description | Type |
 |-----------|------|------|
-| `oidc-server-enabled` | 是否启用OIDC Server | string |
-| `oidc-server-issuer` | OIDC Server Issuer URL | string |
-| `oidc-server-signing-key` | OIDC Server JWT签名密钥（RS256私钥） | string |
-| `oidc-server-hmac-secret` | OIDC Server HMAC签名密钥（32字节） | string |
-| `oidc-server-access-token-ttl` | Access Token过期时间（秒） | string |
-| `oidc-server-refresh-token-ttl` | Refresh Token过期时间（秒） | string |
-| `oidc-server-id-token-ttl` | ID Token过期时间（秒） | string |
-| `oidc-server-auth-code-ttl` | Authorization Code过期时间（秒） | string |
+| `oidc-server-enabled` | Enable OIDC Server | string |
+| `oidc-server-issuer` | OIDC Server issuer URL | string |
+| `oidc-server-signing-key` | OIDC Server JWT signing key (RS256 private key) | string |
+| `oidc-server-hmac-secret` | OIDC Server HMAC signing key (32 bytes) | string |
+| `oidc-server-access-token-ttl` | Access Token TTL (seconds) | string |
+| `oidc-server-refresh-token-ttl` | Refresh Token TTL (seconds) | string |
+| `oidc-server-id-token-ttl` | ID Token TTL (seconds) | string |
+| `oidc-server-auth-code-ttl` | Authorization Code TTL (seconds) | string |
 
-## LLM 配置
+## LLM
 
-| 配置项键名 | 说明 | 类型 |
+| Property Key | Description | Type |
 |-----------|------|------|
-| `llm-enabled` | 是否启用LLM | string |
-| `llm-api-key` | LLM API密钥 | string |
-| `llm-base-url` | LLM API基础地址 | string |
-| `llm-model` | LLM模型名称 | string |
-| `llm-temperature` | LLM温度参数 | string |
-| `llm-max-tokens` | LLM最大token数量 | string |
-| `llm-proxy-url` | LLM代理URL | string |
-| `llm-shell-prompt` | Shell助手提示词 | string |
-| `llm-shell-enabled` | 是否启用Shell助手 | string |
-| `llm-audit-prompt` | 审计助手提示词 | string |
-| `llm-audit-enabled` | 是否启用审计助手 | string |
+| `llm-enabled` | Enable LLM | string |
+| `llm-api-key` | LLM API key | string |
+| `llm-base-url` | LLM API base URL | string |
+| `llm-model` | LLM model name | string |
+| `llm-temperature` | LLM temperature | string |
+| `llm-max-tokens` | LLM max tokens | string |
+| `llm-proxy-url` | LLM proxy URL | string |
+| `llm-shell-prompt` | Shell assistant prompt | string |
+| `llm-shell-enabled` | Enable shell assistant | string |
+| `llm-audit-prompt` | Audit assistant prompt | string |
+| `llm-audit-enabled` | Enable audit assistant | string |

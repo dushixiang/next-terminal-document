@@ -1,45 +1,60 @@
-# 使用 Next Terminal OIDC 登录 Proxmox VE
+---
+title: Sign In to Proxmox VE with Next Terminal OIDC
+description: Configure Proxmox VE OpenID Connect realm with Next Terminal OIDC for centralized authentication.
+head:
+  - - meta
+    - name: keywords
+      content: Proxmox VE, OIDC, OpenID Connect, Next Terminal, SSO
+  - - meta
+    - property: og:title
+      content: Proxmox VE OIDC with Next Terminal
+  - - meta
+    - property: og:description
+      content: Step-by-step guide to integrating Proxmox VE login with Next Terminal OIDC identity service.
+---
 
-本文演示如何配置 Proxmox VE 使用 Next Terminal 的 OIDC 服务进行身份认证。
+# Sign In to Proxmox VE with Next Terminal OIDC
 
-> 前置条件：已在 Next Terminal 中启用 OIDC 服务器并创建客户端，参考 [OIDC 身份服务器使用文档](/usage/oidc_server.md)。
+This guide shows how to configure Proxmox VE to use Next Terminal OIDC for authentication.
 
-## 配置步骤
+> Prerequisite: OIDC Server is enabled in Next Terminal and an OIDC client has been created. See [OIDC Identity Server](/usage/oidc_server).
 
-### 1. 添加 OpenID 认证
+## Steps
 
-在 PVE 管理界面，进入「数据中心」→「权限」→「领域」→「添加」→「OpenID Connect 服务器」，填写配置：
+### 1. Add OpenID realm
 
-- **Issuer URL**：`https://{next-terminal-host}/api`
-- **领域**：`next-terminal`
-- **Client ID**：从 Next Terminal 获取
-- **Client Key**：从 Next Terminal 获取的 Client Secret
-- **用户名声明**：`username`
+In PVE UI: `Datacenter -> Permissions -> Realms -> Add -> OpenID Connect Server`, then fill:
+
+- **Issuer URL**: `https://{next-terminal-host}/api`
+- **Realm**: `next-terminal`
+- **Client ID**: from Next Terminal
+- **Client Key**: Client Secret from Next Terminal
+- **Username Claim**: `username`
 
 ![pve-add-openid.png](pve-add-openid.png)
 
-### 2. 创建用户
+### 2. Create user
 
-在「数据中心」→「权限」→「用户」中添加用户：
+In `Datacenter -> Permissions -> Users`, add user:
 
-- **用户名**：与 Next Terminal 用户名一致
-- **领域**：选择 `next-terminal`
+- **Username**: same as Next Terminal username
+- **Realm**: select `next-terminal`
 
 ![pve-add-user.png](pve-add-user.png)
 
-### 3. 配置权限
+### 3. Assign permissions
 
-在「数据中心」→「权限」中为用户分配权限：
+In `Datacenter -> Permissions`, assign permissions:
 
-- **路径**：`/`
-- **用户**：选择创建的 OIDC 用户
-- **角色**：`Administrator`
-- **传播**：勾选
+- **Path**: `/`
+- **User**: created OIDC user
+- **Role**: `Administrator`
+- **Propagate**: enabled
 
 ![pve-permission.png](pve-permission.png)
 
-### 4. 登录测试
+### 4. Login test
 
-访问 PVE 登录页面，在"领域"下拉框中选择 `next-terminal`，点击登录后会跳转到 Next Terminal 登录页面，使用 Next Terminal 账号登录即可。
+Open PVE login page, select `next-terminal` in Realm dropdown. After clicking login, you are redirected to Next Terminal login page. Sign in with your Next Terminal account.
 
 ![pve-login.png](pve-login.png)

@@ -1,6 +1,6 @@
-# 反向代理
+# Reverse Proxy
 
-## nginx 反向代理示例
+## Nginx Example
 
 ```shell
 location / {
@@ -13,7 +13,7 @@ location / {
 }
 ```
 
-## caddy 反向代理示例
+## Caddy Example
 
 ```shell
 next.typesafe.cn {

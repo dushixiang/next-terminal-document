@@ -1,103 +1,106 @@
-# 安全网关
+# Security Gateway
 
-## 概述
+## Overview
 
-安全网关是 NextTerminal 的一种 agent，作为连接桥梁部署在目标网络环境中，采用 WebSocket 协议与服务端进行通信。
+Security Gateway is an agent component of Next Terminal. It is deployed inside target networks and communicates with the server through WebSocket.
 
-**工作原理**
+**How it works**
 
-1. 在内网环境中部署安全网关并注册到服务端
-2. 在服务端添加资产时，选择对应的安全网关
-3. 用户通过服务端访问资产时，流量将通过安全网关转发
-4. 从而实现访问该设备所在网络环境中的 IP 和端口
+1. Deploy Security Gateway in an internal network and register it to the server
+2. Select the corresponding gateway when creating assets on the server
+3. User traffic is forwarded through the selected gateway when accessing assets
+4. This enables access to IPs and ports inside that network environment
 
-安全网关安装完成后会自动向服务端注册，需确保能访问服务端的 Web 端口，加密通信依赖于服务端的 HTTPS 配置。
+After installation, the gateway registers automatically. It must be able to reach the server Web endpoint. Encrypted communication depends on HTTPS configuration on the server side.
 
-**主要优势**
+**Main advantages**
 
-- 突破网络隔离，访问内网环境中的资产
-- 提升访问速度较慢资产的连接效率
-- 提供安全的远程访问通道
-- 无需在目标网络配置复杂的端口映射或 VPN
+- Break network isolation and access internal assets
+- Improve connection performance for high-latency assets
+- Provide secure remote access tunnels
+- No complex port mapping or VPN setup in target networks
 
-**应用场景**
+**Typical scenarios**
 
-- 访问企业内网中的服务器和设备
-- 管理多个地域分布的网络环境
-- 连接云服务商 VPC 内的私有资产
-- 访问客户现场的内网设备
+- Access servers and devices in enterprise internal networks
+- Manage geographically distributed network environments
+- Access private assets inside cloud VPCs
+- Access customer on-site internal devices
 
 ![gateway-agent.png](images/gateway-agent.png)
 
-### 注册流程
+### Registration Workflow
 
-**复制注册命令**
+**Copy registration command**
 
 ![img_1.png](images/agent-gateway.png)
 
-**执行注册操作**
+**Run registration command**
 
-将复制的命令粘贴到终端并执行，安全网关将自动注册到服务端。
+Paste the copied command into terminal and run it. The gateway will register automatically.
 
-**查看帮助信息**
+**Show help**
 
-安装完成后，可通过以下命令查看帮助信息：
+After installation:
+
 ```shell
 nt-tunnel -h
 ```
 
-### 使用流程
+### Usage Workflow
 
-**1. 确认安全网关已注册**
+**1. Verify gateway is online**
 
-在服务端的「安全网关」管理页面中，确认安全网关已成功注册并处于在线状态。
+In the **Security Gateway** management page, confirm the gateway is registered and online.
 
-**2. 添加资产并关联安全网关**
+**2. Add assets and bind gateway**
 
-在添加资产（SSH、RDP、VNC 等）时：
-- 填写资产的 IP 地址（使用安全网关所在网络可访问的内网 IP）
-- 在「安全网关」下拉框中选择对应的网关
-- 填写其他必要的连接信息（端口、账号等）
+When adding assets (SSH/RDP/VNC etc.):
 
-**3. 通过安全网关访问资产**
+- Fill asset IP reachable from the gateway network
+- Select the gateway in the **Security Gateway** dropdown
+- Fill other required connection info (port/account etc.)
 
-添加完成后，用户访问该资产时，连接请求会自动通过选定的安全网关进行转发，实现对内网资产的访问。
+**3. Access assets through gateway**
 
-**示例场景**
+After asset creation, user connections are forwarded via the selected gateway automatically.
 
-假设您有一台部署在公司内网的服务器 `192.168.1.100`：
-1. 在公司内网的一台设备上安装并注册安全网关（例如命名为 "公司内网网关"）
-2. 在服务端添加 SSH 资产时：
-   - IP：192.168.1.100
-   - 端口：22
-   - 安全网关：选择 "公司内网网关"
-3. 即使您在外网环境，也能通过该安全网关访问 `192.168.1.100:22`
+**Example**
 
-## 服务管理
-### Linux 服务管理
+Suppose you have an internal server `192.168.1.100`:
 
-**查看服务状态**
+1. Install and register a gateway on one machine inside that network (for example named `Office-LAN-Gateway`)
+2. Add SSH asset on server:
+   - IP: `192.168.1.100`
+   - Port: `22`
+   - Security Gateway: `Office-LAN-Gateway`
+3. You can then access `192.168.1.100:22` from external networks through this gateway
+
+## Service Management
+
+### Linux
+
+**Check status**
 
 ```shell
 systemctl status nt-tunnel
 ```
 
-**常用操作**
+**Common operations**
 
-- 启动服务：systemctl start nt-tunnel
-- 停止服务：systemctl stop nt-tunnel
-- 查看日志：tail -f /var/log/nt-tunnel.log
+- Start: `systemctl start nt-tunnel`
+- Stop: `systemctl stop nt-tunnel`
+- Logs: `tail -f /var/log/nt-tunnel.log`
 
+### macOS
 
-### macOS 服务管理
-
-**查看服务状态**
+**Check status**
 
 ```shell
 sudo launchctl list nt-tunnel
 ```
 
-正常运行的服务会显示类似以下信息：
+A running service may look like:
 
 ```shell
 {
@@ -120,8 +123,8 @@ sudo launchctl list nt-tunnel
 };
 ```
 
-**常用操作**
+**Common operations**
 
-- 启动服务：sudo launchctl start nt-tunnel
-- 停止服务：sudo launchctl stop nt-tunnel
-- 查看日志：tail -f /var/log/nt-tunnel.{out,err}.log
+- Start: `sudo launchctl start nt-tunnel`
+- Stop: `sudo launchctl stop nt-tunnel`
+- Logs: `tail -f /var/log/nt-tunnel.{out,err}.log`

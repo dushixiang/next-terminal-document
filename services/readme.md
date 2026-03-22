@@ -1,19 +1,19 @@
-# 付费服务
+# Paid Services
 
-## 安装服务
+## Installation Service
 
-针对无IT基础的用户，我们提供了付费安装服务，收费信息如下：
+For users without IT background, we provide paid remote installation services:
 
-| 类型  | 方式 | 费用 |
+| Type | Delivery | Fee |
 |---|---|---|
-| Docker 安装  | 远程 | 100元/次 |
-| 原生安装  |  远程 | 200元/次 |
+| Docker Installation | Remote | CNY 100 / time |
+| Native Installation | Remote | CNY 200 / time |
 
-支持微信和支付宝付款，二维码如下：
+We support WeChat Pay and Alipay:
 
 <img src="./images/wxpay.jpeg" width="300"/>
 <img src="./images/alipay.jpeg" width="300"/>
 
-付款成功后请添加我微信并备注 付款方式 - 安装方式。
+After payment, add WeChat contact and leave note: `Payment Method - Installation Type`.
 
 <img src="./images/wx.jpeg" width="300"/>
