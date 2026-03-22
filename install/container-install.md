@@ -13,33 +13,18 @@ head:
       content: Install Next Terminal quickly with Docker Compose, then initialize admin and start secure remote access management.
 ---
 
-**Promotion**
-
-<a href="https://www.lcayun.com/actcloud.html?from=next-terminal" target="_blank">![img.png](images/lcayun.png)</a>
-
-----
-
 # Installation
 
 Before installation, make sure your host meets the [system requirements](/install/system-requirements).
 
 ## Install with Docker
 
-::: code-group
 
-```shell [China Mainland]
-curl -sSL https://f.typesafe.cn/next-terminal/docker-compose-aliyun.yaml > docker-compose.yaml
-curl -sSL https://f.typesafe.cn/next-terminal/config.yaml > config.yaml
-docker compose up -d
-```
-
-```shell [Others]
+```shell
 curl -sSL https://f.typesafe.cn/next-terminal/docker-compose.yaml > docker-compose.yaml
 curl -sSL https://f.typesafe.cn/next-terminal/config.yaml > config.yaml
 docker compose up -d
 ```
-
-:::
 
 ::: tip After successful installation
 Visit `http://{ip}:8088/setup` to initialize the admin user.
