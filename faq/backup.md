@@ -1,75 +1,78 @@
 # Backup Guide
 
-## Before Backup
+## What Gets Backed Up
 
-1. Confirm which data should be retained:
-   - Session recordings (`recordings` directory)
-   - Windows mapped drive files (`drive` directory)
-   - Database files (`mysql`, `postgresql` directories)
-   - Machine-code files (`protected` directory)
-   - CA certificates (`root_ca_*.pem`)
+Current supported items:
 
-2. Stop related services:
+- Session recordings (`data/recordings`)
+- Windows mapped drive files (`data/drive`)
+- PostgreSQL logical backup (runs `pg_dump` inside container, archived as `data/postgresql_dump.sql`)
+- CA certificate/key files (`data/root_ca_*.pem`)
 
-```shell
-docker-compose down
-```
+## Prerequisites
 
-## Backup File Notes
+1. Run commands in the deployment directory (same level as `docker-compose.yaml`).
+2. Python 3.6+ is required (no external dependency).
+3. Docker Compose is required (`docker compose` or `docker-compose`).
+4. For PostgreSQL backup/restore, the DB service container must provide `pg_dump` / `psql`.
 
-Example structure under `data`:
-
-```shell
-drwxr-xr-x 5 root  root   4096 Mar 26 09:56 drive            # Windows mapped drive files
-drwxr-xr-x 8 root  root   4096 Apr 18 02:16 mysql            # MySQL data
-drwxr-xr-x 8 root  root   4096 Apr 18 02:16 postgresql       # PostgreSQL data
-drwxr-xr-x 2 root  root   4096 Mar  4 10:25 protected        # Machine-code files
-drwxr-xr-x 2 root  root 720896 Apr 28 13:50 recordings       # Session recordings
--rw-r--r-- 1 root  root    830 Apr 28 09:15 root_ca_cert.pem # CA certificate
--r-------- 1 root  root    241 Apr 28 09:15 root_ca_key.pem  # CA private key
-```
-
-You can remove files that are not needed.
-
-## Backup Operation
-
-Run in the same directory as `docker-compose.yaml`:
+## Download Script
 
 ```shell
-# Archive the whole data directory
-tar -zcvf next-terminal-backup-$(date +%Y%m%d).tar.gz data
+# Download to current directory (overwrite old version)
+wget -O backup_restore.py https://raw.githubusercontent.com/dushixiang/next-terminal/master/scripts/backup_restore.py
 ```
+
+```shell
+# Optional: make it executable
+chmod +x backup_restore.py
+```
+
+## Backup
+
+Use `backup_restore.py`:
+
+```shell
+# Interactive selection (recommended)
+python3 backup_restore.py backup --interactive --workdir .
+```
+
+```shell
+# Explicit item selection (example)
+python3 backup_restore.py backup \
+  --workdir . \
+  --items drive,recordings,postgresql,ca \
+  --pg-service postgresql
+```
+
+Notes:
+
+- PostgreSQL backup is executed via `docker compose exec -T <service> sh -lc "<pg_dump command>"`.
+- Default PostgreSQL service name is `postgresql`; override with `--pg-service` if needed.
+- You can force compose binary by `--compose-cmd 'docker compose'` or `--compose-cmd docker-compose`.
 
 ## Restore
 
-1. Prepare environment on new server:
-   - Download/copy `docker-compose.yaml`
-   - Ensure Docker and Docker Compose are installed
-
-2. Upload backup file to deployment directory (same level as `docker-compose.yaml`)
-
-3. Extract backup:
-
 ```shell
-# Run in the same directory as docker-compose.yaml
-tar -zxvf next-terminal-backup-*.tar.gz
+# Interactive restore (auto-picks latest next-terminal-backup-*.tar.gz)
+python3 backup_restore.py restore --interactive --workdir .
 ```
 
-4. Verify directory structure:
-
 ```shell
-ls -la data/
+# Explicit archive + items (example)
+python3 backup_restore.py restore \
+  --workdir . \
+  --archive next-terminal-backup-20260324.tar.gz \
+  --items postgresql,ca \
+  --pg-service postgresql
 ```
 
-5. Start containers:
+Notes:
+
+- PostgreSQL restore is executed via `docker compose exec -T <service> sh -lc "<psql command>"`.
+- After restore, verify service status if needed:
 
 ```shell
-docker-compose up -d
-```
-
-6. Check service status:
-
-```shell
-docker-compose ps
-docker-compose logs -f
+docker compose ps
+docker compose logs -f
 ```
