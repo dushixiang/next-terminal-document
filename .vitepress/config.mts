@@ -49,6 +49,7 @@ const enInstallSidebar: DefaultTheme.SidebarItem[] = [
         items: [
             {text: 'System Requirements', link: '/install/system-requirements'},
             {text: 'Container Installation', link: '/install/container-install'},
+            {text: 'Primary/Standby HA Deployment', link: '/install/ha-primary-standby-guide'},
             {text: 'Native Installation', link: '/install/native-install'},
             {text: 'Configuration File', link: '/install/config-desc'},
             {text: 'Reverse Proxy', link: '/install/reverse-proxy'},
@@ -149,6 +150,7 @@ const zhInstallSidebar: DefaultTheme.SidebarItem[] = [
         items: [
             {text: '系统需求', link: '/zh/install/system-requirements'},
             {text: '容器安装', link: '/zh/install/container-install'},
+            {text: '主备高可用部署', link: '/zh/install/ha-primary-standby-guide'},
             {text: '原生安装', link: '/zh/install/native-install'},
             {text: '配置文件', link: '/zh/install/config-desc'},
             {text: '反向代理', link: '/zh/install/reverse-proxy'},
