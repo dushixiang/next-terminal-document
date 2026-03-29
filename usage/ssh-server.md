@@ -19,10 +19,15 @@ SSH Proxy Server is a convenient feature in Next Terminal. It allows users to co
 In SSH Proxy Server settings:
 
 - **Listen Address**: SSH proxy listening address and port, default `0.0.0.0:2022`
-- **Private Key**: required for SSH server authentication. Click **Generate Key** to auto-generate.
+- **Private Key**: the SSH proxy server's own private key used to prove the server identity and establish an encrypted connection. It is the server's identity key, not the user's login key. Click **Generate Key** to auto-generate it.
+- **Enable Tunnel**: whether to allow SSH port forwarding. When enabled, users can create SSH tunnels to access databases, internal websites, and other private services. When disabled, normal SSH login still works, but port forwarding is blocked.
 
 ::: tip Tip
 Ensure the configured port is not occupied and is open in firewall/security groups.
+:::
+
+::: tip Further Reading
+If you want a deeper explanation of what this private key does in SSH authentication and at what stage username/password authentication happens, see: [What Is the "Authentication Private Key" in SSH, and What Does It Actually Authenticate?](/blog/ssh-authentication)
 :::
 
 ### Step 2: Connect with SSH command

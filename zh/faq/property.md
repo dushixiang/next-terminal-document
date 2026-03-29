@@ -59,9 +59,9 @@
 |-----------|------|------|
 | `ssh-server-enabled` | 是否开启SSH服务器 | string |
 | `ssh-server-addr` | SSH服务器监听地址 | string |
-| `ssh-server-private-key` | SSH服务器私钥 | string |
-| `ssh-server-private-key-exists` | SSH服务器私钥是否存在 | string |
-| `ssh-server-port-forwarding-enabled` | 是否允许建立隧道进行端口转发 | string |
+| `ssh-server-private-key` | SSH服务器身份私钥（用于证明服务器身份并建立加密连接） | string |
+| `ssh-server-private-key-exists` | SSH服务器身份私钥是否存在 | string |
+| `ssh-server-port-forwarding-enabled` | 是否允许通过SSH建立隧道进行端口转发 | string |
 | `ssh-server-port-forwarding-host-port` | 允许转发的IP和端口 | string |
 | `ssh-server-disable-password-auth` | 是否禁用密码认证 | string |
 

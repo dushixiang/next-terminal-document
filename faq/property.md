@@ -59,9 +59,9 @@ This document lists all configurable properties in Next Terminal that can be man
 |-----------|------|------|
 | `ssh-server-enabled` | Enable SSH server | string |
 | `ssh-server-addr` | SSH server listen address | string |
-| `ssh-server-private-key` | SSH server private key | string |
-| `ssh-server-private-key-exists` | Whether private key exists | string |
-| `ssh-server-port-forwarding-enabled` | Allow tunnel/port forwarding | string |
+| `ssh-server-private-key` | SSH server identity private key, used to prove server identity and establish encrypted connections | string |
+| `ssh-server-private-key-exists` | Whether the SSH server identity private key exists | string |
+| `ssh-server-port-forwarding-enabled` | Allow SSH tunneling for port forwarding | string |
 | `ssh-server-port-forwarding-host-port` | Allowed forwarding IP:port | string |
 | `ssh-server-disable-password-auth` | Disable password authentication | string |
 

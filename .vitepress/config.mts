@@ -120,6 +120,7 @@ const enBlogSidebar: DefaultTheme.SidebarItem[] = [
         text: 'Blog',
         collapsed: false,
         items: [
+            {text: 'What Is the "Authentication Private Key" in SSH, and What Does It Actually Authenticate?', link: '/blog/ssh-authentication'},
             {text: 'How to Securely Expose Internal Services?', link: '/blog/secure-access'},
             {text: 'V3.0.0 Changelog', link: '/blog/v3.0.0'},
             {text: 'Sign in to Proxmox VE with Next Terminal OIDC', link: '/blog/pve-oidc/readme'}
@@ -221,6 +222,7 @@ const zhBlogSidebar: DefaultTheme.SidebarItem[] = [
         text: '博客文章',
         collapsed: false,
         items: [
+            {text: 'SSH 里的“认证私钥”到底是什么，它认证的是谁？', link: '/zh/blog/ssh-authentication'},
             {text: '如何安全的暴露内网服务？', link: '/zh/blog/secure-access'},
             {text: 'V3.0.0 更新日志', link: '/zh/blog/v3.0.0'},
             {text: '使用 Next Terminal OIDC 登录 Proxmox VE', link: '/zh/blog/pve-oidc/readme'}
