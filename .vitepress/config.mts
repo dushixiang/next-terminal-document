@@ -224,6 +224,7 @@ const zhBlogSidebar: DefaultTheme.SidebarItem[] = [
         items: [
             {text: 'SSH 里的“认证私钥”到底是什么，它认证的是谁？', link: '/zh/blog/ssh-authentication'},
             {text: '如何安全的暴露内网服务？', link: '/zh/blog/secure-access'},
+            {text: 'V3.2.0 更新日志', link: '/zh/blog/v3.2.0'},
             {text: 'V3.0.0 更新日志', link: '/zh/blog/v3.0.0'},
             {text: '使用 Next Terminal OIDC 登录 Proxmox VE', link: '/zh/blog/pve-oidc/readme'}
         ]
