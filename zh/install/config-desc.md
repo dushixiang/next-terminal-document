@@ -136,6 +136,7 @@ ReverseProxy:
   IpExtractor: "direct"
   IpTrustList:
     - "0.0.0.0/0"
+  MTLSClientCertAuthMode: "strict"
 ```
 
 -   **`Enabled`**: 是否启用反向代理功能。
@@ -147,3 +148,6 @@ ReverseProxy:
 -   **`SelfProxyEnabled`**, **`SelfDomain`**, **`Root`**: 这三个参数共同决定了用户访问受保护网站时的认证跳转逻辑。详细用法请参考 [Web 资产使用指南](../usage/website#关键配置说明)。
 -   **`IpExtractor`**: 获取客户端真实 IP 的策略。
 -   **`IpTrustList`**: 与 `IpExtractor` 配合使用，定义了可信任的代理服务器 IP 地址列表。
+-   **`MTLSClientCertAuthMode`** 客户端证书认证模式：strict / ca_only v3.2.0 版本默认支持
+    - `strict` 校验客户端的指纹和证书有效期
+    - `ca_only` 只校验是否为同一个 CA 签发
