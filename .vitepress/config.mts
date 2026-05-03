@@ -166,7 +166,7 @@ const zhUsageSidebar: DefaultTheme.SidebarItem[] = [
         text: '使用文档',
         collapsed: false,
         items: [
-            {text: '快速开始', link: '/zh/usage/'},
+            {text: '快速开始', link: '/zh/usage/readme'},
             {
                 text: '资源管理',
                 items: [
