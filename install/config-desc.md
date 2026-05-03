@@ -128,15 +128,15 @@ ReverseProxy:
   Enabled: true
   HttpEnabled: true
   HttpAddr: ":80"
-  HttpRedirectToHttps: false
+  HttpRedirectToHttps: true
   HttpsEnabled: true
   HttpsAddr: ":443"
   SelfProxyEnabled: true
-  SelfDomain: "nt.yourdomain.com"
+  SelfDomain: "nt.example.com"
   Root: ""
   IpExtractor: "direct"
-  IpTrustList:
-    - "0.0.0.0/0"
+  IpTrustList: []
+  MTLSClientCertAuthMode: "strict"
 ```
 
 - **`Enabled`**: Enable reverse proxy feature.
@@ -145,6 +145,15 @@ ReverseProxy:
 - **`HttpRedirectToHttps`**: Force redirect all HTTP requests to HTTPS.
 - **`HttpsEnabled`**: Enable HTTPS listener.
 - **`HttpsAddr`**: HTTPS listening address and port.
-- **`SelfProxyEnabled`**, **`SelfDomain`**, **`Root`**: These three settings control login redirection behavior when users access protected websites. See the [Web Asset guide](../usage/website#key-configuration-notes) for details.
-- **`IpExtractor`**: Strategy for extracting the real client IP.
-- **`IpTrustList`**: Works with `IpExtractor` to define trusted proxy IP addresses.
+- **`SelfProxyEnabled`**, **`SelfDomain`**, **`Root`**: These three settings control login redirection when users access protected websites. See the [Web Asset guide](../usage/website#selfproxyenabled-selfdomain-and-root-explained) for details.
+- **`IpExtractor`** / **`IpTrustList`**: Identify the real client IP for the Web asset reverse proxy. `IpExtractor` accepts `direct`, `x-forwarded-for`, or `x-real-ip`; `IpTrustList` is a list of trusted proxy IPs / CIDRs (leave empty to use the built-in private-range trust list). See [Get the Real Client IP](./real-ip) for full usage.
+
+  ::: warning ⚠ These two fields only affect the Web asset reverse proxy
+  `IpExtractor` and `IpTrustList` only drive IP extraction for the **Web asset reverse proxy** (access logs, temporary allowlist, public access IP rules, etc.).
+
+  IP extraction for the **NextTerminal admin UI** (login logs, IP-based login lockout, security audit, etc.) is **not** configured in `config.yaml` — set it in **Admin UI → System Settings → Network Settings**.
+  :::
+
+- **`MTLSClientCertAuthMode`**: Client certificate authentication mode — `strict` / `ca_only`, supported since v3.2.0
+    - `strict` validates the client certificate fingerprint and expiration
+    - `ca_only` only validates that the certificate is issued by the same CA

@@ -127,15 +127,14 @@ ReverseProxy:
   Enabled: true
   HttpEnabled: true
   HttpAddr: ":80"
-  HttpRedirectToHttps: false
+  HttpRedirectToHttps: true
   HttpsEnabled: true
   HttpsAddr: ":443"
   SelfProxyEnabled: true
-  SelfDomain: "nt.yourdomain.com"
+  SelfDomain: "nt.example.com"
   Root: ""
   IpExtractor: "direct"
-  IpTrustList:
-    - "0.0.0.0/0"
+  IpTrustList: []
   MTLSClientCertAuthMode: "strict"
 ```
 
@@ -145,9 +144,15 @@ ReverseProxy:
 -   **`HttpRedirectToHttps`**: 是否将所有 HTTP 请求强制重定向到 HTTPS。
 -   **`HttpsEnabled`**: 是否启用 HTTPS 监听。
 -   **`HttpsAddr`**: HTTPS 监听地址和端口。
--   **`SelfProxyEnabled`**, **`SelfDomain`**, **`Root`**: 这三个参数共同决定了用户访问受保护网站时的认证跳转逻辑。详细用法请参考 [Web 资产使用指南](../usage/website#关键配置说明)。
--   **`IpExtractor`**: 获取客户端真实 IP 的策略。
--   **`IpTrustList`**: 与 `IpExtractor` 配合使用，定义了可信任的代理服务器 IP 地址列表。
+-   **`SelfProxyEnabled`**, **`SelfDomain`**, **`Root`**: 这三个参数共同决定了用户访问受保护网站时的认证跳转逻辑。详细用法请参考 [Web 资产使用指南](../usage/website#selfproxyenabled、selfdomain-和-root-详解)。
+-   **`IpExtractor`** / **`IpTrustList`**: 用于识别访问 Web 资产的真实客户端 IP。`IpExtractor` 可选 `direct`、`x-forwarded-for`、`x-real-ip`；`IpTrustList` 是可信代理 IP 或网段列表（CIDR），留空使用默认信任的内网网段。完整使用方法请参考 [获取真实客户端 IP](./real-ip)。
+
+    ::: warning ⚠ 这两个字段只影响 Web 资产
+    `IpExtractor` 和 `IpTrustList` **只影响 Web 资产内置反向代理**的真实 IP 识别（访问日志、临时白名单、公开访问 IP 策略等）。
+
+    NextTerminal **管理后台**（登录日志、登录 IP 锁定、安全审计等）的真实 IP 不在 `config.yaml` 中配置，需要在 **后台 → 系统设置 → 网络设置** 单独设置。
+    :::
+
 -   **`MTLSClientCertAuthMode`** 客户端证书认证模式：strict / ca_only v3.2.0 版本默认支持
     - `strict` 校验客户端的指纹和证书有效期
     - `ca_only` 只校验是否为同一个 CA 签发

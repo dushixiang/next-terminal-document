@@ -35,7 +35,7 @@ const enNav: DefaultTheme.NavItem[] = [
 
 const zhNav: DefaultTheme.NavItem[] = [
     {text: '安装文档', link: '/zh/install/system-requirements', activeMatch: '^/zh/install/'},
-    {text: '使用文档', link: '/zh/usage/', activeMatch: '^/zh/usage/'},
+    {text: '使用文档', link: '/zh/usage/readme', activeMatch: '^/zh/usage/'},
     {text: '常见问题', link: '/zh/faq/readme', activeMatch: '^/zh/faq/'},
     {text: '博客文章', link: '/zh/blog/secure-access', activeMatch: '^/zh/blog/'},
     {text: 'API 文档', link: '/zh/api/certificate', activeMatch: '^/zh/api/'},
