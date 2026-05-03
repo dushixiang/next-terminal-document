@@ -35,7 +35,7 @@ const enNav: DefaultTheme.NavItem[] = [
 
 const zhNav: DefaultTheme.NavItem[] = [
     {text: '安装文档', link: '/zh/install/system-requirements', activeMatch: '^/zh/install/'},
-    {text: '使用文档', link: '/zh/usage/readme', activeMatch: '^/zh/usage/'},
+    {text: '使用文档', link: '/zh/usage/', activeMatch: '^/zh/usage/'},
     {text: '常见问题', link: '/zh/faq/readme', activeMatch: '^/zh/faq/'},
     {text: '博客文章', link: '/zh/blog/secure-access', activeMatch: '^/zh/blog/'},
     {text: 'API 文档', link: '/zh/api/certificate', activeMatch: '^/zh/api/'},
@@ -110,7 +110,8 @@ const enFaqSidebar: DefaultTheme.SidebarItem[] = [
             {text: 'CLI', link: '/faq/cli'},
             {text: 'System Properties', link: '/faq/property'},
             {text: 'Backup & Restore', link: '/faq/backup'},
-            {text: 'Upgrade v1 to v2', link: '/faq/v1tov2'}
+            {text: 'Upgrade v1 to v2', link: '/faq/v1tov2'},
+            {text: 'Upgrade Native Installation to v3.2.0+', link: '/faq/v3.2.0-native-upgrade'}
         ]
     }
 ]
@@ -165,7 +166,7 @@ const zhUsageSidebar: DefaultTheme.SidebarItem[] = [
         text: '使用文档',
         collapsed: false,
         items: [
-            {text: '快速开始', link: '/zh/usage/readme'},
+            {text: '快速开始', link: '/zh/usage/'},
             {
                 text: '资源管理',
                 items: [
@@ -212,7 +213,8 @@ const zhFaqSidebar: DefaultTheme.SidebarItem[] = [
             {text: '命令行', link: '/zh/faq/cli'},
             {text: '系统配置表', link: '/zh/faq/property'},
             {text: '备份恢复', link: '/zh/faq/backup'},
-            {text: 'v1 升级 v2', link: '/zh/faq/v1tov2'}
+            {text: 'v1 升级 v2', link: '/zh/faq/v1tov2'},
+            {text: '原生安装升级到 v3.2.0+', link: '/zh/faq/v3.2.0-native-upgrade'}
         ]
     }
 ]
