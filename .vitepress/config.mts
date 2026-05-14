@@ -53,6 +53,7 @@ const enInstallSidebar: DefaultTheme.SidebarItem[] = [
             {text: 'Native Installation', link: '/install/native-install'},
             {text: 'Configuration File', link: '/install/config-desc'},
             {text: 'Reverse Proxy', link: '/install/reverse-proxy'},
+            {text: 'Disable Docker userland-proxy', link: '/install/disable-docker-userland-proxy'},
             {text: 'Real Client IP', link: '/install/real-ip'}
         ]
     }
@@ -156,6 +157,7 @@ const zhInstallSidebar: DefaultTheme.SidebarItem[] = [
             {text: '原生安装', link: '/zh/install/native-install'},
             {text: '配置文件', link: '/zh/install/config-desc'},
             {text: '反向代理', link: '/zh/install/reverse-proxy'},
+            {text: '禁用 Docker userland-proxy', link: '/zh/install/disable-docker-userland-proxy'},
             {text: '获取真实IP', link: '/zh/install/real-ip'}
         ]
     }
