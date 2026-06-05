@@ -10,6 +10,7 @@
 
 开始配置前，请先确认以下条件：
 
+- 已安装 Termark。中文下载地址：[https://www.termark.app/zh-cn/](https://www.termark.app/zh-cn/)。
 - NextTerminal 中已经添加 SSH 资产，并且当前账号已获得访问授权。
 - Termark 能访问 NextTerminal 的 Web 服务地址。
 - 如果使用直连 SSH，Termark 还需要能访问 NextTerminal 的 SSH 代理服务器监听地址。
