@@ -25,10 +25,10 @@ Internal server error. Operation cannot be completed.
 Server is busy. Operation cannot be completed.
 
 #### 514 (UPSTREAM_TIMEOUT)
-Upstream server did not respond in time (usually the remote desktop server).
+Upstream server did not respond in time.
 
 #### 515 (UPSTREAM_ERROR)
-Upstream server returned an error (usually the remote desktop server).
+Upstream server returned an error.
 
 ### Resource Errors
 
