@@ -85,6 +85,7 @@ const enUsageSidebar: DefaultTheme.SidebarItem[] = [
                 items: [
                     {text: 'Asset Access', link: '/usage/access'},
                     {text: 'SSH Proxy Server', link: '/usage/ssh-server'},
+                    {text: 'RDP Proxy Server', link: '/usage/rdp-server'},
                     {text: 'Termark', link: '/usage/termark'},
                     {text: 'RDP/VNC Error Codes', link: '/usage/error-codes'}
                 ]
@@ -189,7 +190,8 @@ const zhUsageSidebar: DefaultTheme.SidebarItem[] = [
                 items: [
                     {text: '资产访问', link: '/zh/usage/access'},
                     {text: 'SSH代理服务器', link: '/zh/usage/ssh-server'},
-                    {text: 'Termark 本地 SSH 客户端', link: '/zh/usage/termark'},
+                    {text: 'RDP代理服务器', link: '/zh/usage/rdp-server'},
+                    {text: 'Termark 本地客户端', link: '/zh/usage/termark'},
                     {text: 'RDP/VNC 错误码', link: '/zh/usage/error-codes'}
                 ]
             },

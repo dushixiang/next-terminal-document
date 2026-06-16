@@ -1,9 +1,10 @@
-# Use Termark to Access Next Terminal SSH Assets
+# Use Termark to Access Next Terminal Assets
 
-**Termark** is a local SSH client for Next Terminal. It can sync SSH assets authorized to your Next Terminal account and let you open bastion-hosted SSH sessions from your desktop, similar to tools such as XShell or MobaXterm.
+**Termark** is a local access client for Next Terminal. It can sync SSH and RDP assets authorized to your Next Terminal account and let you open bastion-hosted assets from your desktop, similar to tools such as XShell, MobaXterm, or Remote Desktop Connection.
 
-::: tip Version Requirement
-WebSocket tunnel mode requires Next Terminal later than `v3.2.2`.
+::: tip Version Requirements
+- WebSocket tunnel mode for SSH assets requires Next Terminal later than `v3.2.2`.
+- RDP Proxy access for RDP assets requires Next Terminal `v3.3.6` or later.
 :::
 
 ## Before You Start
@@ -11,26 +12,21 @@ WebSocket tunnel mode requires Next Terminal later than `v3.2.2`.
 Before configuring Termark, make sure:
 
 - Termark is installed. Download: [https://www.termark.app](https://www.termark.app).
-- SSH assets have been added in Next Terminal, and your account has access permission.
+- SSH or RDP assets have been added in Next Terminal, and your account has access permission.
 - Termark can reach the Next Terminal web service URL.
-- If you want to use direct SSH mode, Termark must also be able to reach the SSH Proxy Server listen address.
+- If you need to access SSH assets, enable the Next Terminal SSH Proxy Server first.
+- If you need to access RDP assets, enable the Next Terminal RDP Proxy Server first.
+- If you use direct proxy service mode, Termark must also be able to reach the SSH Proxy Server listen address.
+- If you access RDP assets, the Termark client machine must be able to reach the RDP Proxy Server public address.
 
-## 1. Enable Next Terminal SSH Proxy Server
+## 1. Enable the Required Proxy Server
 
-Log in to Next Terminal and open **System Settings** > **SSH Proxy Server**. Configure it as follows:
+Termark accesses assets through Next Terminal proxy servers. Enable the required service based on the asset type:
 
-- **SSH Service**: enable it.
-- **Listen Address**: start with `127.0.0.1:2022` when using WebSocket tunnel mode. This avoids exposing the SSH proxy port separately.
-- **Private Key**: click **Set Key** to generate or configure the SSH proxy server private key.
-- **Disable Password Authentication**: recommended, especially if the SSH proxy port may be exposed later.
+- **SSH assets**: see [SSH Proxy Server](/usage/ssh-server).
+- **RDP assets**: see [RDP Proxy Server](/usage/rdp-server).
 
-Click **Save** after updating the settings.
-
-![SSH Proxy Server settings](images/sshd-server.png)
-
-::: tip Note
-The private key here is the server identity key used by the SSH Proxy Server. It is not an asset credential and not the user's local SSH private key.
-:::
+If you need to access both SSH and RDP assets, enable both the SSH Proxy Server and the RDP Proxy Server.
 
 ## 2. Add a Next Terminal Instance in Termark
 
@@ -42,9 +38,11 @@ Fill in the basic instance information:
 - **Service URL**: the web URL of Next Terminal, for example `https://nt.example.com`.
 - **Access Credential**: the default auto-generated credential is recommended. When connecting for the first time or switching credentials, follow Termark's authorization prompt.
 
-Then choose the SSH connection mode based on your network environment.
+Then choose the connection mode based on the SSH asset access network. RDP assets use the RDP Proxy Server public address and are not affected by this SSH connection mode.
 
-## 3. Choose a Connection Mode
+## 3. Choose the SSH Connection Mode
+
+This option controls how Termark connects to the Next Terminal SSH Proxy Server. It affects SSH asset access only.
 
 ### Option 1: WebSocket Tunnel
 
@@ -60,42 +58,48 @@ Use WebSocket tunnel mode when:
 - Next Terminal is deployed behind a reverse proxy.
 - You want to reduce exposed public ports.
 
-### Option 2: Direct SSH
+### Option 2: Direct Proxy Service
 
-If the Termark client network can directly reach the Next Terminal SSH Proxy Server, you can choose **Direct SSH**. This mode has one fewer forwarding hop than WebSocket tunnel mode, so latency is lower and terminal interaction may feel smoother.
+If the Termark client network can directly reach the Next Terminal SSH Proxy Server, you can choose **Direct Proxy Service**. This mode has one fewer forwarding hop than WebSocket tunnel mode, so latency is lower and terminal interaction may feel smoother.
 
-Before using direct SSH, make sure the SSH Proxy Server listen address is reachable from the Termark client:
+Before using direct proxy service mode, make sure the SSH Proxy Server listen address is reachable from the Termark client:
 
 - Next Terminal is usually deployed on a server or inside a container, while Termark runs on the user's desktop. You cannot use `127.0.0.1:2022` from Termark to directly reach the SSH proxy running on the server.
 - Change the SSH Proxy Server listen address to an address reachable by the client, such as `0.0.0.0:2022` or the server's private IP.
 - If Next Terminal is deployed in a container, make sure port `2022` is mapped from the container to the host.
 - If the server has a firewall or cloud security group, allow access to the corresponding port.
 
-In Termark, select **Direct SSH** and fill in:
+In Termark, select **Direct Proxy Service** and fill in:
 
 - **SSH Host**: the host where the Next Terminal SSH Proxy Server is reachable. The hostname from the service URL can be used by default if it points to the same server.
 - **SSH Port**: the SSH Proxy Server port, for example `2022`.
 
 Click **Connect NextTerminal** after completing the settings.
 
-![Termark direct SSH settings](images/termark-direct-ssh.png)
+![Termark direct proxy service settings](images/termark-direct-ssh.png)
 
 ::: warning Security Recommendation
-If you change the listen address to `0.0.0.0:2022`, the SSH Proxy Server may become reachable from external networks. Use firewall rules, cloud security groups, or access control policies to allow only trusted sources.
+If you change the SSH Proxy Server listen address to `0.0.0.0:2022`, the SSH proxy port may become reachable from external networks. Use firewall rules, cloud security groups, or access control policies to allow only trusted sources.
 :::
 
 ## 4. View and Connect to Assets
 
-After the connection succeeds, return to the Termark home page and switch to the corresponding Next Terminal instance tab. You will see the SSH assets authorized to the current account.
+After the connection succeeds, return to the Termark home page and switch to the corresponding Next Terminal instance tab. You will see the SSH and RDP assets authorized to the current account.
 
 ![Termark asset list](images/termark-nt-dash.png)
+
+Asset access behavior:
+
+- **SSH assets**: Termark uses the configured SSH connection mode to connect to the Next Terminal SSH Proxy Server, then connects to the target SSH asset.
+- **RDP assets**: Termark creates a short-lived ticket through the Next Terminal RDP Proxy Server and opens the target RDP asset with the local RDP client.
 
 If no assets are displayed, check:
 
 - Whether the current account has access permission to the assets.
-- Whether the assets in Next Terminal are SSH assets and their connection settings are correct.
+- Whether the assets in Next Terminal are SSH or RDP assets and their connection settings are correct.
 - Whether the service URL and access credential in Termark belong to the expected account.
-- Whether the SSH Proxy Server is enabled and the settings have been saved.
+- For SSH assets, whether the SSH Proxy Server is enabled and the settings have been saved.
+- For RDP assets, whether the RDP Proxy Server is enabled and the settings have been saved.
 
 ## FAQ
 
@@ -108,7 +112,7 @@ Check the following in order:
 3. The reverse proxy supports WebSocket forwarding.
 4. The Next Terminal SSH Proxy Server is enabled.
 
-### Direct SSH Connection Fails
+### Direct Proxy Service Connection Fails
 
 Check the following in order:
 
@@ -118,6 +122,18 @@ Check the following in order:
 4. The firewall or cloud security group allows access to the port.
 5. If the listen address is still `127.0.0.1:2022`, the Termark desktop client cannot directly reach that port from the user's computer. Use WebSocket tunnel mode or change the listen address.
 
+### RDP Asset Connection Fails
+
+Check the following in order:
+
+1. The RDP Proxy Server is enabled, and the RDP proxy port is mapped in `docker-compose.yaml`.
+2. The RDP Proxy Server **Public Address** is reachable from the Termark client machine.
+3. The firewall or cloud security group allows access to the RDP proxy port, for example the default `3390`.
+4. The target asset protocol is `RDP`, and the asset username, password, domain, and port are configured correctly.
+5. The current account has access permission to the RDP asset.
+
+For more RDP Proxy Server troubleshooting, see [RDP Proxy Server](/usage/rdp-server).
+
 ### Assets Are Not Displayed
 
-Termark only displays SSH assets authorized to the current Next Terminal account. Confirm that the assets exist in Next Terminal, the authorization is valid, and the access credential used in Termark belongs to the correct account.
+Termark displays SSH and RDP assets authorized to the current Next Terminal account. Confirm that the assets exist in Next Terminal, the authorization is valid, and the access credential used in Termark belongs to the correct account.
