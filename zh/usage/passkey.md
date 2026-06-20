@@ -5,9 +5,9 @@
 ::: tip 注意
 **必须开启 HTTPS 才能使用此功能。**
 
-域名不包含协议和端口，例如：`next.typesafe.cn`
+域名不包含协议和端口，例如：`next.example.com`
 
-来源不包含地址后面的 `/`，例如：`https://next.typesafe.cn`
+来源不包含地址后面的 `/`，例如：`https://next.example.com`
 :::
 
 首先在设置页面开启通行密钥功能

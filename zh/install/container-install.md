@@ -13,14 +13,14 @@
 ::: code-group
 
 ```shell [中国大陆]
-curl -sSL https://f.typesafe.cn/next-terminal/docker-compose-aliyun.yaml > docker-compose.yaml
-curl -sSL https://f.typesafe.cn/next-terminal/config.yaml > config.yaml
+curl -sSL https://f.next-terminal.com/next-terminal/docker-compose-aliyun.yaml > docker-compose.yaml
+curl -sSL https://f.next-terminal.com/next-terminal/config.yaml > config.yaml
 docker compose up -d
 ```
 
 ```shell [其他]
-curl -sSL https://f.typesafe.cn/next-terminal/docker-compose.yaml > docker-compose.yaml
-curl -sSL https://f.typesafe.cn/next-terminal/config.yaml > config.yaml
+curl -sSL https://f.next-terminal.com/next-terminal/docker-compose.yaml > docker-compose.yaml
+curl -sSL https://f.next-terminal.com/next-terminal/config.yaml > config.yaml
 docker compose up -d
 ```
 

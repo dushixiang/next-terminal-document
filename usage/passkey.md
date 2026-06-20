@@ -5,9 +5,9 @@
 ::: tip Note
 **HTTPS is required for this feature.**
 
-Domain should not include protocol or port, for example: `next.typesafe.cn`
+Domain should not include protocol or port, for example: `next.example.com`
 
-Origins should not include trailing path slash, for example: `https://next.typesafe.cn`
+Origins should not include trailing path slash, for example: `https://next.example.com`
 :::
 
 First, enable passkey in Settings:

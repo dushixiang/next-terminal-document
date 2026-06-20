@@ -72,8 +72,8 @@ df -h | grep /opt/next-terminal/data
 
 ```bash
 cd /opt/next-terminal
-curl -sSL https://f.typesafe.cn/next-terminal/docker-compose-aliyun.yaml > docker-compose.yaml
-curl -sSL https://f.typesafe.cn/next-terminal/config.yaml > config.yaml
+curl -sSL https://f.next-terminal.com/next-terminal/docker-compose-aliyun.yaml > docker-compose.yaml
+curl -sSL https://f.next-terminal.com/next-terminal/config.yaml > config.yaml
 ```
 
 ## 6. 修改 `docker-compose.yaml`

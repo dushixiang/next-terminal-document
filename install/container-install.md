@@ -21,8 +21,8 @@ Before installation, make sure your host meets the [system requirements](/instal
 
 
 ```shell
-curl -sSL https://f.typesafe.cn/next-terminal/docker-compose.yaml > docker-compose.yaml
-curl -sSL https://f.typesafe.cn/next-terminal/config.yaml > config.yaml
+curl -sSL https://f.next-terminal.com/next-terminal/docker-compose.yaml > docker-compose.yaml
+curl -sSL https://f.next-terminal.com/next-terminal/config.yaml > config.yaml
 docker compose up -d
 ```
 

@@ -16,7 +16,7 @@ location / {
 ## caddy 反向代理示例
 
 ```shell
-next.typesafe.cn {
+next.example.com {
     reverse_proxy 127.0.0.1:8088
 }
 ```

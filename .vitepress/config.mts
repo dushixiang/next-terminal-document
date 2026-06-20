@@ -30,7 +30,7 @@ const enNav: DefaultTheme.NavItem[] = [
     {text: 'FAQ', link: '/faq/readme', activeMatch: '^/faq/'},
     {text: 'Blog', link: '/blog/secure-access', activeMatch: '^/blog/'},
     {text: 'API Docs', link: '/api/certificate', activeMatch: '^/api/'},
-    {text: 'Official Website', link: 'https://typeaudit.com'}
+    {text: 'Official Website', link: 'https://www.next-terminal.com'}
 ]
 
 const zhNav: DefaultTheme.NavItem[] = [
@@ -39,7 +39,7 @@ const zhNav: DefaultTheme.NavItem[] = [
     {text: '常见问题', link: '/zh/faq/readme', activeMatch: '^/zh/faq/'},
     {text: '博客文章', link: '/zh/blog/secure-access', activeMatch: '^/zh/blog/'},
     {text: 'API 文档', link: '/zh/api/certificate', activeMatch: '^/zh/api/'},
-    {text: '官网地址', link: 'https://typesafe.cn'}
+    {text: '官网地址', link: 'https://www.next-terminal.com'}
 ]
 
 const enInstallSidebar: DefaultTheme.SidebarItem[] = [

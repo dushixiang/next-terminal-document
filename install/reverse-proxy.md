@@ -16,7 +16,7 @@ location / {
 ## Caddy Example
 
 ```shell
-next.typesafe.cn {
+next.example.com {
     reverse_proxy 127.0.0.1:8088
 }
 ```

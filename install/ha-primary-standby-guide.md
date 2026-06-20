@@ -72,8 +72,8 @@ To mount it automatically on boot, add the following line to `/etc/fstab`:
 
 ```bash
 cd /opt/next-terminal
-curl -sSL https://f.typesafe.cn/next-terminal/docker-compose.yaml > docker-compose.yaml
-curl -sSL https://f.typesafe.cn/next-terminal/config.yaml > config.yaml
+curl -sSL https://f.next-terminal.com/next-terminal/docker-compose.yaml > docker-compose.yaml
+curl -sSL https://f.next-terminal.com/next-terminal/config.yaml > config.yaml
 ```
 
 ## 6. Update `docker-compose.yaml`

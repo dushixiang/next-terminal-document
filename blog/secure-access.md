@@ -91,9 +91,6 @@ Then user experience becomes:
 - **Logged in?** Enter GitLab directly
 - **Need audit?** Access records are available in audit logs
 
-> **Online demo**: [https://baidu.typesafe.cn](https://baidu.typesafe.cn)  
-> (This demo simulates internal access flow. Login with `test/test` and observe seamless redirection.)
-
 ## 5. Advanced: one unified gateway across multi-cloud and multi-site
 
 If you manage multiple environments (different cloud vendors, office, home lab), traditional solutions require complex routing tunnels.

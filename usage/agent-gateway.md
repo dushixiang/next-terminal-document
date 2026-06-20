@@ -116,7 +116,7 @@ A running service may look like:
 		"/Users/nobody/app/nt-tunnel";
 		"run";
 		"--endpoint";
-		"https://next.typesafe.cn";
+		"https://next.example.com";
 		"--token";
 		"TUN_8qWs6xU6Vnhf8CewzFLtgVR3qSP8YKcoNPhPe5VThqbe";
 	);

@@ -4,7 +4,7 @@
 
 ![img.png](images/license.png)
 
-2. 打开授权系统的【我的授权】页面 https://license.typesafe.cn/license
+2. 打开授权系统的【我的授权】页面 https://license.next-terminal.com/license
 
 ![img.png](images/my-license.png)
 

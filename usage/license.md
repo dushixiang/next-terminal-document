@@ -4,7 +4,7 @@
 
 ![img.png](images/license.png)
 
-2. Open **My Licenses** page: https://license.typesafe.cn/license
+2. Open **My Licenses** page: https://license.next-terminal.com/license
 
 ![img.png](images/my-license.png)
 
